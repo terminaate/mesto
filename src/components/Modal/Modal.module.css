@@ -1,0 +1,29 @@
+.modalScreen {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-secondary);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.modalScreen[data-visible="true"] {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modalScreen:not([data-visible="true"]) {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modalContent {
+    padding: 25px;
+    color: var(--background-primary);
+    background-color: var(--text-primary);
+    border-radius: 10px;
+}

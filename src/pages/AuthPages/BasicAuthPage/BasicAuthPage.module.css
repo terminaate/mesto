@@ -1,0 +1,20 @@
+.modalContent {
+    width: 100%;
+    max-width: 400px;
+    padding: 25px;
+    color: var(--background-primary);
+    background-color: var(--text-primary);
+    border-radius: 10px;
+}
+
+.titles {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.logo {
+    font-family: var(--font-secondary);
+    font-size: 20px;
+}

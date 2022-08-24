@@ -1,0 +1,17 @@
+.Input {
+    width: 100%;
+    font-family: var(--font-secondary);
+    background: none;
+    color: var(--background-primary);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--background-secondary);
+}
+
+.Input::placeholder {
+    opacity: 0.4;
+    font-size: 15px;
+}
+
+.Input[type="password"] {
+    font-size: 10px;
+}

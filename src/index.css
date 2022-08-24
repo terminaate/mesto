@@ -1,0 +1,50 @@
+@font-face {
+    font-family: "Inter-Medium";
+    src: url("./assets/fonts/Inter-Medium.woff2");
+}
+
+@font-face {
+    font-family: "Inter-Regular";
+    src: url("./assets/fonts/Inter-Regular.woff2");
+}
+
+@font-face {
+    font-family: "Inter-Bold";
+    src: url("./assets/fonts/Inter-Black.woff2");
+}
+
+
+*, *:after, *:before {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+}
+
+:root {
+    --background-primary: #000;
+    --background-secondary: rgba(0, 0, 0, 0.5);
+    --background-thirty: rgba(0, 0, 0, 0.8);
+    --text-primary: #fff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-third: rgba(84, 84, 84, 0.7);
+    --text-fourth: #545454;
+    --text-error: red;
+    --font-primary: 'Inter-Regular', sans-serif;
+    --font-secondary: 'Inter-Medium', sans-serif;
+    --font-bold: 'Inter-Bold', sans-serif
+}
+
+body {
+    background-color: var(--background-primary);
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    overflow-x: hidden;
+}
+
+button {
+    background: none;
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+}

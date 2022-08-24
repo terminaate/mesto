@@ -1,0 +1,10 @@
+.loginLink {
+    font-family: var(--font-secondary);
+    text-align: right;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.loginLink a {
+    color: var(--background-primary);
+}

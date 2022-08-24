@@ -1,0 +1,20 @@
+.inputsContainer {
+    display: flex;
+    align-items: flex-start;
+    row-gap: 20px;
+    flex-direction: column;
+    padding-block: 30px;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.error {
+    margin-top: 4px;
+    color: var(--text-error);
+    font-size: 12px;
+    font-family: var(--font-secondary);
+}
