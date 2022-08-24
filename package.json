@@ -1,10 +1,11 @@
 {
   "name": "mesto",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "prebuild": "tsc && vite build && rmdir /s /q dist && echo Builded without any error!",
     "format": "prettier --write \"src/**/*.{ts, tsx, css}\""
   },
   "dependencies": {
