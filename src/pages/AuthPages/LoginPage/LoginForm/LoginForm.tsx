@@ -5,13 +5,16 @@ import Button from '@/components/UI/Button';
 import useInputState from '@/hooks/useInputState';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { AuthData } from '@/services/AuthService';
+import { FaEye, FaEyeSlash } from 'react-icons/all';
 import { login } from '@/store/reducers/user/authAPI';
+import { Simulate } from 'react-dom/test-utils';
 
 const LoginForm = () => {
 	const [loginInput, onLoginInputChange] = useInputState('');
 	const [loginInputError, setLoginInputError] = useState<string>('');
 	const [passwordInput, onPasswordInputChange] = useInputState('');
 	const [passwordInputError, setPasswordInputError] = useState<string>('');
+	const [passwordType, setPasswordType] = useState<string>('password');
 	const dispatch = useAppDispatch();
 	const { error: serverError } = useAppSelector(state => state.userSlice.user);
 
@@ -50,6 +53,9 @@ const LoginForm = () => {
 		}
 	};
 
+	const changePasswordType = () => {
+		setPasswordType(passwordType === 'text' ? 'password' : 'text');
+	};
 
 	return (
 		<>
@@ -57,11 +63,19 @@ const LoginForm = () => {
 			<div className={cl.inputsContainer}>
 				<div className={cl.inputContainer}>
 					<Input value={loginInput} onChange={onLoginInputChange} placeholder={'Адрес электронной почты или логин*'} />
-					{loginInputError && <span className={cl.error}>{loginInputError}</span>}
+					<div data-error={Boolean(loginInputError)} className={cl.errorContainer}>
+						<span className={cl.error}>{loginInputError}</span>
+					</div>
 				</div>
 				<div className={cl.inputContainer}>
-					<Input type={'password'} value={passwordInput} onChange={onPasswordInputChange} placeholder={'Пароль*'} />
-					{passwordInputError && <span className={cl.error}>{passwordInputError}</span>}
+					<Input type={passwordType} value={passwordInput} onChange={onPasswordInputChange} placeholder={'Пароль*'}>
+						<button onClick={changePasswordType} className={cl.passwordButton}>
+							{passwordType === 'text' ? <FaEye /> : <FaEyeSlash />}
+						</button>
+					</Input>
+					<div data-error={Boolean(passwordInputError)} className={cl.errorContainer}>
+						<span className={cl.error}>{passwordInputError}</span>
+					</div>
 				</div>
 			</div>
 			<Button onClick={loginAttempt}>Войти</Button>

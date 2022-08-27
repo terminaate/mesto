@@ -1,0 +1,22 @@
+.headerContainer {
+    padding-inline: 72px;
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-family: var(--font-secondary);
+    font-size: 20px;
+}
+
+.userAvatar {
+    border: 1px solid var(--text-primary);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

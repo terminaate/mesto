@@ -8,6 +8,7 @@ import { updateUser } from '@/store/reducers/user/userSlice';
 import AuthorizedRoute from '@/components/AuthorizedRoute';
 import UserPage from '@/pages/UserPage/UserPage';
 import { refresh } from '@/store/reducers/user/authAPI';
+import Header from '@/components/Header/Header';
 
 const App = () => {
 	const location = useLocation();
@@ -25,6 +26,7 @@ const App = () => {
 
 	return (
 		<AnimatePresence exitBeforeEnter>
+			<Header/>
 			<Routes location={location} key={location.pathname}>
 				<Route path={'/login'} element={<LoginPage />} />
 				<Route path={'/register'} element={<RegisterPage />} />

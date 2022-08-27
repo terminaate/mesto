@@ -6,6 +6,7 @@ export interface UserState {
 	authorized: boolean;
 	user: {
 		id: null | number;
+		avatar: null | string;
 		email: null | string;
 		username: null | string;
 		accessToken: null | string;
@@ -17,6 +18,7 @@ const initialState: UserState = {
 	authorized: false,
 	user: {
 		id: null,
+		avatar: null,
 		email: null,
 		username: null,
 		accessToken: null

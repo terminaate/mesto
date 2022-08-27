@@ -1,14 +1,26 @@
+.inputContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-right: 10px;
+    background: none;
+    border-bottom: 1px solid var(--background-primary);
+}
+
+.inputContainer div {
+    padding-bottom: 5px;
+}
+
 .Input {
     width: 100%;
     font-family: var(--font-secondary);
     background: none;
-    color: var(--background-primary);
     padding-bottom: 10px;
-    border-bottom: 1px solid var(--background-secondary);
+    color: var(--background-primary);
 }
 
 .Input::placeholder {
-    opacity: 0.4;
+    opacity: 0.45;
     font-size: 15px;
 }
 
