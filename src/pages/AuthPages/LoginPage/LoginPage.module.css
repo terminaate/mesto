@@ -32,7 +32,7 @@
 }
 
 .loginLink a {
-    color: var(--background-primary);
+    color: var(--text-primary);
 }
 
 .error {

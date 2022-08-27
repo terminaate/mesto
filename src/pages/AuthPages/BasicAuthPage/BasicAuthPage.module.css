@@ -9,8 +9,8 @@
     width: 100%;
     max-width: 400px;
     padding: 25px;
-    color: var(--background-primary);
-    background-color: var(--text-primary);
+    color: var(--text-primary);
+    background-color: var(--background-modal);
     border-radius: 10px;
 }
 

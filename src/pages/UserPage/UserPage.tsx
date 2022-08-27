@@ -16,6 +16,7 @@ const UserPage = () => {
 				<div className={cl.container}>
 					<div className={cl.userInfoContainer}>
 						<div onClick={() => setAvatarModal(true)} className={cl.userAvatar} style={useBackgroundImage(user.avatar)}>
+							<div/>
 							<FaPen />
 						</div>
 						<span className={cl.userName}>{user.username}</span>
