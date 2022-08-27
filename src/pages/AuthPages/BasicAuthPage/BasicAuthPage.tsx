@@ -4,13 +4,13 @@ import cl from './BasicAuthPage.module.css';
 import { useAppSelector } from '@/store';
 import { useNavigate } from 'react-router-dom';
 
-type BasicAuthPageProps = {
-	children: ReactNode
+interface IBasicAuthPage {
+	children: ReactNode;
 	onHide?: () => void;
 	title?: string;
 }
 
-const BasicAuthPage: FC<BasicAuthPageProps> = ({ children, onHide, title }) => {
+const BasicAuthPage: FC<IBasicAuthPage> = ({ children, onHide, title }) => {
 	const { authorized } = useAppSelector(state => state.userSlice);
 	const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ const BasicAuthPage: FC<BasicAuthPageProps> = ({ children, onHide, title }) => {
 	}, [authorized]);
 
 	return (
-		<BasicPage>
+		<BasicPage className={cl.authPage}>
 			<div className={cl.modalContent}>
 				<div className={cl.titles}>
 					<span className={cl.logo}>Mesto</span>

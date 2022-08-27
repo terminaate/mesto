@@ -3,7 +3,8 @@ import { AuthResponse } from '@/types/ServerResponse/AuthResponse';
 import store from '@/store';
 import { userSlice } from '@/store/reducers/user/userSlice';
 
-const baseURL = 'http://127.0.0.1:5000/api';
+export const serverURL = 'http://127.0.0.1:5000';
+const baseURL = serverURL + "/api"
 
 const $api = axios.create({
 	baseURL,

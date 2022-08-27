@@ -8,7 +8,7 @@ import { updateUser } from '@/store/reducers/user/userSlice';
 import AuthorizedRoute from '@/components/AuthorizedRoute';
 import UserPage from '@/pages/UserPage/UserPage';
 import { refresh } from '@/store/reducers/user/authAPI';
-import Header from '@/components/Header/Header';
+import { getUser } from '@/store/reducers/user/userAPI';
 
 const App = () => {
 	const location = useLocation();
@@ -19,14 +19,14 @@ const App = () => {
 	}, [location.pathname]);
 
 	useEffect(() => {
-		if (localStorage.getItem("accessToken")) {
-			dispatch(refresh())
+		if (localStorage.getItem('accessToken')) {
+			dispatch(refresh());
+			dispatch(getUser({ userId: '@me' }));
 		}
-	}, [])
+	}, []);
 
 	return (
 		<AnimatePresence exitBeforeEnter>
-			<Header/>
 			<Routes location={location} key={location.pathname}>
 				<Route path={'/login'} element={<LoginPage />} />
 				<Route path={'/register'} element={<RegisterPage />} />

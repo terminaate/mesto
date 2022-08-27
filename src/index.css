@@ -26,8 +26,9 @@
     --background-primary: #000;
     --background-secondary: rgba(0, 0, 0, 0.5);
     --background-thirty: rgba(0, 0, 0, 0.8);
+    --background-modal: #1A1A1A;
     --text-primary: #fff;
-    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-secondary: rgba(255, 255, 255, 0.51);
     --text-third: rgba(84, 84, 84, 0.7);
     --text-fourth: #545454;
     --text-error: red;

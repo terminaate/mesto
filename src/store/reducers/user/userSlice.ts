@@ -1,15 +1,19 @@
 import { AnyAction, createSlice, Draft } from '@reduxjs/toolkit';
 import authAsyncThunks, { login, refresh, register } from './authAPI';
+import userAsyncThunks, { editUser, getUser } from './userAPI';
+import { serverURL } from '@/http';
+
+type NullOrString = null | string
 
 export interface UserState {
-	error: null | string;
+	error: NullOrString;
 	authorized: boolean;
 	user: {
-		id: null | number;
-		avatar: null | string;
-		email: null | string;
-		username: null | string;
-		accessToken: null | string;
+		id: NullOrString;
+		avatar: NullOrString;
+		email: NullOrString;
+		username: NullOrString;
+		accessToken: NullOrString;
 	};
 }
 
@@ -46,12 +50,13 @@ export const userSlice = createSlice({
 			state.error = null;
 		};
 
-		for (let asyncThunk of authAsyncThunks) {
+		for (let asyncThunk of [...userAsyncThunks, ...authAsyncThunks]) {
 			builder.addCase(asyncThunk.pending, handleAuthPending);
 			builder.addCase(asyncThunk.rejected, handleAuthReject);
 		}
 
 		const handleAuth = (state: Draft<UserState>, action: AnyAction) => {
+			console.log(action.payload);
 			state.user = {
 				...action.payload.user,
 				accessToken: action.payload.accessToken
@@ -60,6 +65,10 @@ export const userSlice = createSlice({
 			localStorage.setItem('accessToken', state.user.accessToken!);
 		};
 
+		const getAvatar = (userId: string) => {
+			return serverURL + `/static/${userId}/avatar?t=${+new Date()}`
+		}
+
 		builder.addCase(login.fulfilled, handleAuth);
 		builder.addCase(register.fulfilled, handleAuth);
 
@@ -67,6 +76,14 @@ export const userSlice = createSlice({
 			state.user.accessToken = action.payload.accessToken;
 			state.authorized = true;
 			localStorage.setItem('accessToken', state.user.accessToken!);
+		});
+
+		builder.addCase(getUser.fulfilled, (state: Draft<UserState>, action: AnyAction) => {
+			state.user = { ...state.user, ...action.payload, avatar: getAvatar(state.user.id!) };
+		});
+
+		builder.addCase(editUser.fulfilled, (state: Draft<UserState>, action: AnyAction) => {
+			state.user = { ...state.user, ...action.payload, avatar: getAvatar(state.user.id!) };
 		});
 	}
 });

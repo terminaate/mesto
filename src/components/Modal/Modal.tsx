@@ -2,30 +2,30 @@ import React, { FC, ReactNode } from 'react';
 import cl from './Modal.module.css';
 import useClassNames from '@/hooks/useClassNames';
 
-type ModalProps = {
-	visible: boolean;
-	setVisible?: React.Dispatch<React.SetStateAction<boolean>>;
+interface IModal {
+	modal: boolean;
+	setModal?: React.Dispatch<React.SetStateAction<boolean>>;
 	onHide?: () => void;
 	className?: string;
 	children: ReactNode;
 }
 
-const Modal: FC<ModalProps> = ({
-																 visible,
-																 setVisible,
+const Modal: FC<IModal> = ({
+																 modal,
+																 setModal,
 																 onHide,
 																 className,
 																 children
 															 }) => {
 
 	const closeModal = () => {
-		if (onHide && setVisible) {
-			setVisible(false);
+		if (onHide && setModal) {
+			setModal(false);
 			return setTimeout(onHide, 400);
 		}
 
-		if (setVisible) {
-			return setVisible(false);
+		if (setModal) {
+			return setModal(false);
 		}
 
 		if (onHide) {
@@ -36,7 +36,7 @@ const Modal: FC<ModalProps> = ({
 	const classNames = useClassNames([className!, cl.modalContent]);
 
 	return (
-		<div onClick={closeModal} data-visible={visible} className={cl.modalScreen}>
+		<div onClick={closeModal} data-visible={modal} className={cl.modalScreen}>
 			<div onClick={e => e.stopPropagation()} className={classNames}>
 				{children}
 			</div>
