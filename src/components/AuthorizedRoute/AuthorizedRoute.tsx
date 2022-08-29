@@ -1,15 +1,19 @@
-import React, { FC } from 'react';
-import { Navigate } from 'react-router-dom';
-import { useAppSelector } from '@/store';
+import React, { FC, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import UserService from '@/services/UserService';
 
 interface IAuthorizedRoute {
 	children: JSX.Element
 }
 
 const AuthorizedRoute: FC<IAuthorizedRoute> = ({ children }) => {
-	const { authorized } = useAppSelector(state => state.userSlice);
+	const navigate = useNavigate();
 
-	return authorized ? children : <Navigate to={'/login'} />;
+	useEffect(() => {
+		UserService.getUser('@me').catch(() => navigate('/login'));
+	}, []);
+
+	return children;
 };
 
 export default AuthorizedRoute;

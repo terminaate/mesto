@@ -89,7 +89,7 @@ const RegisterForm = () => {
 					</div>
 				</div>
 			</div>
-			<Button onClick={registerAttempt}>Зарегестрироваться</Button>
+			<Button className={cl.registerButton} onClick={registerAttempt}>Зарегестрироваться</Button>
 		</>
 	);
 };

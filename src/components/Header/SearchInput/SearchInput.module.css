@@ -1,0 +1,29 @@
+.searchInputContainer {
+    width: 35%;
+    height: 43px;
+    padding: 9px 10px 10px 20px;
+    display: flex;
+    align-items: center;
+    column-gap: 9px;
+    border-radius: 7px;
+    border: 1px solid var(--text-secondary);
+}
+
+.searchInput {
+    background: none;
+    color: var(--text-primary);
+    width: 100%;
+    height: 100%;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.searchInput::placeholder {
+    opacity: 1;
+    /*color: var(--text-primary)*/
+}
+
+.searchIcon {
+    font-size: 19px;
+}

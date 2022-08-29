@@ -1,9 +1,9 @@
 import { AnyAction, createSlice, Draft } from '@reduxjs/toolkit';
 import authAsyncThunks, { login, refresh, register } from './authAPI';
 import userAsyncThunks, { editUser, getUser } from './userAPI';
-import { serverURL } from '@/http';
+import useUserAvatar from '@/hooks/useUserAvatar';
 
-type NullOrString = null | string
+type NullOrString = null | string;
 
 export interface UserState {
 	error: NullOrString;
@@ -56,18 +56,14 @@ export const userSlice = createSlice({
 		}
 
 		const handleAuth = (state: Draft<UserState>, action: AnyAction) => {
-			console.log(action.payload);
 			state.user = {
 				...action.payload.user,
-				accessToken: action.payload.accessToken
+				accessToken: action.payload.accessToken,
+				avatar: useUserAvatar(action.payload.user.id)
 			};
 			state.authorized = true;
 			localStorage.setItem('accessToken', state.user.accessToken!);
 		};
-
-		const getAvatar = (userId: string) => {
-			return serverURL + `/static/${userId}/avatar?t=${+new Date()}`
-		}
 
 		builder.addCase(login.fulfilled, handleAuth);
 		builder.addCase(register.fulfilled, handleAuth);
@@ -79,12 +75,22 @@ export const userSlice = createSlice({
 		});
 
 		builder.addCase(getUser.fulfilled, (state: Draft<UserState>, action: AnyAction) => {
-			state.user = { ...state.user, ...action.payload, avatar: getAvatar(state.user.id!) };
-		});
+				state.user = {
+					...state.user,
+					...action.payload,
+					avatar: useUserAvatar(action.payload.id)
+				};
+			}
+		);
 
 		builder.addCase(editUser.fulfilled, (state: Draft<UserState>, action: AnyAction) => {
-			state.user = { ...state.user, ...action.payload, avatar: getAvatar(state.user.id!) };
-		});
+				state.user = {
+					...state.user,
+					...action.payload,
+					avatar: useUserAvatar(action.payload.id)
+				};
+			}
+		);
 	}
 });
 

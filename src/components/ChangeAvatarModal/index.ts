@@ -1,3 +1,3 @@
 import ChangeAvatarModal from './ChangeAvatarModal';
 
-export default ChangeAvatarModal
+export default ChangeAvatarModal;

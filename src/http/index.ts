@@ -3,12 +3,15 @@ import { AuthResponse } from '@/types/ServerResponse/AuthResponse';
 import store from '@/store';
 import { userSlice } from '@/store/reducers/user/userSlice';
 
+// TODO
+// Сделать переменные окружения prod и env, а так-же здесь заменить serverUrl на перменныю из окружения
+
 export const serverURL = 'http://127.0.0.1:5000';
-const baseURL = serverURL + "/api"
+const baseURL = serverURL + '/api';
 
 const $api = axios.create({
 	baseURL,
-	withCredentials: true
+	withCredentials: true,
 });
 
 $api.interceptors.request.use((config) => {

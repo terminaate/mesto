@@ -36,3 +36,7 @@
     font-size: 18px;
     cursor: pointer;
 }
+
+.registerButton {
+    width: 100%;
+}

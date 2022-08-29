@@ -2,10 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import UserService from '@/services/UserService';
 
 export const logError = (e: any) => {
-	if (Array.isArray(e.response?.data.message)) {
-		console.log(e.response?.data.message[0]);
+	if (Array.isArray(e.response!.data.message)) {
+		console.log(e.response!.data.message[0]);
 	} else {
-		console.log(e.response?.data.message);
+		console.log(e.response!.data.message);
 	}
 };
 
@@ -28,7 +28,7 @@ export type editUserProps = {
 	avatar?: string;
 	username?: string;
 	bio?: string;
-}
+};
 
 export const editUser = createAsyncThunk(
 	'user/edit-user',
@@ -43,7 +43,4 @@ export const editUser = createAsyncThunk(
 	}
 );
 
-export default [
-	getUser,
-	editUser
-];
+export default [getUser, editUser];

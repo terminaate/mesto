@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "test:build": "tsc && vite build && rmdir /s /q dist && echo Builded without any error!",
+    "test:build": "tsc && vite build && rmdir /s /q dist && echo No errors founded!",
     "format": "prettier --write \"src/**/*.{ts, tsx, css}\""
   },
   "dependencies": {

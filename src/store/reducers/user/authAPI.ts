@@ -28,17 +28,14 @@ export const register = createAsyncThunk(
 	}
 );
 
-export const refresh = createAsyncThunk(
-	'auth/refresh',
-	async (_, thunkAPI) => {
-		try {
-			const { data } = await AuthService.refresh();
-			return data;
-		} catch (e: any) {
-			logError(e);
-			return thunkAPI.rejectWithValue(e.response?.data.message[0]);
-		}
+export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+	try {
+		const { data } = await AuthService.refresh();
+		return data;
+	} catch (e: any) {
+		logError(e);
+		return thunkAPI.rejectWithValue(e.response?.data.message[0]);
 	}
-);
+});
 
 export default [login, register, refresh];

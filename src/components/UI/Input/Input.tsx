@@ -10,9 +10,11 @@ const Input: FC<IInput> = ({ className, children, ...props }) => {
 	return (
 		<div className={cl.inputContainer}>
 			<input {...props} className={useClassNames([cl.Input, className])} />
-			<div>
-				{children}
-			</div>
+			{children && (
+				<div>
+					{children}
+				</div>
+			)}
 		</div>
 	);
 };

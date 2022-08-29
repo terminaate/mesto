@@ -6,11 +6,10 @@ import { useNavigate } from 'react-router-dom';
 
 interface IBasicAuthPage {
 	children: ReactNode;
-	onHide?: () => void;
 	title?: string;
 }
 
-const BasicAuthPage: FC<IBasicAuthPage> = ({ children, onHide, title }) => {
+const BasicAuthPage: FC<IBasicAuthPage> = ({ children, title }) => {
 	const { authorized } = useAppSelector(state => state.userSlice);
 	const navigate = useNavigate();
 

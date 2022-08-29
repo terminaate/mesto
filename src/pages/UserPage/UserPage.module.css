@@ -24,30 +24,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 40px;
-    cursor: pointer;
-    position: relative;
+    /*font-size: 40px;*/
+    /*cursor: pointer;*/
+    /*position: relative;*/
 }
-.userAvatar div {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    border-radius: inherit;
-    background-color: var(--background-thirty);
-    opacity: 0;
-    transition: opacity .3s;
-}
+/*.userAvatar div {*/
+/*    position: absolute;*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*    border-radius: inherit;*/
+/*    background-color: var(--background-thirty);*/
+/*    opacity: 0;*/
+/*    transition: opacity .3s;*/
+/*}*/
 
-.userAvatar svg {
-    opacity: 0;
-    transition: opacity .3s;
-    z-index: 5;
-}
+/*.userAvatar svg {*/
+/*    opacity: 0;*/
+/*    transition: opacity .3s;*/
+/*    z-index: 5;*/
+/*}*/
 
-.userAvatar:hover div,
-.userAvatar:hover svg {
-    opacity: 1;
-}
+/*.userAvatar:hover div,*/
+/*.userAvatar:hover svg {*/
+/*    opacity: 1;*/
+/*}*/
 
 .userName {
     margin-top: 24px;

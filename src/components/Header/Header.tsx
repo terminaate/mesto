@@ -1,25 +1,34 @@
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '@/store';
-import { logout } from '@/store/reducers/user/userSlice';
+import { useAppSelector } from '@/store';
 import { motion } from 'framer-motion';
 import cl from './Header.module.css';
-import SearchInput from '@/components/Header/SearchInput/SearchInput';
-import useBackgroundImage from '@/hooks/useBackgroundImage';
+import SearchInput from './SearchInput';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Button from '@/components/UI/Button';
+import UserAvatar from './UserAvatar';
 
 const Header = () => {
-	const dispatch = useAppDispatch();
-	const { user, authorized } = useAppSelector(state => state.userSlice);
+	const { authorized } = useAppSelector(state => state.userSlice);
+	const navigate = useNavigate();
+	const location = useLocation();
 
-	const logoutDispatch = () => {
-		dispatch(logout());
+	const navigateToLoginPage = () => {
+		navigate('/login');
 	};
 
 	return (
 		<motion.div className={cl.headerContainer} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-			exit={{ opacity: 0 }}>
+								exit={{ opacity: 0 }}>
 			<span className={cl.logo}>Mesto</span>
-			<SearchInput />
-			<div className={cl.userAvatar} onClick={logoutDispatch} style={useBackgroundImage(user.avatar)} />
+			{(location.pathname !== '/login' && location.pathname !== '/register') && (
+				<>
+					<SearchInput />
+					{authorized ?
+						<UserAvatar />
+						: <Button onClick={navigateToLoginPage}>Войти</Button>
+					}
+				</>
+			)}
 		</motion.div>
 	);
 };

@@ -78,7 +78,7 @@ const LoginForm = () => {
 					</div>
 				</div>
 			</div>
-			<Button onClick={loginAttempt}>Войти</Button>
+			<Button className={cl.loginButton} onClick={loginAttempt}>Войти</Button>
 		</>
 	);
 };
