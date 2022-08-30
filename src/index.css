@@ -1,16 +1,16 @@
 @font-face {
-    font-family: "Inter-Medium";
-    src: url("./assets/fonts/Inter-Medium.woff2");
+    font-family: "Helvetica-Medium";
+    src: url("./assets/fonts/HelveticaNeueCyr-Medium.ttf");
 }
 
 @font-face {
-    font-family: "Inter-Regular";
-    src: url("./assets/fonts/Inter-Regular.woff2");
+    font-family: "Helvetica-Regular";
+    src: url("./assets/fonts/HelveticaNeueCyr-Roman.ttf");
 }
 
 @font-face {
-    font-family: "Inter-Bold";
-    src: url("./assets/fonts/Inter-Black.woff2");
+    font-family: "Helvetica-Bold";
+    src: url("./assets/fonts/HelveticaNeueCyr-Bold.ttf");
 }
 
 
@@ -33,9 +33,9 @@
     --text-third: rgba(84, 84, 84, 0.7);
     --text-fourth: #545454;
     --text-error: red;
-    --font-primary: 'Inter-Regular', sans-serif;
-    --font-secondary: 'Inter-Medium', sans-serif;
-    --font-bold: 'Inter-Bold', sans-serif
+    --font-primary: 'Helvetica-Regular', sans-serif;
+    --font-secondary: 'Helvetica-Medium', sans-serif;
+    --font-bold: 'Helvetica-Bold', sans-serif
 }
 
 body {

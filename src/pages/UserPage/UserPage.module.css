@@ -52,7 +52,7 @@
 .userName {
     margin-top: 24px;
     font-family: var(--font-secondary);
-    font-weight: 600;
+    font-weight: 550;
     font-size: 36px;
     line-height: 36px;
     color: var(--text-primary)

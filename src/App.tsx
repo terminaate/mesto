@@ -10,6 +10,7 @@ import UserPage from '@/pages/UserPage/UserPage';
 import { refresh } from '@/store/reducers/user/authAPI';
 import { getUser } from '@/store/reducers/user/userAPI';
 import SettingsPage from '@/pages/SettingsPage/SettingsPage';
+import Header from '@/components/Header/Header';
 
 const App = () => {
 	const location = useLocation();
@@ -27,22 +28,25 @@ const App = () => {
 	}, []);
 
 	return (
-		<AnimatePresence exitBeforeEnter>
-			<Routes location={location} key={location.pathname}>
-				<Route path={'/login'} element={<LoginPage />} />
-				<Route path={'/register'} element={<RegisterPage />} />
-				<Route path={'/users/:id'} element={
-					<AuthorizedRoute>
-						<UserPage />
-					</AuthorizedRoute>
-				} />
-				<Route path={'/settings'} element={
-					<AuthorizedRoute>
-						<SettingsPage />
-					</AuthorizedRoute>
-				} />
-			</Routes>
-		</AnimatePresence>
+		<>
+			<Header/>
+			<AnimatePresence exitBeforeEnter>
+				<Routes location={location} key={location.pathname}>
+					<Route path={'/login'} element={<LoginPage />} />
+					<Route path={'/register'} element={<RegisterPage />} />
+					<Route path={'/users/:id'} element={
+						<AuthorizedRoute>
+							<UserPage />
+						</AuthorizedRoute>
+					} />
+					<Route path={'/settings'} element={
+						<AuthorizedRoute>
+							<SettingsPage />
+						</AuthorizedRoute>
+					} />
+				</Routes>
+			</AnimatePresence>
+		</>
 	);
 };
 

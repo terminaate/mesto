@@ -19,12 +19,13 @@ const UserAvatar = () => {
 
 	const logoutDispatch = () => {
 		dispatch(logout());
+		navigate('/login');
 	};
 
 	return (
 		<div ref={avatarRef} className={cl.userAvatar} onClick={() => setUserPopup(!userPopup)}
 				 style={useBackgroundImage(user.avatar)}>
-			<div ref={userPopupRef} data-active={userPopup} onClick={e => e.stopPropagation()}
+			<div ref={userPopupRef} data-active={userPopup}
 					 className={cl.userAvatarContainer}>
 				{location.pathname !== '/users/@me' && (
 					<button onClick={() => navigate('/users/@me')}>Моя страница</button>
