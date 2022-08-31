@@ -3,15 +3,17 @@ import BasicPage from '@/components/BasicPage';
 import cl from './BasicAuthPage.module.css';
 import { useAppSelector } from '@/store';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface IBasicAuthPage {
 	children: ReactNode;
-	title?: string;
+	title: string;
 }
 
 const BasicAuthPage: FC<IBasicAuthPage> = ({ children, title }) => {
 	const { authorized } = useAppSelector(state => state.userSlice);
 	const navigate = useNavigate();
+	const { t } = useTranslation('auth');
 
 	useEffect(() => {
 		if (authorized) {
@@ -24,7 +26,7 @@ const BasicAuthPage: FC<IBasicAuthPage> = ({ children, title }) => {
 			<div className={cl.modalContent}>
 				<div className={cl.titles}>
 					<span className={cl.logo}>Mesto</span>
-					<span>{title!}</span>
+					<span>{title}</span>
 				</div>
 				{children}
 			</div>

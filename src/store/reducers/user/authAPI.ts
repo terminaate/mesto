@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import AuthService, { AuthData } from '@/services/AuthService';
-import { logError } from '@/store/reducers/user/userAPI';
+import { getErrorObject, logError } from '@/store/reducers/user/userAPI';
 
 export const login = createAsyncThunk(
 	'auth/login',
@@ -10,7 +10,7 @@ export const login = createAsyncThunk(
 			return data;
 		} catch (e: any) {
 			logError(e);
-			return thunkAPI.rejectWithValue(e.response?.data.message[0]);
+			return thunkAPI.rejectWithValue(getErrorObject(e).message);
 		}
 	}
 );
@@ -23,7 +23,7 @@ export const register = createAsyncThunk(
 			return data;
 		} catch (e: any) {
 			logError(e);
-			return thunkAPI.rejectWithValue(e.response?.data.message[0]);
+			return thunkAPI.rejectWithValue(getErrorObject(e).message);
 		}
 	}
 );
@@ -34,7 +34,7 @@ export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
 		return data;
 	} catch (e: any) {
 		logError(e);
-		return thunkAPI.rejectWithValue(e.response?.data.message[0]);
+		return thunkAPI.rejectWithValue(getErrorObject(e).message);
 	}
 });
 

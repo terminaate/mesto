@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/store';
 import { AuthData } from '@/services/AuthService';
 import { FaEye, FaEyeSlash } from 'react-icons/all';
 import { login } from '@/store/reducers/user/authAPI';
-import { Simulate } from 'react-dom/test-utils';
+import { useTranslation } from 'react-i18next';
 
 const LoginForm = () => {
 	const [loginInput, onLoginInputChange] = useInputState('');
@@ -17,6 +17,7 @@ const LoginForm = () => {
 	const [passwordType, setPasswordType] = useState<string>('password');
 	const dispatch = useAppDispatch();
 	const { error: serverError } = useAppSelector(state => state.userSlice.user);
+	const { t } = useTranslation('auth');
 
 	const isEmail = (email: string) => {
 		const regexp = /\S+@\S+\.\S+/;
@@ -25,17 +26,17 @@ const LoginForm = () => {
 
 	const loginAttempt = () => {
 		if (!loginInput) {
-			return setLoginInputError('Введите логин!');
+			return setLoginInputError(t('Enter login!'));
 		} else if (loginInput.length < 4) {
-			return setLoginInputError('Минимальная длинна логина 4!');
+			return setLoginInputError(t("Minimum login length 4!"));
 		} else {
 			setLoginInputError('');
 		}
 
 		if (!passwordInput) {
-			return setPasswordInputError('Введите пароль!');
+			return setPasswordInputError(t('Enter password!'));
 		} else if (passwordInput.length < 7) {
-			return setPasswordInputError('Минимальная длинна пароля 7!');
+			return setPasswordInputError(t('The minimum password length is 7!'));
 		} else {
 			setPasswordInputError('');
 		}
@@ -62,13 +63,14 @@ const LoginForm = () => {
 			{serverError && <span className={cl.error}>{serverError}</span>}
 			<div className={cl.inputsContainer}>
 				<div className={cl.inputContainer}>
-					<Input value={loginInput} onChange={onLoginInputChange} placeholder={'Адрес электронной почты или логин*'} />
+					<Input value={loginInput} onChange={onLoginInputChange} placeholder={t('Email or login*')} />
 					<div data-error={Boolean(loginInputError)} className={cl.errorContainer}>
 						<span className={cl.error}>{loginInputError}</span>
 					</div>
 				</div>
 				<div className={cl.inputContainer}>
-					<Input type={passwordType} value={passwordInput} onChange={onPasswordInputChange} placeholder={'Пароль*'}>
+					<Input type={passwordType} value={passwordInput} onChange={onPasswordInputChange}
+								 placeholder={t('Password*')}>
 						<button onClick={changePasswordType} className={cl.passwordButton}>
 							{passwordType === 'text' ? <FaEye /> : <FaEyeSlash />}
 						</button>
@@ -78,7 +80,7 @@ const LoginForm = () => {
 					</div>
 				</div>
 			</div>
-			<Button className={cl.loginButton} onClick={loginAttempt}>Войти</Button>
+			<Button className={cl.loginButton} onClick={loginAttempt}>{t('Login')}</Button>
 		</>
 	);
 };

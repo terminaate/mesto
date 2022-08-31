@@ -9,7 +9,7 @@ import AuthorizedRoute from '@/components/AuthorizedRoute';
 import UserPage from '@/pages/UserPage/UserPage';
 import { refresh } from '@/store/reducers/user/authAPI';
 import { getUser } from '@/store/reducers/user/userAPI';
-import SettingsPage from '@/pages/SettingsPage/SettingsPage';
+import SettingsPage from '@/pages/SettingsPage';
 import Header from '@/components/Header/Header';
 
 const App = () => {
@@ -29,7 +29,7 @@ const App = () => {
 
 	return (
 		<>
-			<Header/>
+			<Header />
 			<AnimatePresence exitBeforeEnter>
 				<Routes location={location} key={location.pathname}>
 					<Route path={'/login'} element={<LoginPage />} />

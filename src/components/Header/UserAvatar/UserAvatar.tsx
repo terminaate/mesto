@@ -5,6 +5,7 @@ import useOutsideClick from '@/hooks/useOutsideClick';
 import { logout } from '@/store/reducers/user/userSlice';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const UserAvatar = () => {
 	const dispatch = useAppDispatch();
@@ -14,6 +15,7 @@ const UserAvatar = () => {
 	const { user } = useAppSelector(state => state.userSlice);
 	const navigate = useNavigate();
 	const location = useLocation();
+	const { t } = useTranslation('user');
 
 	useOutsideClick(userPopupRef, () => setUserPopup(false), avatarRef);
 
@@ -28,10 +30,10 @@ const UserAvatar = () => {
 			<div ref={userPopupRef} data-active={userPopup}
 					 className={cl.userAvatarContainer}>
 				{location.pathname !== '/users/@me' && (
-					<button onClick={() => navigate('/users/@me')}>Моя страница</button>
+					<button onClick={() => navigate('/users/@me')}>{t('Your page')}</button>
 				)}
-				<button onClick={() => navigate('/settings')}>Настройки</button>
-				<button onClick={logoutDispatch}>Выйти</button>
+				<button onClick={() => navigate('/settings')}>{t('Settings')}</button>
+				<button onClick={logoutDispatch}>{t('Logout')}</button>
 			</div>
 		</div>
 	);

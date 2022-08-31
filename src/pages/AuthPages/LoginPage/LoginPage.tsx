@@ -1,15 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import BasicAuthPage from '../BasicAuthPage';
 import cl from './LoginPage.module.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LoginForm from './LoginForm';
-import { useAppSelector } from '@/store';
+import { Trans, useTranslation } from 'react-i18next';
 
 const LoginPage = () => {
+	const { t } = useTranslation('auth');
+
 	return (
-		<BasicAuthPage title={'Вход'}>
+		<BasicAuthPage title={t('Login')}>
 			<LoginForm />
-			<span className={cl.loginLink}>Ещё нету аккаунта? <Link to={'/register'}>Зарегестрироваться</Link></span>
+			<span className={cl.loginLink}>
+			<Trans t={t}>Don't have an account yet? <Link to={'/register'}>Register</Link></Trans>
+			</span>
 		</BasicAuthPage>
 	);
 };

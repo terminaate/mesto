@@ -7,6 +7,7 @@ import { register } from '@/store/reducers/user/authAPI';
 import useInputState from '@/hooks/useInputState';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { FaEye, FaEyeSlash } from 'react-icons/all';
+import { useTranslation } from 'react-i18next';
 
 const RegisterForm = () => {
 	const [loginInput, onLoginInputChange] = useInputState('');
@@ -18,6 +19,7 @@ const RegisterForm = () => {
 	const [passwordType, setPasswordType] = useState<string>('password');
 	const dispatch = useAppDispatch();
 	const { error: serverError } = useAppSelector(state => state.userSlice.user);
+	const { t } = useTranslation('auth');
 
 	const isEmail = (email: string) => {
 		const regexp = /\S+@\S+\.\S+/;
@@ -26,9 +28,9 @@ const RegisterForm = () => {
 
 	const registerAttempt = () => {
 		if (!loginInput) {
-			return setLoginInputError('Введите логин!');
+			return setLoginInputError(t('Enter login!'));
 		} else if (loginInput.length < 4) {
-			return setLoginInputError('Минимальная длинна логина 4!');
+			return setLoginInputError(t('Minimum login length 4!'));
 		} else {
 			setLoginInputError('');
 		}
@@ -40,9 +42,9 @@ const RegisterForm = () => {
 		}
 
 		if (!passwordInput) {
-			return setPasswordInputError('Введите пароль!');
+			return setPasswordInputError(t('Enter password!'));
 		} else if (passwordInput.length < 7) {
-			return setPasswordInputError('Минимальная длинна пароля 7!');
+			return setPasswordInputError(t('The minimum password length is 7!'));
 		} else {
 			setPasswordInputError('');
 		}
@@ -67,19 +69,20 @@ const RegisterForm = () => {
 			{serverError && <span className={cl.error}>{serverError}</span>}
 			<div className={cl.inputsContainer}>
 				<div className={cl.inputContainer}>
-					<Input value={loginInput} onChange={onLoginInputChange} placeholder={'Логин*'} />
+					<Input value={loginInput} onChange={onLoginInputChange} placeholder={t('Login*')} />
 					<div data-error={Boolean(loginInputError)} className={cl.errorContainer}>
 						<span className={cl.error}>{loginInputError}</span>
 					</div>
 				</div>
 				<div className={cl.inputContainer}>
-					<Input value={emailInput} onChange={onEmailInputChange} placeholder={'Адрес электронной почты'} />
+					<Input value={emailInput} onChange={onEmailInputChange} placeholder={t('E-mail')} />
 					<div data-error={Boolean(emailInputError)} className={cl.errorContainer}>
 						<span className={cl.error}>{emailInputError}</span>
 					</div>
 				</div>
 				<div className={cl.inputContainer}>
-					<Input type={passwordType} value={passwordInput} onChange={onPasswordInputChange} placeholder={'Пароль*'}>
+					<Input type={passwordType} value={passwordInput} onChange={onPasswordInputChange}
+								 placeholder={t('Password*')}>
 						<button onClick={changePasswordType} className={cl.passwordButton}>
 							{passwordType === 'text' ? <FaEye /> : <FaEyeSlash />}
 						</button>
@@ -89,7 +92,7 @@ const RegisterForm = () => {
 					</div>
 				</div>
 			</div>
-			<Button className={cl.registerButton} onClick={registerAttempt}>Зарегестрироваться</Button>
+			<Button className={cl.registerButton} onClick={registerAttempt}>{t('Register')}</Button>
 		</>
 	);
 };

@@ -1,11 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import UserService from '@/services/UserService';
 
-export const logError = (e: any) => {
+export const logError = (e: any) => console.log(getErrorObject(e).message);
+
+export const getErrorObject = (e: any) => {
 	if (Array.isArray(e.response!.data.message)) {
-		console.log(e.response!.data.message[0]);
+		return {
+			...e.response!.data,
+			message: e.response!.data.message[0]
+		};
 	} else {
-		console.log(e.response!.data.message);
+		return {
+			...e.response!.data,
+			message: e.response!.data.message
+		};
 	}
 };
 
@@ -17,7 +25,7 @@ export const getUser = createAsyncThunk(
 			return data;
 		} catch (e: any) {
 			logError(e);
-			return thunkAPI.rejectWithValue(e.response?.data.message[0]);
+			return thunkAPI.rejectWithValue(getErrorObject(e).message);
 		}
 	}
 );
@@ -38,7 +46,7 @@ export const editUser = createAsyncThunk(
 			return data;
 		} catch (e: any) {
 			logError(e);
-			return thunkAPI.rejectWithValue(e.response?.data.message[0]);
+			return thunkAPI.rejectWithValue(getErrorObject(e).message);
 		}
 	}
 );

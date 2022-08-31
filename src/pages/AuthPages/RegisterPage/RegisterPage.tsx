@@ -1,15 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import BasicAuthPage from '../BasicAuthPage';
 import cl from './RegisterPage.module.css';
-import { Link, useNavigate } from 'react-router-dom';
 import RegisterForm from './RegisterForm';
-import { useAppSelector } from '@/store';
+import { Trans, useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 const RegisterPage = () => {
+	const { t, i18n } = useTranslation('auth');
+
+
 	return (
-		<BasicAuthPage title={'Регистрация'}>
+		<BasicAuthPage title={t('Register')}>
 			<RegisterForm />
-			<span className={cl.loginLink}>Уже есть аккаунт? <Link to={'/login'}>Войти</Link></span>
+			<span className={cl.loginLink}>
+				<Trans t={t}>Already have an account? <Link to={'/login'}>To come in</Link></Trans>
+			</span>
 		</BasicAuthPage>
 	);
 };
