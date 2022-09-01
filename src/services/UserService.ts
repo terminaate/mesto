@@ -2,6 +2,14 @@ import { AxiosResponse } from 'axios';
 import $api from '@/http';
 import { UserProps } from '@/types/User';
 import { editUserProps } from '@/store/reducers/user/userAPI';
+import { PostProps } from '@/types/Post';
+import usePostImage from '@/hooks/usePostImage';
+
+export type createPostProps = {
+	title: string;
+	description?: string;
+	image: string;
+}
 
 class UserService {
 	async getUser(userId: string): Promise<AxiosResponse<UserProps>> {
@@ -11,6 +19,16 @@ class UserService {
 	async patchUser(data: editUserProps): Promise<AxiosResponse<editUserProps>> {
 		const { id, ...bodyData } = data;
 		return await $api.patch<editUserProps>(`/users/${data.id}`, bodyData);
+	}
+
+	async createNewPost(data: PostProps): Promise<AxiosResponse<PostProps>> {
+		return await $api.post<PostProps>('/posts', data);
+	}
+
+	async getUserPosts(userId: string): Promise<AxiosResponse<PostProps[] | []>> {
+		const posts = await $api.get<PostProps[] | []>(`/users/${userId}/posts`);
+		posts.data = posts.data.map(post => ({ ...post, image: usePostImage(post.userId!, post.id!) }));
+		return posts;
 	}
 }
 

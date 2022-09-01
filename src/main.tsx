@@ -23,7 +23,6 @@ i18n
 			ru: ruNs,
 			en: enNs
 		},
-		lng: 'ru',
 		fallbackLng: 'en',
 		debug: true,
 

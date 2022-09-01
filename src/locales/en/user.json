@@ -4,5 +4,12 @@
   "Search": "Search",
   "Your page": "Your page",
   "Settings": "Settings",
-  "Logout": "Logout"
+  "Logout": "Logout",
+  "Post title": "Post title",
+  "Post description": "Post description",
+  "Create post": "Create post",
+  "Enter post title!": "Enter post title!",
+  "Minimum post title length is 2!": "Minimum post title length is 2!",
+  "Enter post description!": "Enter post description!",
+  "Maximum post description length is 150!": "Maximum post description length is 150!"
 }

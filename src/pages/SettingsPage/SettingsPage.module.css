@@ -1,6 +1,33 @@
 .settingsPage {
     display: flex;
-    /*align-items: center;*/
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 200px;
+    height: 100%;
     margin-top: 79px;
+}
+
+.avatarImage {
+    border: 1px solid var(--text-secondary);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.avatarChangeButton {
+    margin-top: 15px;
 
 }

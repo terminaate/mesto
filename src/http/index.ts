@@ -11,7 +11,7 @@ const baseURL = serverURL + '/api';
 
 const $api = axios.create({
 	baseURL,
-	withCredentials: true,
+	withCredentials: true
 });
 
 $api.interceptors.request.use((config) => {
@@ -36,11 +36,11 @@ $api.interceptors.response.use(
 		) {
 			originalRequest._isRetry = true;
 			try {
-				const response = await axios.get<AuthResponse>(
+				const response = await axios.post<AuthResponse>(
 					`${baseURL}/auth/refresh`,
 					{ withCredentials: true }
 				);
-				localStorage.setItem('token', response.data.accessToken);
+				localStorage.setItem('accessToken', response.data.accessToken);
 				return $api.request(originalRequest);
 			} catch (e) {
 				store.dispatch(userSlice.actions.logout());

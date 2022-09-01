@@ -8,9 +8,11 @@ import { updateUser } from '@/store/reducers/user/userSlice';
 import AuthorizedRoute from '@/components/AuthorizedRoute';
 import UserPage from '@/pages/UserPage/UserPage';
 import { refresh } from '@/store/reducers/user/authAPI';
-import { getUser } from '@/store/reducers/user/userAPI';
-import SettingsPage from '@/pages/SettingsPage';
+import { getUser, getUserPosts } from '@/store/reducers/user/userAPI';
+// import SettingsPage from '@/pages/SettingsPage';
 import Header from '@/components/Header/Header';
+
+const SettingsPage = React.lazy(() => import('@/pages/SettingsPage'));
 
 const App = () => {
 	const location = useLocation();
@@ -24,6 +26,7 @@ const App = () => {
 		if (localStorage.getItem('accessToken')) {
 			dispatch(refresh());
 			dispatch(getUser({ userId: '@me' }));
+			dispatch(getUserPosts());
 		}
 	}, []);
 

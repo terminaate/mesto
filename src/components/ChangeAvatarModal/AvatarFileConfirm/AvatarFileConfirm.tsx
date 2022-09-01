@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import cl from './AvatarFileConfirm.module.css';
 import useBackgroundImage from '@/hooks/useBackgroundImage';
 import Button from '@/components/UI/Button';
-import { useAppDispatch, useAppSelector } from '@/store';
+import { useAppDispatch } from '@/store';
 import { editUser } from '@/store/reducers/user/userAPI';
 
 interface IAvatarFileConfirm {
@@ -14,7 +14,7 @@ interface IAvatarFileConfirm {
 const AvatarFileConfirm: FC<IAvatarFileConfirm> = ({ image, setImage, setModal }) => {
 	const dispatch = useAppDispatch();
 	const uploadImage = () => {
-		dispatch(editUser({ id: "@me", avatar: image }));
+		dispatch(editUser({ id: '@me', avatar: image }));
 		setModal(false);
 		setTimeout(() => setImage(''), 300);
 	};

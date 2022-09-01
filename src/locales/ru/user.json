@@ -4,5 +4,12 @@
   "Search": "Поиск",
   "Your page": "Ваша страница",
   "Settings": "Настройки",
-  "Logout": "Выйти"
+  "Logout": "Выйти",
+  "Post title": "Заголовок поста",
+  "Post description": "Описание поста",
+  "Create post": "Создать пост",
+  "Enter post title!": "Введите заголовок поста!",
+  "Minimum post title length is 2!": "Минимальная длина заголовка 2!",
+  "Enter post description!": "Введите описание поста!",
+  "Maximum post description length is 150!": "Максимальная длина описания поста 150!"
 }

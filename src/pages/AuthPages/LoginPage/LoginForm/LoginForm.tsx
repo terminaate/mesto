@@ -28,7 +28,7 @@ const LoginForm = () => {
 		if (!loginInput) {
 			return setLoginInputError(t('Enter login!'));
 		} else if (loginInput.length < 4) {
-			return setLoginInputError(t("Minimum login length 4!"));
+			return setLoginInputError(t('Minimum login length 4!'));
 		} else {
 			setLoginInputError('');
 		}

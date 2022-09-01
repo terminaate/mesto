@@ -1,19 +1,33 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import BasicPage from '@/components/BasicPage';
 import cl from './SettingsPage.module.css';
-import SettingsNavBar from '@/pages/SettingsPage/SettingsNavBar';
-import SettingsNavPage from '@/pages/SettingsPage/SettingsNavPage';
-
-export type SettingsPageState = 'profile' | 'auth'
+import { useAppSelector } from '@/store';
+import useBackgroundImage from '@/hooks/useBackgroundImage';
+import Button from '@/components/UI/Button';
+import Input from '@/components/UI/Input';
 
 const SettingsPage = () => {
-	const [page, setPage] = useState<SettingsPageState>('profile');
+	const { user } = useAppSelector(state => state.userSlice);
+	const [avatar, setAvatar] = useState<string>(user.avatar);
+
+	const onAvatarInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+
+	};
 
 	return (
-		<BasicPage className={cl.settingsPage}>
-			<SettingsNavBar page={page} setPage={setPage}/>
-			<SettingsNavPage page={page}/>
-		</BasicPage>
+		<>
+			<BasicPage className={cl.settingsPage}>
+				<div className={cl.container}>
+					<label>
+						<input type='file' onChange={onAvatarInputChange} style={{ display: 'none' }} />
+						<div className={cl.avatarImage}
+								 style={useBackgroundImage(avatar)} />
+						<Button className={cl.avatarChangeButton}>Change avatar</Button>
+					</label>
+					<Input />
+				</div>
+			</BasicPage>
+		</>
 	);
 };
 

@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import Modal from '@/components/Modal';
-import AvatarFileUpload from './AvatarFileUpload';
 import AvatarFileConfirm from './AvatarFileConfirm';
+import FileUploadModal from '@/components/FileUploadModal';
 
 interface IChangeAvatarModal {
 	modal: boolean;
@@ -16,10 +16,14 @@ const ChangeAvatarModal: FC<IChangeAvatarModal> = ({ modal, setModal }) => {
 	};
 
 	return (
-		<Modal modal={modal} onHide={onHide} setModal={setModal}>
-			{image ? <AvatarFileConfirm setImage={setImage} image={image} setModal={setModal} /> :
-				<AvatarFileUpload setImage={setImage} />}
-		</Modal>
+		<>
+			{!image && <FileUploadModal modal={modal} setModal={setModal} setImage={setImage} />}
+			{image && (
+				<Modal modal={modal} onHide={onHide} setModal={setModal}>
+					<AvatarFileConfirm setImage={setImage} image={image} setModal={setModal} />
+				</Modal>
+			)}
+		</>
 	);
 };
 

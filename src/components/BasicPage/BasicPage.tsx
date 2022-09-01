@@ -12,7 +12,7 @@ const BasicPage: FC<IBasicPage> = ({ className, children, ...props }) => {
 	const classNames = useClasses(className!, cl.basicPage);
 
 	return (
-		<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+		<motion.div transition={{ duration: 0.3 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
 								exit={{ opacity: 0 }} className={classNames} {...props}>
 			{children}
 		</motion.div>

@@ -1,7 +1,8 @@
 import { AnyAction, createSlice, Draft } from '@reduxjs/toolkit';
 import authAsyncThunks, { login, refresh, register } from './authAPI';
-import userAsyncThunks, { editUser, getUser } from './userAPI';
+import userAsyncThunks, { createPost, editUser, getUser, getUserPosts } from './userAPI';
 import useUserAvatar from '@/hooks/useUserAvatar';
+import { PostProps } from '@/types/Post';
 
 type NullOrString = null | string;
 
@@ -13,6 +14,7 @@ export interface UserState {
 		avatar: NullOrString;
 		email: NullOrString;
 		username: NullOrString;
+		posts: PostProps[]
 		accessToken: NullOrString;
 	};
 }
@@ -25,6 +27,7 @@ const initialState: UserState = {
 		avatar: null,
 		email: null,
 		username: null,
+		posts: [] as PostProps[],
 		accessToken: null
 	}
 };
@@ -74,7 +77,7 @@ export const userSlice = createSlice({
 			localStorage.setItem('accessToken', state.user.accessToken!);
 		});
 
-		builder.addCase(getUser.fulfilled, (state: Draft<UserState>, action: AnyAction) => {
+		builder.addCase(getUser.fulfilled, (state: Draft<UserState>, action) => {
 				state.user = {
 					...state.user,
 					...action.payload,
@@ -83,12 +86,22 @@ export const userSlice = createSlice({
 			}
 		);
 
-		builder.addCase(editUser.fulfilled, (state: Draft<UserState>, action: AnyAction) => {
+		builder.addCase(editUser.fulfilled, (state: Draft<UserState>, action) => {
 				state.user = {
 					...state.user,
 					...action.payload,
 					avatar: useUserAvatar(action.payload.id)
 				};
+			}
+		);
+
+		builder.addCase(createPost.fulfilled, (state: Draft<UserState>, action) => {
+				state.user.posts = [...state.user.posts, action.payload];
+			}
+		);
+
+		builder.addCase(getUserPosts.fulfilled, (state: Draft<UserState>, action) => {
+				state.user.posts = action.payload;
 			}
 		);
 	}
