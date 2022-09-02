@@ -3,14 +3,14 @@ import { useAppSelector } from '@/store';
 import { motion } from 'framer-motion';
 import cl from './Header.module.css';
 import SearchInput from './SearchInput';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '@/components/UI/Button';
 import UserAvatar from './UserAvatar';
 import { FaPlus } from 'react-icons/all';
 import CreatePostModal from '@/components/CreatePostModal';
 
 const Header = () => {
-	const { authorized } = useAppSelector(state => state.userSlice);
+	const { authorized, user } = useAppSelector(state => state.userSlice);
 	const navigate = useNavigate();
 	const [createPostModal, setCreatePostModal] = useState<boolean>(false);
 
@@ -42,7 +42,7 @@ const Header = () => {
 						}
 					</>
 				)}
-				<CreatePostModal modal={createPostModal} setModal={setCreatePostModal}/>
+				<CreatePostModal modal={createPostModal} setModal={setCreatePostModal} />
 			</motion.div>
 		</>
 	);

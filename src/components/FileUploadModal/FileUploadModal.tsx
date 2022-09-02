@@ -17,6 +17,7 @@ const FileUploadModal: FC<IFileUploadButton> = ({ setImage, modal, setModal }) =
 
 	const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files![0];
+		console.log(file);
 		if (file.size >= 5242880) {
 			return setError(t('Max file size is 5 mb!'));
 		}

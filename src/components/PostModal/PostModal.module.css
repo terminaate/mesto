@@ -1,0 +1,56 @@
+.postModal {
+    display: flex;
+    column-gap: 20px;
+}
+
+.postImageContainer {
+    width: max-content;
+    height: max-content;
+}
+
+.postImage {
+    max-height: 600px;
+    border-radius: 5px;
+}
+
+/*.postImage {*/
+/*    width: 500px;*/
+/*    height: 500px;*/
+/*    z-index: 10;*/
+/*    background-size: cover;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: center;*/
+/*}*/
+
+.postInfoContainer {
+    width: 200px;
+    /*background: #fff;*/
+    height: inherit;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.postTitle {
+    font-weight: 600;
+}
+
+.postDesc {
+    margin-top: 10px;
+}
+
+.postLikesContainer {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    margin-top: 15px;
+    column-gap: 10px;
+}
+
+.postLikeButton {
+    font-size: 19px;
+}
+
+.postLikeButton[data-liked="true"] svg {
+    color: var(--text-red)
+}

@@ -23,6 +23,7 @@
 
 .userAvatar {
     border: 1px solid var(--text-secondary);
+    transition: border .2s;
     width: 173px;
     height: 173px;
     border-radius: 50%;
@@ -33,7 +34,6 @@
     align-items: center;
     justify-content: center;
     font-size: 40px;
-    cursor: pointer;
     position: relative;
 }
 
@@ -45,12 +45,17 @@
     background-color: var(--background-secondary);
     opacity: 0;
     transition: opacity .3s;
+    cursor: pointer;
 }
 
 .userAvatar svg {
     opacity: 0;
     transition: opacity .3s;
     z-index: 5;
+}
+
+.userAvatar[data-page="true"]:hover {
+    border: 1px solid var(--background-secondary);
 }
 
 .userAvatar:hover div,
@@ -117,6 +122,7 @@
 
 .postImage div svg {
     transition: color .2s;
+    font-size: 19px;
 }
 
 .postImage div[data-liked="true"] svg {

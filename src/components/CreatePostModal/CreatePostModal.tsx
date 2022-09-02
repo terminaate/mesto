@@ -6,7 +6,6 @@ import Input from '@/components/UI/Input';
 import { useTranslation } from 'react-i18next';
 import useInputState from '@/hooks/useInputState';
 import Button from '@/components/UI/Button';
-import { PostProps } from '@/types/Post';
 import { createPost } from '@/store/reducers/user/userAPI';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { createPostProps } from '@/services/UserService';
@@ -19,8 +18,8 @@ interface ICreatePostModal {
 const CreatePostModal: FC<ICreatePostModal> = ({ modal, setModal }) => {
 	const [postImage, setPostImage] = useState<string>('');
 	const { t } = useTranslation('user');
-	const [postTitle, onPostTitleChange] = useInputState('');
-	const [postDesc, onPostDescChange] = useInputState('');
+	const [postTitle, onPostTitleChange, setPostTitle] = useInputState('');
+	const [postDesc, onPostDescChange, setPostDesc] = useInputState('');
 	const [postTitleError, setPostTitleError] = useState<string>('');
 	const [postDescError, setPostDescError] = useState<string>('');
 	const dispatch = useAppDispatch();
@@ -28,6 +27,10 @@ const CreatePostModal: FC<ICreatePostModal> = ({ modal, setModal }) => {
 
 	const onHide = () => {
 		setPostImage('');
+		setPostDescError('');
+		setPostTitleError('');
+		setPostTitle('');
+		setPostDesc('');
 	};
 
 	const createNewPost = async () => {

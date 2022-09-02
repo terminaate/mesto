@@ -60,7 +60,7 @@ const UserPage = () => {
 		if (isSelfUserPage) {
 			setUserData(selfUserData);
 		}
-	}, [selfUserData])
+	}, [selfUserData]);
 
 	const userPageButtonHandler = () => {
 		if (isSelfUserPage) {
@@ -88,16 +88,16 @@ const UserPage = () => {
 				{(userData && Object.values(userData).length > 0) && (
 					<div className={cl.container}>
 						<div className={cl.userInfoContainer}>
-							{isSelfUserPage ? (
-								<div onClick={() => setAvatarModal(true)} className={cl.userAvatar}
-										 style={useBackgroundImage(userData.avatar!)}>
-									<div />
-									<FaPen />
-								</div>
-							) : (
-								<div className={cl.userAvatar}
-										 style={useBackgroundImage(userData.avatar!)} />
-							)}
+							<div onClick={() => isSelfUserPage ? setAvatarModal(true) : ''} data-page={isSelfUserPage}
+									 className={cl.userAvatar}
+									 style={useBackgroundImage(userData.avatar!)}>
+								{isSelfUserPage && (
+									<>
+										<div />
+										<FaPen />
+									</>
+								)}
+							</div>
 							<span className={cl.userName}>{userData.username}</span>
 							<span className={cl.userBio}>{userData.bio}</span>
 							<Button
@@ -122,7 +122,8 @@ const UserPage = () => {
 			{isSelfUserPage && (
 				<ChangeAvatarModal modal={avatarModal} setModal={setAvatarModal} />
 			)}
-			<PostModal modal={postModal} setModal={setPostModal} data={postData} />
+			<PostModal modal={postModal} setModal={setPostModal} post={postData} setPost={setPostData} userData={userData}
+								 setUserData={setUserData} />
 		</>
 	);
 };
