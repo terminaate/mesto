@@ -4,6 +4,7 @@ import { UserProps } from '@/types/User';
 import { editUserProps } from '@/store/reducers/user/userAPI';
 import { PostProps } from '@/types/Post';
 import usePostImage from '@/hooks/usePostImage';
+import useUserAvatar from '@/hooks/useUserAvatar';
 
 export type createPostProps = {
 	title: string;
@@ -29,6 +30,12 @@ class UserService {
 		const posts = await $api.get<PostProps[] | []>(`/users/${userId}/posts`);
 		posts.data = posts.data.map(post => ({ ...post, image: usePostImage(post.userId!, post.id!) }));
 		return posts;
+	}
+
+	async searchUsers(username: string): Promise<AxiosResponse<UserProps[]>> {
+		const variants = await $api.get<UserProps[]>(`/users/search?username=${username}`);
+		variants.data = variants.data.map(variant => ({ ...variant, avatar: useUserAvatar(variant.id) }));
+		return variants;
 	}
 }
 

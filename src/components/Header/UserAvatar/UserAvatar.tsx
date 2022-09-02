@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import cl from '@/components/Header/Header.module.css';
+import cl from './UserAvatar.module.css';
 import useBackgroundImage from '@/hooks/useBackgroundImage';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import { logout } from '@/store/reducers/user/userSlice';

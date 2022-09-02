@@ -75,7 +75,7 @@ const UserPage = () => {
 						<div className={cl.postsContainer}>
 							{userData.posts?.map((post, key) => (
 								<div key={key} className={cl.post}>
-									<img src={post.image} alt='' />
+									<div style={useBackgroundImage(post.image)}/>
 								</div>
 							))}
 						</div>

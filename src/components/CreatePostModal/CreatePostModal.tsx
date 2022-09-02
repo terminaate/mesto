@@ -52,6 +52,8 @@ const CreatePostModal: FC<ICreatePostModal> = ({ modal, setModal }) => {
 			}
 
 			dispatch(createPost(postData));
+			setModal(false);
+			setTimeout(() => onHide(), 300);
 		}
 	};
 

@@ -3,6 +3,7 @@ import authAsyncThunks, { login, refresh, register } from './authAPI';
 import userAsyncThunks, { createPost, editUser, getUser, getUserPosts } from './userAPI';
 import useUserAvatar from '@/hooks/useUserAvatar';
 import { PostProps } from '@/types/Post';
+import usePostImage from '@/hooks/usePostImage';
 
 type NullOrString = null | string;
 
@@ -96,7 +97,7 @@ export const userSlice = createSlice({
 		);
 
 		builder.addCase(createPost.fulfilled, (state: Draft<UserState>, action) => {
-				state.user.posts = [...state.user.posts, action.payload];
+				state.user.posts.push({...action.payload, image: usePostImage(state.user.id!, action.payload.id!)});
 			}
 		);
 

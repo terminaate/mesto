@@ -29,16 +29,11 @@ $api.interceptors.response.use(
 	},
 	async (error) => {
 		const originalRequest = error.config;
-		if (
-			error.response.status == 401 &&
-			error.config &&
-			!error.config._isRetry
-		) {
+		if (error.response.status !== 201 && error.config && !error.config._isRetry) {
 			originalRequest._isRetry = true;
 			try {
 				const response = await axios.post<AuthResponse>(
-					`${baseURL}/auth/refresh`,
-					{ withCredentials: true }
+					`${baseURL}/auth/refresh`, {}, { withCredentials: true }
 				);
 				localStorage.setItem('accessToken', response.data.accessToken);
 				return $api.request(originalRequest);
