@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import UserService from '@/services/UserService';
+import UserService, { createPostProps } from '@/services/UserService';
 import { PostProps } from '@/types/Post';
 
 export const logError = (e: any) => console.log(getErrorObject(e).message);
@@ -54,7 +54,7 @@ export const editUser = createAsyncThunk(
 
 export const createPost = createAsyncThunk(
 	'user/create-post',
-	async (postData: PostProps, thunkAPI) => {
+	async (postData: createPostProps, thunkAPI) => {
 		try {
 			const { data } = await UserService.createNewPost(postData);
 			return data;
@@ -78,4 +78,17 @@ export const getUserPosts = createAsyncThunk(
 	}
 );
 
-export default [getUser, editUser, createPost, getUserPosts];
+export const likePost = createAsyncThunk(
+	'user/like-post',
+	async (postId: string, thunkAPI) => {
+		try {
+			const { data } = await UserService.likePost(postId);
+			return data;
+		} catch (e: any) {
+			logError(e);
+			return thunkAPI.rejectWithValue(getErrorObject(e).message);
+		}
+	}
+);
+
+export default [getUser, editUser, createPost, getUserPosts, likePost];

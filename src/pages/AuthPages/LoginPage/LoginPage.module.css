@@ -37,7 +37,7 @@
 
 .error {
     margin-top: 4px;
-    color: var(--text-error);
+    color: var(--text-red);
     font-size: 12px;
     font-family: var(--font-secondary);
 }

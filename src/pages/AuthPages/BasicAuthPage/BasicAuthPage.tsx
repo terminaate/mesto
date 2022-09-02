@@ -1,9 +1,8 @@
 import React, { FC, ReactNode, useEffect } from 'react';
 import BasicPage from '@/components/BasicPage';
 import cl from './BasicAuthPage.module.css';
-import { useAppSelector } from '@/store';
+import { useAppDispatch, useAppSelector } from '@/store';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 
 interface IBasicAuthPage {
 	children: ReactNode;
@@ -13,7 +12,7 @@ interface IBasicAuthPage {
 const BasicAuthPage: FC<IBasicAuthPage> = ({ children, title }) => {
 	const { authorized } = useAppSelector(state => state.userSlice);
 	const navigate = useNavigate();
-	const { t } = useTranslation('auth');
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		if (authorized) {

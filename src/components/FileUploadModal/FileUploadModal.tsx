@@ -1,8 +1,9 @@
-import React, { ChangeEvent, FC } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import Modal from '@/components/Modal';
 import cl from './FileUploadModal.module.css';
 import { FaDownload } from 'react-icons/fa';
 import Button from '@/components/UI/Button';
+import { useTranslation } from 'react-i18next';
 
 interface IFileUploadButton {
 	modal: boolean;
@@ -11,9 +12,14 @@ interface IFileUploadButton {
 }
 
 const FileUploadModal: FC<IFileUploadButton> = ({ setImage, modal, setModal }) => {
+	const [error, setError] = useState<string>('');
+	const { t } = useTranslation('user');
 
 	const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files![0];
+		if (file.size >= 5242880) {
+			return setError(t('Max file size is 5 mb!'));
+		}
 		const reader = new FileReader();
 		reader.readAsDataURL(file);
 		reader.onload = () => {
@@ -29,8 +35,11 @@ const FileUploadModal: FC<IFileUploadButton> = ({ setImage, modal, setModal }) =
 			<div className={cl.container}>
 				<input type='file' className={cl.fileUploadInput} onChange={onInputChange} />
 				<FaDownload className={cl.fileUploadIcon} />
-				<span className={cl.fileUploadPrompt}>Перетаскивайте файлы, фотографии и видео</span>
-				<Button className={cl.fileUploadButton}>Выберите файл</Button>
+				<span className={cl.fileUploadPrompt}>{t('Drag and drop files, photos and videos')}</span>
+				<Button className={cl.fileUploadButton}>{t('Select a file')}</Button>
+				<div data-error={Boolean(error)} className={cl.errorContainer}>
+					<span className={cl.error}>{error}</span>
+				</div>
 			</div>
 		</Modal>
 	);

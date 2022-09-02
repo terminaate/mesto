@@ -7,6 +7,7 @@ import usePostImage from '@/hooks/usePostImage';
 import useUserAvatar from '@/hooks/useUserAvatar';
 
 export type createPostProps = {
+	userId: string;
 	title: string;
 	description?: string;
 	image: string;
@@ -22,7 +23,7 @@ class UserService {
 		return await $api.patch<editUserProps>(`/users/${data.id}`, bodyData);
 	}
 
-	async createNewPost(data: PostProps): Promise<AxiosResponse<PostProps>> {
+	async createNewPost(data: createPostProps): Promise<AxiosResponse<PostProps>> {
 		return await $api.post<PostProps>('/posts', data);
 	}
 
@@ -36,6 +37,12 @@ class UserService {
 		const variants = await $api.get<UserProps[]>(`/users/search?username=${username}`);
 		variants.data = variants.data.map(variant => ({ ...variant, avatar: useUserAvatar(variant.id) }));
 		return variants;
+	}
+
+	async likePost(postId: string): Promise<AxiosResponse<PostProps>> {
+		const post = await $api.post<PostProps>(`/posts/${postId}/like`);
+		post.data.image = usePostImage(post.data.userId!, post.data.id!);
+		return post;
 	}
 }
 

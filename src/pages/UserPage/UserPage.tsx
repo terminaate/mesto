@@ -1,25 +1,42 @@
-import BasicPage from '@/components/BasicPage';
-import useBackgroundImage from '@/hooks/useBackgroundImage';
-import { useAppSelector } from '@/store';
 import cl from './UserPage.module.css';
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { UserProps } from '@/types/User';
 import UserService from '@/services/UserService';
-import useUserAvatar from '@/hooks/useUserAvatar';
-import Button from '@/components/UI/Button';
+
+// Hooks
+import { MouseEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import useUserAvatar from '@/hooks/useUserAvatar';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '@/store';
+import useBackgroundImage from '@/hooks/useBackgroundImage';
+
+// Components && types
 import ChangeAvatarModal from '@/components/ChangeAvatarModal';
-import { FaPen } from 'react-icons/all';
+import PostModal from '@/components/PostModal/PostModal';
+import { PostProps } from '@/types/Post';
+import { UserProps } from '@/types/User';
+import BasicPage from '@/components/BasicPage';
+import Button from '@/components/UI/Button';
+
+// Icons
+import { FaHeart, FaPen } from 'react-icons/fa';
+import { likePost } from '@/store/reducers/user/userAPI';
 
 const UserPage = () => {
 	const { user: selfUserData } = useAppSelector(state => state.userSlice);
+	const dispatch = useAppDispatch();
 	const params = useParams();
 	const navigate = useNavigate();
-	const [userData, setUserData] = useState<UserProps>({} as UserProps);
 	const { t } = useTranslation('user');
+	const [userData, setUserData] = useState<UserProps>({} as UserProps);
 	const [avatarModal, setAvatarModal] = useState<boolean>(false);
 	const isSelfUserPage = params.id === '@me' || params.id === selfUserData.id && userData.id === selfUserData.id;
+	const [postModal, setPostModal] = useState<boolean>(false);
+	const [postData, setPostData] = useState<PostProps>({} as PostProps);
+
+	const openPostModal = (data: PostProps) => {
+		setPostData(data);
+		setPostModal(true);
+	};
 
 	const getUserData = async () => {
 		if (isSelfUserPage) {
@@ -27,9 +44,6 @@ const UserPage = () => {
 		} else {
 			try {
 				const { data } = await UserService.getUser(params.id!);
-				if (!data) {
-					return navigate('/404');
-				}
 				const { data: posts } = await UserService.getUserPosts(params.id!);
 				setUserData({ ...data, avatar: useUserAvatar(data.id), posts });
 			} catch (e) {
@@ -40,13 +54,31 @@ const UserPage = () => {
 
 	useEffect(() => {
 		getUserData();
-	}, [selfUserData]);
+	}, []);
+
+	useEffect(() => {
+		if (isSelfUserPage) {
+			setUserData(selfUserData);
+		}
+	}, [selfUserData])
 
 	const userPageButtonHandler = () => {
 		if (isSelfUserPage) {
 			navigate('/settings');
 		} else {
 			// Add to friends
+		}
+	};
+
+	const likePostButtonHandler = async (e: MouseEvent<SVGElement>, postId: string) => {
+		e.stopPropagation();
+		if (isSelfUserPage) {
+			dispatch(likePost(postId));
+		} else {
+			const { data: post } = await UserService.likePost(postId);
+			const newPosts = [...userData.posts!];
+			newPosts[newPosts.findIndex(p => p.id === post.id!)] = post;
+			setUserData({ ...userData, posts: newPosts });
 		}
 	};
 
@@ -73,9 +105,14 @@ const UserPage = () => {
 								onClick={userPageButtonHandler}>{isSelfUserPage ? t('Edit profile') : t('Add to friends')}</Button>
 						</div>
 						<div className={cl.postsContainer}>
-							{userData.posts?.map((post, key) => (
-								<div key={key} className={cl.post}>
-									<div style={useBackgroundImage(post.image)}/>
+							{userData.posts?.map(post => (
+								<div onClick={() => openPostModal(post)} key={post.id} className={cl.post}>
+									<div className={cl.postImage} style={useBackgroundImage(post.image)}>
+										<div data-liked={post.likes?.includes(selfUserData.id)}>
+											<FaHeart onClick={e => likePostButtonHandler(e, post.id!)} />
+											<span>{post.likes?.length}</span>
+										</div>
+									</div>
 								</div>
 							))}
 						</div>
@@ -85,6 +122,7 @@ const UserPage = () => {
 			{isSelfUserPage && (
 				<ChangeAvatarModal modal={avatarModal} setModal={setAvatarModal} />
 			)}
+			<PostModal modal={postModal} setModal={setPostModal} data={postData} />
 		</>
 	);
 };

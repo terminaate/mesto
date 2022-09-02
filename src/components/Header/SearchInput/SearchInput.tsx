@@ -28,8 +28,8 @@ const SearchInput = () => {
 			.catch(er => console.log(er));
 	}, [debouncedSearchInput]);
 
-	const navigateToUserPage = (userId: string) => {
-		navigate(`/users/${userId}`);
+	const navigateToUserPage = (username: string) => {
+		navigate(`/users/${username}`);
 		setSearchVariants([]);
 		setSearchInput('');
 	};
@@ -46,7 +46,7 @@ const SearchInput = () => {
 					<motion.div ref={searchVariantsRef} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
 											className={cl.searchInputVariants}>
 						{searchVariants.map((variant, key) => (
-							<div key={key} onClick={() => navigateToUserPage(variant.id)} className={cl.searchInputVariant}>
+							<div key={key} onClick={() => navigateToUserPage(variant.username)} className={cl.searchInputVariant}>
 								<div className={cl.variantAvatar} style={useBackgroundImage(variant.avatar!)} />
 								<span className={cl.variantName}>{variant.username}</span>
 							</div>

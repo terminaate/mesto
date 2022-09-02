@@ -3,7 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import LoginPage from '@/pages/AuthPages/LoginPage';
 import RegisterPage from '@/pages/AuthPages/RegisterPage';
 import { AnimatePresence } from 'framer-motion';
-import { useAppDispatch } from '@/store';
+import { useAppDispatch, useAppSelector } from '@/store';
 import { updateUser } from '@/store/reducers/user/userSlice';
 import AuthorizedRoute from '@/components/AuthorizedRoute';
 import UserPage from '@/pages/UserPage/UserPage';
@@ -17,6 +17,7 @@ const SettingsPage = React.lazy(() => import('@/pages/SettingsPage'));
 const App = () => {
 	const location = useLocation();
 	const dispatch = useAppDispatch();
+	const { authorized } = useAppSelector(state => state.userSlice);
 
 	useEffect(() => {
 		dispatch(updateUser({ error: null }));
@@ -26,9 +27,14 @@ const App = () => {
 		if (localStorage.getItem('accessToken')) {
 			dispatch(refresh());
 			dispatch(getUser({ userId: '@me' }));
-			dispatch(getUserPosts());
 		}
 	}, []);
+
+	useEffect(() => {
+		if (authorized) {
+			dispatch(getUserPosts());
+		}
+	}, [authorized]);
 
 	return (
 		<>

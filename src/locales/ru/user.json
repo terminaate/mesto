@@ -9,7 +9,10 @@
   "Post description": "Описание поста",
   "Create post": "Создать пост",
   "Enter post title!": "Введите заголовок поста!",
-  "Minimum post title length is 2!": "Минимальная длина заголовка 2!",
+  "Min post title length is 2!": "Минимальная длина заголовка 2!",
   "Enter post description!": "Введите описание поста!",
-  "Maximum post description length is 150!": "Максимальная длина описания поста 150!"
+  "Max post description length is 150!": "Максимальная длина описания поста 150!",
+  "Max file size is 5 mb!": "Максимальный размер файла 5 мб!",
+  "Drag and drop files, photos and videos": "Перетаскивайте файлы, фотографии и видео",
+  "Select a file": "Выберите файл"
 }

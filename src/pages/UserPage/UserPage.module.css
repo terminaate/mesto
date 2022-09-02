@@ -42,7 +42,7 @@
     height: 100%;
     width: 100%;
     border-radius: inherit;
-    background-color: var(--background-thirty);
+    background-color: var(--background-secondary);
     opacity: 0;
     transition: opacity .3s;
 }
@@ -87,11 +87,38 @@
     margin-top: 50px;
 }
 
-.post div {
+.postImage {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
     height: 450px;
     width: 360px;
+    position: relative;
+}
+
+.postImage div {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: var(--background-secondary);
+    z-index: 5;
+    opacity: 0;
+    transition: opacity .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+.postImage div:hover {
+    opacity: 1;
+}
+
+.postImage div svg {
+    transition: color .2s;
+}
+
+.postImage div[data-liked="true"] svg {
+    color: var(--text-red)
 }

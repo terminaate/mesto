@@ -9,7 +9,10 @@
   "Post description": "Post description",
   "Create post": "Create post",
   "Enter post title!": "Enter post title!",
-  "Minimum post title length is 2!": "Minimum post title length is 2!",
+  "Min post title length is 2!": "Minimum post title length is 2!",
   "Enter post description!": "Enter post description!",
-  "Maximum post description length is 150!": "Maximum post description length is 150!"
+  "Max post description length is 150!": "Maximum post description length is 150!",
+  "Max file size is 5 mb!": "Max file size is 5 mb!",
+  "Drag and drop files, photos and videos": "Drag and drop files, photos and videos",
+  "Select a file": "Select a file"
 }

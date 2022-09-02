@@ -1,6 +1,6 @@
 import { AnyAction, createSlice, Draft } from '@reduxjs/toolkit';
 import authAsyncThunks, { login, refresh, register } from './authAPI';
-import userAsyncThunks, { createPost, editUser, getUser, getUserPosts } from './userAPI';
+import userAsyncThunks, { createPost, editUser, getUser, getUserPosts, likePost } from './userAPI';
 import useUserAvatar from '@/hooks/useUserAvatar';
 import { PostProps } from '@/types/Post';
 import usePostImage from '@/hooks/usePostImage';
@@ -79,32 +79,37 @@ export const userSlice = createSlice({
 		});
 
 		builder.addCase(getUser.fulfilled, (state: Draft<UserState>, action) => {
-				state.user = {
-					...state.user,
-					...action.payload,
-					avatar: useUserAvatar(action.payload.id)
-				};
-			}
-		);
+			state.user = {
+				...state.user,
+				...action.payload,
+				avatar: useUserAvatar(action.payload.id)
+			};
+		});
 
 		builder.addCase(editUser.fulfilled, (state: Draft<UserState>, action) => {
-				state.user = {
-					...state.user,
-					...action.payload,
-					avatar: useUserAvatar(action.payload.id)
-				};
-			}
-		);
+			state.user = {
+				...state.user,
+				...action.payload,
+				avatar: useUserAvatar(action.payload.id)
+			};
+		});
 
 		builder.addCase(createPost.fulfilled, (state: Draft<UserState>, action) => {
-				state.user.posts.push({...action.payload, image: usePostImage(state.user.id!, action.payload.id!)});
-			}
-		);
+			state.user.posts = [...state.user.posts, {
+				...action.payload,
+				image: usePostImage(state.user.id!, action.payload.id!)
+			}];
+		});
 
 		builder.addCase(getUserPosts.fulfilled, (state: Draft<UserState>, action) => {
-				state.user.posts = action.payload;
-			}
-		);
+			state.user.posts = action.payload;
+		});
+
+		builder.addCase(likePost.fulfilled, (state: Draft<UserState>, action) => {
+			const postIndex = state.user.posts.findIndex(post => post.id === action.payload.id!);
+			const post = state.user.posts[postIndex];
+			state.user.posts[postIndex] = { ...post, ...action.payload };
+		});
 	}
 });
 

@@ -9,6 +9,7 @@ import Button from '@/components/UI/Button';
 import { PostProps } from '@/types/Post';
 import { createPost } from '@/store/reducers/user/userAPI';
 import { useAppDispatch, useAppSelector } from '@/store';
+import { createPostProps } from '@/services/UserService';
 
 interface ICreatePostModal {
 	modal: boolean;
@@ -45,7 +46,7 @@ const CreatePostModal: FC<ICreatePostModal> = ({ modal, setModal }) => {
 		}
 
 		if (!postTitleError && !postDescError) {
-			const postData: PostProps = { title: postTitle, image: postImage, userId };
+			const postData: createPostProps = { title: postTitle, image: postImage, userId };
 
 			if (postDesc) {
 				postData.description = postDesc;
