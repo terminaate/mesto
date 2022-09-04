@@ -12,7 +12,7 @@ import useBackgroundImage from '@/hooks/useBackgroundImage';
 
 // Components && types
 import ChangeAvatarModal from '@/components/ChangeAvatarModal';
-import PostModal from '@/components/PostModal/PostModal';
+import PostModal from '@/components/PostModal';
 import { PostProps } from '@/types/Post';
 import { UserProps } from '@/types/User';
 import BasicPage from '@/components/BasicPage';
