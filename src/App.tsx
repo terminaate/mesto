@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import LoginPage from '@/pages/AuthPages/LoginPage';
-import RegisterPage from '@/pages/AuthPages/RegisterPage';
 import { AnimatePresence } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { updateUser } from '@/store/reducers/user/userSlice';
 import AuthorizedRoute from '@/components/AuthorizedRoute';
-import UserPage from '@/pages/UserPage/UserPage';
 import { refresh } from '@/store/reducers/user/authAPI';
 import { getUser, getUserPosts } from '@/store/reducers/user/userAPI';
-// import SettingsPage from '@/pages/SettingsPage';
-import Header from '@/components/Header/Header';
+import Header from '@/components/Header';
 
 const SettingsPage = React.lazy(() => import('@/pages/SettingsPage'));
+const UserPage = React.lazy(() => import('@/pages/UserPage'));
+const LoginPage = React.lazy(() => import('@/pages/AuthPages/LoginPage'));
+const RegisterPage = React.lazy(() => import('@/pages/AuthPages/RegisterPage'));
 
 const App = () => {
 	const location = useLocation();

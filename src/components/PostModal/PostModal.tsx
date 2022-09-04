@@ -2,12 +2,13 @@ import React, { FC, useEffect } from 'react';
 import { PostProps } from '@/types/Post';
 import Modal from '@/components/Modal';
 import cl from './PostModal.module.css';
-import { FaHeart } from 'react-icons/fa';
+import { FaEllipsisH, FaHeart } from 'react-icons/fa';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { likePost } from '@/store/reducers/user/userAPI';
 import UserService from '@/services/UserService';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { UserProps } from '@/types/User';
+import useBackgroundImage from '@/hooks/useBackgroundImage';
 
 interface IPostModal {
 	modal: boolean;
@@ -27,6 +28,7 @@ const PostModal: FC<IPostModal> = ({ modal, setModal, post, setPost, userData, s
 	const dispatch = useAppDispatch();
 	const location = useLocation();
 	const isSelfUserPost = post.userId === user.id && (location.pathname === `/users/${user.id}` || location.pathname === '/users/@me');
+	const navigate = useNavigate();
 
 	const likeButtonHandler = async () => {
 		if (isSelfUserPost) {
@@ -34,7 +36,7 @@ const PostModal: FC<IPostModal> = ({ modal, setModal, post, setPost, userData, s
 		} else {
 			const { data: newPost } = await UserService.likePost(post.id);
 			const newPosts = [...userData.posts!];
-			newPosts[newPosts.findIndex(p => p.id === newPost.id)] = newPost;
+			newPosts[newPosts.findIndex(p => p.id === newPost.id)].likes = newPost.likes;
 			setUserData({ ...userData, posts: newPosts });
 		}
 	};
@@ -45,20 +47,40 @@ const PostModal: FC<IPostModal> = ({ modal, setModal, post, setPost, userData, s
 		}
 	}, [userData.posts]);
 
+	const navigateToUserPage = () => {
+		setModal(false);
+		if (!isSelfUserPost) {
+			navigate(`/users/${userData.id}`);
+		}
+	};
 
 	return (
 		<Modal className={cl.postModal} modal={modal} setModal={setModal}>
 			<div className={cl.postImageContainer}>
 				<img src={post.image} alt={''} className={cl.postImage} />
+				<div className={cl.postStatsContainer}>
+					<div className={cl.postLikesContainer}>
+						<button onClick={likeButtonHandler} data-liked={post.likes.includes(user.id)} className={cl.postLikeButton}>
+							<FaHeart />
+						</button>
+						<span>{post.likes.length}</span>
+					</div>
+				</div>
 			</div>
 			<div className={cl.postInfoContainer}>
-				<span className={cl.postTitle}>{post.title}</span>
-				{post.description && <span className={cl.postDesc}>{post.description}</span>}
-				<div className={cl.postLikesContainer}>
-					<button onClick={likeButtonHandler} data-liked={post.likes.includes(user.id)} className={cl.postLikeButton}>
-						<FaHeart />
+				<div className={cl.postInfoHeaderContainer}>
+					<div onClick={navigateToUserPage} className={cl.postInfoHeaderUser}>
+						<div style={useBackgroundImage(userData.avatar!)}
+								 className={cl.headerUserAvatar} />
+						<span className={cl.headerUserName}>{userData.username}</span>
+					</div>
+					<button className={cl.postEditButton}>
+						<FaEllipsisH />
 					</button>
-					<span>{post.likes.length}</span>
+				</div>
+				<div className={cl.postComments}>
+					<span className={cl.postTitle}>{post.title}</span>
+					{post.description && <span className={cl.postDesc}>{post.description}</span>}
 				</div>
 			</div>
 		</Modal>

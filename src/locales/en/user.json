@@ -14,5 +14,11 @@
   "Max post description length is 150!": "Maximum post description length is 150!",
   "Max file size is 5 mb!": "Max file size is 5 mb!",
   "Drag and drop files, photos and videos": "Drag and drop files, photos and videos",
-  "Select a file": "Select a file"
+  "Select a file": "Select a file",
+  "Min file height is {{size}}px!": "Min file height is {{size}}px!",
+  "Min file width is {{size}}px!": "Min file height is {{size}}px!",
+  "Min file resolution is {{size}}!": "Min file resolution is {{size}}!",
+  "Max file height is {{size}}px!": "Max file height is {{size}}px!",
+  "Max file width is {{size}}px!": "Max file height is {{size}}px!",
+  "Max file resolution is {{size}}!": "Max file resolution is {{size}}!"
 }

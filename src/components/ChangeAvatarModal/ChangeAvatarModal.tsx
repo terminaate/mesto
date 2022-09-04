@@ -17,7 +17,7 @@ const ChangeAvatarModal: FC<IChangeAvatarModal> = ({ modal, setModal }) => {
 
 	return (
 		<>
-			{!image && <FileUploadModal modal={modal} setModal={setModal} setImage={setImage} />}
+			{!image && <FileUploadModal validateSize={false} modal={modal} setModal={setModal} setImage={setImage} />}
 			{image && (
 				<Modal modal={modal} onHide={onHide} setModal={setModal}>
 					<AvatarFileConfirm setImage={setImage} image={image} setModal={setModal} />

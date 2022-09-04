@@ -6,7 +6,7 @@ import { AuthData } from '@/services/AuthService';
 import { register } from '@/store/reducers/user/authAPI';
 import useInputState from '@/hooks/useInputState';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { FaEye, FaEyeSlash } from 'react-icons/all';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 
 const RegisterForm = () => {

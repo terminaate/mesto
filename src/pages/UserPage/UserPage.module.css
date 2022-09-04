@@ -35,6 +35,7 @@
     justify-content: center;
     font-size: 40px;
     position: relative;
+    cursor: pointer;
 }
 
 .userAvatar div {
@@ -45,7 +46,6 @@
     background-color: var(--background-secondary);
     opacity: 0;
     transition: opacity .3s;
-    cursor: pointer;
 }
 
 .userAvatar svg {

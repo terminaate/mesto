@@ -5,7 +5,7 @@ import Button from '@/components/UI/Button';
 import useInputState from '@/hooks/useInputState';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { AuthData } from '@/services/AuthService';
-import { FaEye, FaEyeSlash } from 'react-icons/all';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { login } from '@/store/reducers/user/authAPI';
 import { useTranslation } from 'react-i18next';
 

@@ -107,8 +107,8 @@ export const userSlice = createSlice({
 
 		builder.addCase(likePost.fulfilled, (state: Draft<UserState>, action) => {
 			const postIndex = state.user.posts.findIndex(post => post.id === action.payload.id!);
-			const post = state.user.posts[postIndex];
-			state.user.posts[postIndex] = { ...post, ...action.payload };
+			// const post = state.user.posts[postIndex];
+			state.user.posts[postIndex].likes = action.payload.likes;
 		});
 	}
 });

@@ -1,5 +1,6 @@
 import cl from './UserPage.module.css';
 import UserService from '@/services/UserService';
+import { likePost } from '@/store/reducers/user/userAPI';
 
 // Hooks
 import { MouseEvent, useEffect, useState } from 'react';
@@ -19,7 +20,6 @@ import Button from '@/components/UI/Button';
 
 // Icons
 import { FaHeart, FaPen } from 'react-icons/fa';
-import { likePost } from '@/store/reducers/user/userAPI';
 
 const UserPage = () => {
 	const { user: selfUserData } = useAppSelector(state => state.userSlice);
@@ -29,7 +29,7 @@ const UserPage = () => {
 	const { t } = useTranslation('user');
 	const [userData, setUserData] = useState<UserProps>({} as UserProps);
 	const [avatarModal, setAvatarModal] = useState<boolean>(false);
-	const isSelfUserPage = params.id === '@me' || params.id === selfUserData.id && userData.id === selfUserData.id;
+	const isSelfUserPage = (params.id === '@me' || params.id === selfUserData.id) && userData.id === selfUserData.id;
 	const [postModal, setPostModal] = useState<boolean>(false);
 	const [postData, setPostData] = useState<PostProps>({} as PostProps);
 
@@ -77,7 +77,7 @@ const UserPage = () => {
 		} else {
 			const { data: post } = await UserService.likePost(postId);
 			const newPosts = [...userData.posts!];
-			newPosts[newPosts.findIndex(p => p.id === post.id!)] = post;
+			newPosts[newPosts.findIndex(p => p.id === post.id!)].likes = post.likes;
 			setUserData({ ...userData, posts: newPosts });
 		}
 	};

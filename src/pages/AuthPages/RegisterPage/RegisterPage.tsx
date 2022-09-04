@@ -6,8 +6,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 const RegisterPage = () => {
-	const { t, i18n } = useTranslation('auth');
-
+	const { t } = useTranslation('auth');
 
 	return (
 		<BasicAuthPage title={t('Register')}>
