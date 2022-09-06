@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import Modal from '@/components/Modal';
 import AvatarFileConfirm from './AvatarFileConfirm';
 import FileUploadModal from '@/components/FileUploadModal';
+import ResizeImage from '@/components/ResizeImage';
 
 interface IChangeAvatarModal {
 	modal: boolean;
@@ -19,9 +20,12 @@ const ChangeAvatarModal: FC<IChangeAvatarModal> = ({ modal, setModal }) => {
 		<>
 			{!image && <FileUploadModal validateSize={false} modal={modal} setModal={setModal} setImage={setImage} />}
 			{image && (
-				<Modal modal={modal} onHide={onHide} setModal={setModal}>
-					<AvatarFileConfirm setImage={setImage} image={image} setModal={setModal} />
-				</Modal>
+				<>
+					<Modal modal={modal} onHide={onHide} setModal={setModal}>
+						<ResizeImage image={image}/>
+						{/*<AvatarFileConfirm setImage={setImage} image={image} setModal={setModal} />*/}
+					</Modal>
+				</>
 			)}
 		</>
 	);

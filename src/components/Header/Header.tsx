@@ -30,7 +30,7 @@ const Header = () => {
 				<span className={cl.logo}>Mesto</span>
 				{location.pathname !== '/login' && location.pathname !== '/register' && (
 					<>
-						<SearchInput />
+						{authorized ? <SearchInput /> : <span/>}
 						{authorized ?
 							<div className={cl.userButtons}>
 								<button onClick={createPostButtonClick} className={cl.createPostButton}>

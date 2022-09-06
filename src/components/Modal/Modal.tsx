@@ -11,12 +11,12 @@ interface IModal {
 }
 
 const Modal: FC<IModal> = ({
-																 modal,
-																 setModal,
-																 onHide,
-																 className,
-																 children
-															 }) => {
+														 modal,
+														 setModal,
+														 onHide,
+														 className,
+														 children
+													 }) => {
 
 	const closeModal = () => {
 		if (onHide && setModal) {
@@ -36,8 +36,8 @@ const Modal: FC<IModal> = ({
 	const classNames = useClassNames([className!, cl.modalContent]);
 
 	return (
-		<div onClick={closeModal} data-visible={modal} className={cl.modalScreen}>
-			<div onClick={e => e.stopPropagation()} className={classNames}>
+		<div onMouseDown={closeModal} data-visible={modal} className={cl.modalScreen}>
+			<div onMouseDown={e => e.stopPropagation()} className={classNames}>
 				{children}
 			</div>
 		</div>
