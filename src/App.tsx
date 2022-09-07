@@ -13,6 +13,9 @@ const UserPage = React.lazy(() => import('@/pages/UserPage'));
 const LoginPage = React.lazy(() => import('@/pages/AuthPages/LoginPage'));
 const RegisterPage = React.lazy(() => import('@/pages/AuthPages/RegisterPage'));
 
+// TODO
+// Пофиксить баг с переходом на страницу пользователя из любой не известной страницы
+
 const App = () => {
 	const location = useLocation();
 	const dispatch = useAppDispatch();
@@ -52,6 +55,7 @@ const App = () => {
 							<SettingsPage />
 						</AuthorizedRoute>
 					} />
+					<Route path={'/*'} element={<span>404</span>} />
 				</Routes>
 			</AnimatePresence>
 		</>

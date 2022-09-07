@@ -24,7 +24,7 @@ i18n
 			en: enNs
 		},
 		fallbackLng: 'en',
-		debug: true,
+		debug: import.meta.env.MODE === 'development',
 
 		react: {
 			transSupportBasicHtmlNodes: true
@@ -34,7 +34,6 @@ i18n
 			escapeValue: false
 		}
 	});
-
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<BrowserRouter>

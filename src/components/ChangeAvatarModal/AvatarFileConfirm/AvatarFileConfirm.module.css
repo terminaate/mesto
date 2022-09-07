@@ -8,8 +8,8 @@
 }
 
 .userAvatar {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -24,5 +24,5 @@
 }
 
 .fileConfirmPrompt {
-    margin-top: 20px;
+    margin-top: 30px;
 }

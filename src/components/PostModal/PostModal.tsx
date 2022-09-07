@@ -1,14 +1,16 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { PostProps } from '@/types/Post';
 import Modal from '@/components/Modal';
 import cl from './PostModal.module.css';
-import { FaEllipsisH, FaHeart } from 'react-icons/fa';
+import { FaEllipsisH, FaHeart, FaTrash } from 'react-icons/fa';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { likePost } from '@/store/reducers/user/userAPI';
+import { deletePost, likePost } from '@/store/reducers/user/userAPI';
 import UserService from '@/services/UserService';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UserProps } from '@/types/User';
 import useBackgroundImage from '@/hooks/useBackgroundImage';
+import ContextMenu from '@/components/ContextMenu/ContextMenu';
+import { useTranslation } from 'react-i18next';
 
 interface IPostModal {
 	modal: boolean;
@@ -20,7 +22,7 @@ interface IPostModal {
 }
 
 const PostModal: FC<IPostModal> = ({ modal, setModal, post, setPost, userData, setUserData }) => {
-	if (Object.values(post).length <= 0) {
+	if (!post || Object.values(post).length <= 0) {
 		return <></>;
 	}
 
@@ -29,6 +31,9 @@ const PostModal: FC<IPostModal> = ({ modal, setModal, post, setPost, userData, s
 	const location = useLocation();
 	const isSelfUserPost = post.userId === user.id && (location.pathname === `/users/${user.id}` || location.pathname === '/users/@me');
 	const navigate = useNavigate();
+	const [morePopup, setMorePopup] = useState<boolean>(false);
+	const listenToPosts = useRef<boolean>(true);
+	const { t } = useTranslation('user');
 
 	const likeButtonHandler = async () => {
 		if (isSelfUserPost) {
@@ -42,7 +47,7 @@ const PostModal: FC<IPostModal> = ({ modal, setModal, post, setPost, userData, s
 	};
 
 	useEffect(() => {
-		if (Object.values(userData).length > 0) {
+		if (listenToPosts && Object.values(userData).length > 0) {
 			setPost(userData.posts?.find(p => p.id === post.id) as PostProps);
 		}
 	}, [userData.posts]);
@@ -52,6 +57,12 @@ const PostModal: FC<IPostModal> = ({ modal, setModal, post, setPost, userData, s
 		if (!isSelfUserPost) {
 			navigate(`/users/${userData.id}`);
 		}
+	};
+
+	const deletePostButtonHandler = () => {
+		listenToPosts.current = false;
+		setModal(false);
+		dispatch(deletePost(post.id));
 	};
 
 	return (
@@ -74,8 +85,16 @@ const PostModal: FC<IPostModal> = ({ modal, setModal, post, setPost, userData, s
 								 className={cl.headerUserAvatar} />
 						<span className={cl.headerUserName}>{userData.username}</span>
 					</div>
-					<button className={cl.postEditButton}>
+					<button onClick={() => setMorePopup(!morePopup)} className={cl.postMoreButton}>
 						<FaEllipsisH />
+						<ContextMenu state={morePopup} setState={setMorePopup}>
+							{isSelfUserPost && (
+								<button onClick={deletePostButtonHandler} data-important={true}>
+									<FaTrash />
+									{t('Delete post')}
+								</button>
+							)}
+						</ContextMenu>
 					</button>
 				</div>
 				<div className={cl.postComments}>

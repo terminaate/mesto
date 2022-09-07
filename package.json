@@ -2,6 +2,7 @@
   "name": "mesto",
   "private": true,
   "version": "0.0.1",
+  "proxy": "",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

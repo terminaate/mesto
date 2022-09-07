@@ -20,5 +20,6 @@
   "Min file resolution is {{size}}!": "Минимальное разрешение файла {{size}}!",
   "Max file height is {{size}}px!": "Максимальная высота файла  {{size}}px!",
   "Max file width is {{size}}px!": "Максимальная ширина файла {{size}}px!",
-  "Max file resolution is {{size}}!": "Максимальное разрешение файла {{size}}!"
+  "Max file resolution is {{size}}!": "Максимальное разрешение файла {{size}}!",
+  "Delete post": "Удалить пост"
 }

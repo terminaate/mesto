@@ -1,6 +1,6 @@
 import { AnyAction, createSlice, Draft } from '@reduxjs/toolkit';
 import authAsyncThunks, { login, refresh, register } from './authAPI';
-import userAsyncThunks, { createPost, editUser, getUser, getUserPosts, likePost } from './userAPI';
+import userAsyncThunks, { createPost, deletePost, editUser, getUser, getUserPosts, likePost } from './userAPI';
 import useUserAvatar from '@/hooks/useUserAvatar';
 import { PostProps } from '@/types/Post';
 import usePostImage from '@/hooks/usePostImage';
@@ -107,8 +107,11 @@ export const userSlice = createSlice({
 
 		builder.addCase(likePost.fulfilled, (state: Draft<UserState>, action) => {
 			const postIndex = state.user.posts.findIndex(post => post.id === action.payload.id!);
-			// const post = state.user.posts[postIndex];
 			state.user.posts[postIndex].likes = action.payload.likes;
+		});
+
+		builder.addCase(deletePost.fulfilled, (state: Draft<UserState>, action) => {
+			state.user.posts = state.user.posts.filter(post => post.id !== action.payload.id);
 		});
 	}
 });

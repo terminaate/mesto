@@ -6,7 +6,7 @@ import { userSlice } from '@/store/reducers/user/userSlice';
 // TODO
 // Сделать переменные окружения prod и env, а так-же здесь заменить serverUrl на перменныю из окружения
 
-export const serverURL = 'http://127.0.0.1:5000';
+export const serverURL = import.meta.env.MODE === "development" ? 'http://127.0.0.1:5000' : window.origin;
 const baseURL = serverURL + '/api';
 
 const $api = axios.create({

@@ -26,17 +26,22 @@ const ResizeImage: FC<IResizeFile> = ({ image, width = 400, height = 400 }) => {
 
 	const onDragHandler = () => {
 		console.log(x.get(), y.get());
+		const ctx = canvasRef.current?.getContext('2d')!;
+
+		ctx.fillStyle = '#fff';
+		ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+		const s = size ? size : height;
+		let localY: number = y.get();
+		let localX: number = x.get()
+		ctx.drawImage(i.current!, 0 , 0, i.current!.width, i.current!.width, localX, localY, size, size);
 	};
 
 	const confirmButtonHandler = () => {
 		const ctx = canvasRef.current?.getContext('2d')!;
-		ctx.fillStyle = '#fff';
-		ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+		// ctx.fillStyle = '#fff';
+		// ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 		const s = size ? size : height;
-		let localX: number = x.get();
-		let localY: number = y.get();
-		console.log(localX, localY);
-		ctx.drawImage(i.current!, 0, 0, s, s);
+		ctx.drawImage(i.current!, x.get(), y.get(), s, s);
 	};
 
 	useEffect(() => {

@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import UserService, { createPostProps } from '@/services/UserService';
-import { PostProps } from '@/types/Post';
 
 export const logError = (e: any) => console.log(getErrorObject(e).message);
 
@@ -91,4 +90,17 @@ export const likePost = createAsyncThunk(
 	}
 );
 
-export default [getUser, editUser, createPost, getUserPosts, likePost];
+export const deletePost = createAsyncThunk(
+	'user/delete-post',
+	async (postId: string, thunkAPI) => {
+		try {
+			const { data } = await UserService.deletePost(postId);
+			return data;
+		} catch (e: any) {
+			logError(e);
+			return thunkAPI.rejectWithValue(getErrorObject(e).message);
+		}
+	}
+);
+
+export default [getUser, editUser, createPost, getUserPosts, likePost, deletePost];

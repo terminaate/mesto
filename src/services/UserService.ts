@@ -44,6 +44,12 @@ class UserService {
 		post.data.image = usePostImage(post.data.userId!, post.data.id!);
 		return post;
 	}
+
+	async deletePost(postId: string) : Promise<AxiosResponse<PostProps>> {
+		const post = await $api.delete<PostProps>(`/posts/${postId}`);
+		post.data.image = usePostImage(post.data.userId!, post.data.id!);
+		return post;
+	}
 }
 
 export default new UserService();

@@ -22,8 +22,8 @@ const ChangeAvatarModal: FC<IChangeAvatarModal> = ({ modal, setModal }) => {
 			{image && (
 				<>
 					<Modal modal={modal} onHide={onHide} setModal={setModal}>
-						<ResizeImage image={image}/>
-						{/*<AvatarFileConfirm setImage={setImage} image={image} setModal={setModal} />*/}
+						{/*<ResizeImage image={image}/>*/}
+						<AvatarFileConfirm setImage={setImage} image={image} setModal={setModal} />
 					</Modal>
 				</>
 			)}
