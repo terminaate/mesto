@@ -90,7 +90,7 @@ const UserPage = () => {
 						<div className={cl.userInfoContainer}>
 							<div onClick={() => isSelfUserPage ? setAvatarModal(true) : ''} data-page={isSelfUserPage}
 									 className={cl.userAvatar}
-									 style={useBackgroundImage(userData.avatar!)}>
+									 style={useBackgroundImage(userData.avatar!, 256)}>
 								{isSelfUserPage && (
 									<>
 										<div />
@@ -107,7 +107,7 @@ const UserPage = () => {
 						<div className={cl.postsContainer}>
 							{userData.posts?.map(post => (
 								<div onClick={() => openPostModal(post)} key={post.id} className={cl.post}>
-									<div className={cl.postImage} style={useBackgroundImage(post.image)}>
+									<div className={cl.postImage} style={useBackgroundImage(post.image, 512)}>
 										<div data-liked={post.likes?.includes(selfUserData.id)}>
 											<FaHeart onClick={e => likePostButtonHandler(e, post.id!)} />
 											<span>{post.likes?.length}</span>

@@ -22,7 +22,7 @@ const UserAvatar = () => {
 	};
 
 	return (
-		<div className={cl.userAvatar} onClick={() => setUserPopup(true)} style={useBackgroundImage(user.avatar)}>
+		<div className={cl.userAvatar} onClick={() => setUserPopup(true)} style={useBackgroundImage(user.avatar, 64)}>
 			<ContextMenu state={userPopup} setState={setUserPopup}>
 				{location.pathname !== '/users/@me' && (
 					<button onClick={() => navigate('/users/@me')}>

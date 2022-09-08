@@ -21,7 +21,7 @@ const SettingsPage = () => {
 					<label>
 						<input type='file' onChange={onAvatarInputChange} style={{ display: 'none' }} />
 						<div className={cl.avatarImage}
-								 style={useBackgroundImage(avatar)} />
+								 style={useBackgroundImage(avatar, 256)} />
 						<Button className={cl.avatarChangeButton}>Change avatar</Button>
 					</label>
 					<Input />
