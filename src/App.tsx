@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '@/store';
@@ -7,6 +7,7 @@ import AuthorizedRoute from '@/components/AuthorizedRoute';
 import { refresh } from '@/store/reducers/user/authAPI';
 import { getUser, getUserPosts } from '@/store/reducers/user/userAPI';
 import Header from '@/components/Header';
+import BasicPage from '@/components/BasicPage';
 
 const SettingsPage = lazy(() => import('@/pages/SettingsPage'));
 const UserPage = lazy(() => import('@/pages/UserPage'));
@@ -39,8 +40,8 @@ const App = () => {
 	return (
 		<>
 			<Header />
-			<AnimatePresence exitBeforeEnter>
-				<Suspense fallback={<span>Loading</span>}>
+			<AnimatePresence mode={'wait'}>
+				<Suspense fallback={<BasicPage>Loading</BasicPage>}>
 					<Routes location={location} key={location.pathname}>
 						<Route path={'/login'} element={<LoginPage />} />
 						<Route path={'/register'} element={<RegisterPage />} />
