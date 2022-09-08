@@ -81,7 +81,7 @@ const PostModal: FC<IPostModal> = ({ modal, setModal, post, setPost, userData, s
 			<div className={cl.postInfoContainer}>
 				<div className={cl.postInfoHeaderContainer}>
 					<div onClick={navigateToUserPage} className={cl.postInfoHeaderUser}>
-						<div style={useBackgroundImage(userData.avatar!)}
+						<div style={useBackgroundImage(userData.avatar!, 64)}
 								 className={cl.headerUserAvatar} />
 						<span className={cl.headerUserName}>{userData.username}</span>
 					</div>

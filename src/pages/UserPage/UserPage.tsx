@@ -107,7 +107,7 @@ const UserPage = () => {
 						<div className={cl.postsContainer}>
 							{userData.posts?.map(post => (
 								<div onClick={() => openPostModal(post)} key={post.id} className={cl.post}>
-									<div className={cl.postImage} style={useBackgroundImage(post.image, 512)}>
+									<div className={cl.postImage} style={useBackgroundImage(post.image, 256)}>
 										<div data-liked={post.likes?.includes(selfUserData.id)}>
 											<FaHeart onClick={e => likePostButtonHandler(e, post.id!)} />
 											<span>{post.likes?.length}</span>

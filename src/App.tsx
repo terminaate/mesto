@@ -14,6 +14,8 @@ const UserPage = lazy(() => import('@/pages/UserPage'));
 const LoginPage = lazy(() => import('@/pages/AuthPages/LoginPage'));
 const RegisterPage = lazy(() => import('@/pages/AuthPages/RegisterPage'));
 
+// TODO
+// Заменить framer-motion на любую другу библиотеку по анимациями, пздц она весит целых 130 кб в бандле это бред
 
 const App = () => {
 	const location = useLocation();
