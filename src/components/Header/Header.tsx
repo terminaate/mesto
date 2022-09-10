@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useAppSelector } from '@/store';
-import { motion } from 'framer-motion';
 import cl from './Header.module.css';
 import SearchInput from './SearchInput';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '@/components/UI/Button';
 import UserAvatar from './UserAvatar';
 import { FaPlus } from 'react-icons/all';
@@ -25,12 +24,11 @@ const Header = () => {
 
 	return (
 		<>
-			<motion.div className={cl.headerContainer} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-									exit={{ opacity: 0 }}>
+			<div className={cl.headerContainer}>
 				<span className={cl.logo}>Mesto</span>
 				{location.pathname !== '/login' && location.pathname !== '/register' && (
 					<>
-						{authorized ? <SearchInput /> : <span/>}
+						{authorized ? <SearchInput /> : <span />}
 						{authorized ?
 							<div className={cl.userButtons}>
 								<button onClick={createPostButtonClick} className={cl.createPostButton}>
@@ -43,7 +41,7 @@ const Header = () => {
 					</>
 				)}
 				<CreatePostModal modal={createPostModal} setModal={setCreatePostModal} />
-			</motion.div>
+			</div>
 		</>
 	);
 };

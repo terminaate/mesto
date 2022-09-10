@@ -3,5 +3,5 @@ import user from './user.json';
 
 export default {
 	auth,
-	user
+	user,
 } as const;

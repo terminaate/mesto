@@ -6,5 +6,5 @@ export type UserProps = {
 	avatar?: string;
 	username: string;
 	bio?: string;
-	posts?: PostProps[] | []
+	posts?: PostProps[] | [];
 };

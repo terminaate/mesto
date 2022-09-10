@@ -1,3 +1,3 @@
-import PostModal from "./PostModal";
+import PostModal from './PostModal';
 
-export default PostModal
+export default PostModal;

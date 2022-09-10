@@ -1,6 +1,10 @@
 import { RefObject, useEffect } from 'react';
 
-export default (ref: RefObject<HTMLElement>, then: () => void, except?: RefObject<HTMLElement>) => {
+export default (
+	ref: RefObject<HTMLElement>,
+	then: () => void,
+	except?: RefObject<HTMLElement>
+) => {
 	useEffect(() => {
 		const handler = (e: MouseEvent) => {
 			const { target } = e as MouseEvent & { target: HTMLElement };
@@ -8,8 +12,10 @@ export default (ref: RefObject<HTMLElement>, then: () => void, except?: RefObjec
 				return;
 			}
 
-
-			if (!ref.current?.contains(target) && !except?.current?.contains(target)) {
+			if (
+				!ref.current?.contains(target) &&
+				!except?.current?.contains(target)
+			) {
 				then();
 			}
 		};
@@ -17,4 +23,4 @@ export default (ref: RefObject<HTMLElement>, then: () => void, except?: RefObjec
 		document.addEventListener('mousedown', handler);
 		return () => document.removeEventListener('mousedown', handler);
 	}, []);
-}
+};

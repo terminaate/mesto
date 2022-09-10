@@ -1,9 +1,8 @@
-import { motion, MotionProps } from 'framer-motion';
-import React, { FC, ReactNode } from 'react';
+import React, { FC, HTMLAttributes, ReactNode } from 'react';
 import useClasses from '@/hooks/useClassNames';
 import cl from './BasicPage.module.css';
 
-interface IBasicPage extends MotionProps {
+interface IBasicPage extends HTMLAttributes<HTMLDivElement> {
 	children: ReactNode;
 	className?: string;
 }
@@ -12,10 +11,9 @@ const BasicPage: FC<IBasicPage> = ({ className, children, ...props }) => {
 	const classNames = useClasses(className!, cl.basicPage);
 
 	return (
-		<motion.div transition={{ duration: 0.3 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-								exit={{ opacity: 0 }} className={classNames} {...props}>
+		<div className={classNames} {...props}>
 			{children}
-		</motion.div>
+		</div>
 	);
 };
 

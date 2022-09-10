@@ -7,12 +7,12 @@ export const getErrorObject = (e: any) => {
 	if (Array.isArray(e.response!.data.message)) {
 		return {
 			...e.response!.data,
-			message: e.response!.data.message[0]
+			message: e.response!.data.message[0],
 		};
 	} else {
 		return {
 			...e.response!.data,
-			message: e.response!.data.message
+			message: e.response!.data.message,
 		};
 	}
 };
@@ -103,4 +103,11 @@ export const deletePost = createAsyncThunk(
 	}
 );
 
-export default [getUser, editUser, createPost, getUserPosts, likePost, deletePost];
+export default [
+	getUser,
+	editUser,
+	createPost,
+	getUserPosts,
+	likePost,
+	deletePost,
+];

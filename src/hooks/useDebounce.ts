@@ -10,4 +10,4 @@ export default <T>(value: T, delay = 500) => {
 	}, [value, delay]);
 
 	return state;
-}
+};

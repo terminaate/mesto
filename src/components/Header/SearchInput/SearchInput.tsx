@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import cl from './SearchInput.module.css';
 import { FaSearch } from 'react-icons/all';
 import { useTranslation } from 'react-i18next';
-import { AnimatePresence, motion } from 'framer-motion';
 import useBackgroundImage from '@/hooks/useBackgroundImage';
 import useInputState from '@/hooks/useInputState';
 import useDebounce from '@/hooks/useDebounce';
@@ -41,19 +40,16 @@ const SearchInput = () => {
 				<input value={searchInput} onChange={onSearchInputChange} className={cl.searchInput} type='text'
 							 placeholder={t('Search')} />
 			</div>
-			<AnimatePresence>
-				{searchVariants && searchVariants.length > 0 && (
-					<motion.div ref={searchVariantsRef} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-											className={cl.searchInputVariants}>
-						{searchVariants.map((variant, key) => (
-							<div key={key} onClick={() => navigateToUserPage(variant.username)} className={cl.searchInputVariant}>
-								<div className={cl.variantAvatar} style={useBackgroundImage(variant.avatar!, 64)} />
-								<span className={cl.variantName}>{variant.username}</span>
-							</div>
-						))}
-					</motion.div>
-				)}
-			</AnimatePresence>
+			{searchVariants && searchVariants.length > 0 && (
+				<div ref={searchVariantsRef} className={cl.searchInputVariants}>
+					{searchVariants.map((variant, key) => (
+						<div key={key} onClick={() => navigateToUserPage(variant.username)} className={cl.searchInputVariant}>
+							<div className={cl.variantAvatar} style={useBackgroundImage(variant.avatar!, 64)} />
+							<span className={cl.variantName}>{variant.username}</span>
+						</div>
+					))}
+				</div>
+			)}
 		</div>
 	);
 };

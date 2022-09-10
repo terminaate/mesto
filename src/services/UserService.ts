@@ -11,7 +11,7 @@ export type createPostProps = {
 	title: string;
 	description?: string;
 	image: string;
-}
+};
 
 class UserService {
 	async getUser(userId: string): Promise<AxiosResponse<UserProps>> {
@@ -23,19 +23,29 @@ class UserService {
 		return await $api.patch<editUserProps>(`/users/${data.id}`, bodyData);
 	}
 
-	async createNewPost(data: createPostProps): Promise<AxiosResponse<PostProps>> {
+	async createNewPost(
+		data: createPostProps
+	): Promise<AxiosResponse<PostProps>> {
 		return await $api.post<PostProps>('/posts', data);
 	}
 
 	async getUserPosts(userId: string): Promise<AxiosResponse<PostProps[] | []>> {
 		const posts = await $api.get<PostProps[] | []>(`/users/${userId}/posts`);
-		posts.data = posts.data.map(post => ({ ...post, image: usePostImage(post.userId!, post.id!) }));
+		posts.data = posts.data.map((post) => ({
+			...post,
+			image: usePostImage(post.userId!, post.id!),
+		}));
 		return posts;
 	}
 
 	async searchUsers(username: string): Promise<AxiosResponse<UserProps[]>> {
-		const variants = await $api.get<UserProps[]>(`/users/search?username=${username}`);
-		variants.data = variants.data.map(variant => ({ ...variant, avatar: useUserAvatar(variant.id) }));
+		const variants = await $api.get<UserProps[]>(
+			`/users/search?username=${username}`
+		);
+		variants.data = variants.data.map((variant) => ({
+			...variant,
+			avatar: useUserAvatar(variant.id),
+		}));
 		return variants;
 	}
 
@@ -45,7 +55,7 @@ class UserService {
 		return post;
 	}
 
-	async deletePost(postId: string) : Promise<AxiosResponse<PostProps>> {
+	async deletePost(postId: string): Promise<AxiosResponse<PostProps>> {
 		const post = await $api.delete<PostProps>(`/posts/${postId}`);
 		post.data.image = usePostImage(post.data.userId!, post.data.id!);
 		return post;

@@ -1,6 +1,5 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { updateUser } from '@/store/reducers/user/userSlice';
 import AuthorizedRoute from '@/components/AuthorizedRoute';
@@ -13,9 +12,6 @@ const SettingsPage = lazy(() => import('@/pages/SettingsPage'));
 const UserPage = lazy(() => import('@/pages/UserPage'));
 const LoginPage = lazy(() => import('@/pages/AuthPages/LoginPage'));
 const RegisterPage = lazy(() => import('@/pages/AuthPages/RegisterPage'));
-
-// TODO
-// Заменить framer-motion на любую другу библиотеку по анимациями, пздц она весит целых 130 кб в бандле это бред
 
 const App = () => {
 	const location = useLocation();
@@ -42,25 +38,23 @@ const App = () => {
 	return (
 		<>
 			<Header />
-			<AnimatePresence mode={'wait'}>
-				<Suspense fallback={<Loader />}>
-					<Routes location={location} key={location.pathname}>
-						<Route path={'/login'} element={<LoginPage />} />
-						<Route path={'/register'} element={<RegisterPage />} />
-						<Route path={'/users/:id'} element={
-							<AuthorizedRoute>
-								<UserPage />
-							</AuthorizedRoute>
-						} />
-						<Route path={'/settings'} element={
-							<AuthorizedRoute>
-								<SettingsPage />
-							</AuthorizedRoute>
-						} />
-						<Route path={'/*'} element={<span>404</span>} />
-					</Routes>
-				</Suspense>
-			</AnimatePresence>
+			<Suspense fallback={<Loader />}>
+				<Routes location={location}>
+					<Route path={'/login'} element={<LoginPage />} />
+					<Route path={'/register'} element={<RegisterPage />} />
+					<Route path={'/users/:id'} element={
+						<AuthorizedRoute>
+							<UserPage />
+						</AuthorizedRoute>
+					} />
+					<Route path={'/settings'} element={
+						<AuthorizedRoute>
+							<SettingsPage />
+						</AuthorizedRoute>
+					} />
+					<Route path={'/*'} element={<span>404</span>} />
+				</Routes>
+			</Suspense>
 		</>
 	);
 };

@@ -4,5 +4,5 @@ export type PostProps = {
 	title: string;
 	description?: string;
 	image: string;
-	likes: string[]
-}
+	likes: string[];
+};
