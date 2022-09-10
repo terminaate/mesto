@@ -47,7 +47,7 @@ const SearchInput = () => {
 											className={cl.searchInputVariants}>
 						{searchVariants.map((variant, key) => (
 							<div key={key} onClick={() => navigateToUserPage(variant.username)} className={cl.searchInputVariant}>
-								<div className={cl.variantAvatar} style={useBackgroundImage(variant.avatar!)} />
+								<div className={cl.variantAvatar} style={useBackgroundImage(variant.avatar!, 64)} />
 								<span className={cl.variantName}>{variant.username}</span>
 							</div>
 						))}

@@ -7,7 +7,7 @@ import AuthorizedRoute from '@/components/AuthorizedRoute';
 import { refresh } from '@/store/reducers/user/authAPI';
 import { getUser, getUserPosts } from '@/store/reducers/user/userAPI';
 import Header from '@/components/Header';
-import BasicPage from '@/components/BasicPage';
+import Loader from '@/components/Loader';
 
 const SettingsPage = lazy(() => import('@/pages/SettingsPage'));
 const UserPage = lazy(() => import('@/pages/UserPage'));
@@ -29,7 +29,7 @@ const App = () => {
 	useEffect(() => {
 		if (localStorage.getItem('accessToken')) {
 			dispatch(refresh());
-			dispatch(getUser({ userId: '@me' }));
+			dispatch(getUser('@me'));
 		}
 	}, []);
 
@@ -43,7 +43,7 @@ const App = () => {
 		<>
 			<Header />
 			<AnimatePresence mode={'wait'}>
-				<Suspense fallback={<BasicPage>Loading</BasicPage>}>
+				<Suspense fallback={<Loader />}>
 					<Routes location={location} key={location.pathname}>
 						<Route path={'/login'} element={<LoginPage />} />
 						<Route path={'/register'} element={<RegisterPage />} />

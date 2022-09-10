@@ -19,7 +19,7 @@ export const getErrorObject = (e: any) => {
 
 export const getUser = createAsyncThunk(
 	'user/get-user',
-	async ({ userId }: { userId: string }, thunkAPI) => {
+	async (userId: string, thunkAPI) => {
 		try {
 			const { data } = await UserService.getUser(userId);
 			return data;
