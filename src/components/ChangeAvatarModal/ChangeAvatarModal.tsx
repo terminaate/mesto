@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react';
 import Modal from '@/components/Modal';
 import AvatarFileConfirm from './AvatarFileConfirm';
 import FileUploadModal from '@/components/FileUploadModal';
-import ResizeImage from '@/components/ResizeImage';
 
 interface IChangeAvatarModal {
 	modal: boolean;
