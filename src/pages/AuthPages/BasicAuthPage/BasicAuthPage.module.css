@@ -25,3 +25,21 @@
     font-family: var(--font-secondary);
     font-size: 20px;
 }
+
+.errorContainer {
+    height: 0;
+    width: max-content;
+    overflow: hidden;
+    transition: height .2s;
+    margin-top: 5px;
+}
+
+.errorContainer[data-error="true"] {
+    height: 20px;
+}
+
+.error {
+    color: var(--text-red);
+    font-size: 13px;
+    font-family: var(--font-secondary);
+}

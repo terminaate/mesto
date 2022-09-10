@@ -9,8 +9,8 @@ interface IBasicAuthPage {
 	title: string;
 }
 
-const BasicAuthPage: FC<IBasicAuthPage> = ({ children, title }) => {
-	const { authorized } = useAppSelector(state => state.userSlice);
+const BasicAuthPage: FC<IBasicAuthPage> = ({ title, children }) => {
+	const { authorized, error: serverError } = useAppSelector(state => state.userSlice);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -25,6 +25,9 @@ const BasicAuthPage: FC<IBasicAuthPage> = ({ children, title }) => {
 				<div className={cl.titles}>
 					<span className={cl.logo}>Mesto</span>
 					<span>{title}</span>
+				</div>
+				<div data-error={Boolean(serverError)} className={cl.errorContainer}>
+					<span className={cl.error}>{serverError}</span>
 				</div>
 				{children}
 			</div>

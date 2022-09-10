@@ -3,7 +3,7 @@ import cl from './LoginForm.module.css';
 import Input from '@/components/UI/Input';
 import Button from '@/components/UI/Button';
 import useInputState from '@/hooks/useInputState';
-import { useAppDispatch, useAppSelector } from '@/store';
+import { useAppDispatch } from '@/store';
 import { AuthData } from '@/services/AuthService';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { login } from '@/store/reducers/user/authAPI';
@@ -16,7 +16,6 @@ const LoginForm = () => {
 	const [passwordInputError, setPasswordInputError] = useState<string>('');
 	const [passwordType, setPasswordType] = useState<string>('password');
 	const dispatch = useAppDispatch();
-	const { error: serverError } = useAppSelector(state => state.userSlice.user);
 	const { t } = useTranslation('auth');
 
 	const isEmail = (email: string) => {
@@ -60,7 +59,6 @@ const LoginForm = () => {
 
 	return (
 		<>
-			{serverError && <span className={cl.error}>{serverError}</span>}
 			<div className={cl.inputsContainer}>
 				<div className={cl.inputContainer}>
 					<Input value={loginInput} onChange={onLoginInputChange} placeholder={t('Email or login*')} />

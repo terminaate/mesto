@@ -18,7 +18,6 @@ const RegisterForm = () => {
 	const [passwordInputError, setPasswordInputError] = useState<string>('');
 	const [passwordType, setPasswordType] = useState<string>('password');
 	const dispatch = useAppDispatch();
-	const { error: serverError } = useAppSelector(state => state.userSlice.user);
 	const { t } = useTranslation('auth');
 
 	const isEmail = (email: string) => {
@@ -66,7 +65,6 @@ const RegisterForm = () => {
 
 	return (
 		<>
-			{serverError && <span className={cl.error}>{serverError}</span>}
 			<div className={cl.inputsContainer}>
 				<div className={cl.inputContainer}>
 					<Input value={loginInput} onChange={onLoginInputChange} placeholder={t('Login*')} />
