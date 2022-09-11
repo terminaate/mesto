@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect } from 'react';
-import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { updateUser } from '@/store/reducers/user/userSlice';
 import AuthorizedRoute from '@/components/AuthorizedRoute';
@@ -17,7 +17,6 @@ const RegisterPage = lazy(() => import('@/pages/AuthPages/RegisterPage'));
 
 const App = () => {
 	const location = useLocation();
-	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	const { authorized } = useAppSelector(state => state.userSlice);
 
