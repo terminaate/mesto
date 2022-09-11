@@ -35,8 +35,6 @@ const App = () => {
 	useEffect(() => {
 		if (authorized) {
 			dispatch(getUserPosts());
-		} else {
-			navigate('/login');
 		}
 	}, [authorized]);
 
