@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { AuthResponse } from '@/types/ServerResponse/AuthResponse';
 import store from '@/store';
-import { userSlice } from '@/store/reducers/user/userSlice';
+import { initialState, userSlice } from '@/store/reducers/user/userSlice';
 
 export const serverURL =
 	import.meta.env.MODE === 'development'
@@ -11,7 +11,7 @@ const baseURL = serverURL + '/api';
 
 const $api = axios.create({
 	baseURL,
-	withCredentials: true,
+	withCredentials: true
 });
 
 $api.interceptors.request.use((config) => {
@@ -32,7 +32,8 @@ $api.interceptors.response.use(
 		if (
 			error.response.status === 401 &&
 			error.config &&
-			!error.config._isRetry
+			!error.config._isRetry &&
+			localStorage.getItem('accessToken')
 		) {
 			originalRequest._isRetry = true;
 			try {
@@ -41,10 +42,11 @@ $api.interceptors.response.use(
 					{},
 					{ withCredentials: true }
 				);
+				store.dispatch(userSlice.actions.updateUser({ authorized: true }));
 				localStorage.setItem('accessToken', response.data.accessToken);
 				return $api.request(originalRequest);
 			} catch (e) {
-				store.dispatch(userSlice.actions.logout());
+				store.dispatch(userSlice.actions.updateUser(initialState));
 			}
 		}
 		throw error;

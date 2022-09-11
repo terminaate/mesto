@@ -53,20 +53,7 @@ button {
     font-family: var(--font-primary);
 }
 
-.fade-enter {
-    opacity: 0;
-}
-
-.fade-enter-active {
-    opacity: 1;
-    transition: opacity 1s;
-}
-
-.fade-exit {
-    opacity: 1;
-}
-
-.fade-exit-active {
-    opacity: 0;
-    transition: opacity 1s;
+a {
+    color: var(--text-primary);
+    text-decoration: none;
 }

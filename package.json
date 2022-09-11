@@ -10,6 +10,7 @@
     "format": "prettier --write \"src/**/*.{ts, tsx, css}\""
   },
   "dependencies": {
+    "@react-spring/web": "^9.5.2",
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^0.27.2",
     "i18next": "^21.9.1",

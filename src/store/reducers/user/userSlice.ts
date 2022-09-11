@@ -1,13 +1,6 @@
 import { AnyAction, createSlice, Draft } from '@reduxjs/toolkit';
-import authAsyncThunks, { login, refresh, register } from './authAPI';
-import userAsyncThunks, {
-	createPost,
-	deletePost,
-	editUser,
-	getUser,
-	getUserPosts,
-	likePost,
-} from './userAPI';
+import authAsyncThunks, { login, logout, refresh, register } from './authAPI';
+import userAsyncThunks, { createPost, deletePost, editUser, getUser, getUserPosts, likePost } from './userAPI';
 import useUserAvatar from '@/hooks/useUserAvatar';
 import { PostProps } from '@/types/Post';
 import usePostImage from '@/hooks/usePostImage';
@@ -27,7 +20,7 @@ export interface UserState {
 	};
 }
 
-const initialState: UserState = {
+export const initialState: UserState = {
 	error: null,
 	authorized: false,
 	user: {
@@ -36,8 +29,8 @@ const initialState: UserState = {
 		email: null,
 		username: null,
 		posts: [] as PostProps[],
-		accessToken: null,
-	},
+		accessToken: null
+	}
 };
 
 export const userSlice = createSlice({
@@ -46,11 +39,7 @@ export const userSlice = createSlice({
 	reducers: {
 		updateUser(state, action) {
 			return { ...state, ...action.payload };
-		},
-		logout() {
-			localStorage.removeItem('accessToken');
-			return initialState;
-		},
+		}
 	},
 	extraReducers: (builder) => {
 		const handleAuthReject = (state: Draft<UserState>, action: AnyAction) => {
@@ -70,7 +59,7 @@ export const userSlice = createSlice({
 			state.user = {
 				...action.payload.user,
 				accessToken: action.payload.accessToken,
-				avatar: useUserAvatar(action.payload.user.id),
+				avatar: useUserAvatar(action.payload.user.id)
 			};
 			state.authorized = true;
 			localStorage.setItem('accessToken', state.user.accessToken!);
@@ -89,7 +78,7 @@ export const userSlice = createSlice({
 			state.user = {
 				...state.user,
 				...action.payload,
-				avatar: useUserAvatar(action.payload.id),
+				avatar: useUserAvatar(action.payload.id)
 			};
 		});
 
@@ -97,7 +86,7 @@ export const userSlice = createSlice({
 			state.user = {
 				...state.user,
 				...action.payload,
-				avatar: useUserAvatar(action.payload.id),
+				avatar: useUserAvatar(action.payload.id)
 			};
 		});
 
@@ -105,9 +94,9 @@ export const userSlice = createSlice({
 			state.user.posts = [
 				{
 					...action.payload,
-					image: usePostImage(state.user.id!, action.payload.id!),
+					image: usePostImage(state.user.id!, action.payload.id!)
 				},
-				...state.user.posts,
+				...state.user.posts
 			];
 		});
 
@@ -130,9 +119,13 @@ export const userSlice = createSlice({
 				(post) => post.id !== action.payload.id
 			);
 		});
-	},
+
+		builder.addCase(logout.fulfilled, () => {
+			return initialState;
+		});
+	}
 });
 
-export const { updateUser, logout } = userSlice.actions;
+export const { updateUser } = userSlice.actions;
 
 export default userSlice.reducer;

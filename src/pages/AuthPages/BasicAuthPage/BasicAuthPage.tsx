@@ -3,6 +3,8 @@ import BasicPage from '@/components/BasicPage';
 import cl from './BasicAuthPage.module.css';
 import { useAppSelector } from '@/store';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import enNs from '@/locales/en';
 
 interface IBasicAuthPage {
 	children: ReactNode;
@@ -12,6 +14,7 @@ interface IBasicAuthPage {
 const BasicAuthPage: FC<IBasicAuthPage> = ({ title, children }) => {
 	const { authorized, error: serverError } = useAppSelector(state => state.userSlice);
 	const navigate = useNavigate();
+	const { t } = useTranslation('auth');
 
 	useEffect(() => {
 		if (authorized) {
@@ -26,8 +29,9 @@ const BasicAuthPage: FC<IBasicAuthPage> = ({ title, children }) => {
 					<span className={cl.logo}>Mesto</span>
 					<span>{title}</span>
 				</div>
-				<div data-error={Boolean(serverError)} className={cl.errorContainer}>
-					<span className={cl.error}>{serverError}</span>
+				<div data-error={Boolean(serverError) && Object.keys(enNs.auth).includes(serverError)}
+						 className={cl.errorContainer}>
+					<span className={cl.error}>{t(serverError)}</span>
 				</div>
 				{children}
 			</div>

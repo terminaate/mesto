@@ -22,7 +22,7 @@ import Button from '@/components/UI/Button';
 import { FaHeart, FaPen } from 'react-icons/fa';
 
 const UserPage = () => {
-	const { user: selfUserData } = useAppSelector(state => state.userSlice);
+	const { user: selfUserData, authorized } = useAppSelector(state => state.userSlice);
 	const dispatch = useAppDispatch();
 	const params = useParams();
 	const navigate = useNavigate();
@@ -39,6 +39,9 @@ const UserPage = () => {
 	};
 
 	const getUserData = async () => {
+
+		if (!authorized) return;
+
 		if (isSelfUserPage) {
 			setUserData(selfUserData);
 		} else {
@@ -58,7 +61,7 @@ const UserPage = () => {
 
 	useEffect(() => {
 		if (isSelfUserPage) {
-			setUserData(selfUserData);
+			setUserData(authorized ? selfUserData : {});
 		}
 	}, [selfUserData]);
 
@@ -107,7 +110,7 @@ const UserPage = () => {
 						<div className={cl.postsContainer}>
 							{userData.posts?.map(post => (
 								<div onClick={() => openPostModal(post)} key={post.id} className={cl.post}>
-									<div className={cl.postImage} style={useBackgroundImage(post.image, 256)}>
+									<div className={cl.postImage} style={useBackgroundImage(post.image, 512)}>
 										<div data-liked={post.likes?.includes(selfUserData.id)}>
 											<FaHeart onClick={e => likePostButtonHandler(e, post.id!)} />
 											<span>{post.likes?.length}</span>

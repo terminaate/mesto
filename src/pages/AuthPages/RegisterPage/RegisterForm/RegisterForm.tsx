@@ -5,7 +5,7 @@ import Button from '@/components/UI/Button';
 import { AuthData } from '@/services/AuthService';
 import { register } from '@/store/reducers/user/authAPI';
 import useInputState from '@/hooks/useInputState';
-import { useAppDispatch, useAppSelector } from '@/store';
+import { useAppDispatch } from '@/store';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 
@@ -35,7 +35,7 @@ const RegisterForm = () => {
 		}
 
 		if (emailInput && !isEmail(emailInput)) {
-			return setEmailInputError('Неправильный формат почты!');
+			return setEmailInputError(t('Wrong email format!'));
 		} else {
 			setEmailInputError('');
 		}
@@ -43,7 +43,7 @@ const RegisterForm = () => {
 		if (!passwordInput) {
 			return setPasswordInputError(t('Enter password!'));
 		} else if (passwordInput.length < 7) {
-			return setPasswordInputError(t('The minimum password length is 7!'));
+			return setPasswordInputError(t('Minimum password length is 7!'));
 		} else {
 			setPasswordInputError('');
 		}
@@ -67,7 +67,7 @@ const RegisterForm = () => {
 		<>
 			<div className={cl.inputsContainer}>
 				<div className={cl.inputContainer}>
-					<Input value={loginInput} onChange={onLoginInputChange} placeholder={t('Login*')} />
+					<Input value={loginInput} onChange={onLoginInputChange} placeholder={t('Login') + '*'} />
 					<div data-error={Boolean(loginInputError)} className={cl.errorContainer}>
 						<span className={cl.error}>{loginInputError}</span>
 					</div>

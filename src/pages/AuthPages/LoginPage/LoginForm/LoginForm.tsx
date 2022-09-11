@@ -35,7 +35,7 @@ const LoginForm = () => {
 		if (!passwordInput) {
 			return setPasswordInputError(t('Enter password!'));
 		} else if (passwordInput.length < 7) {
-			return setPasswordInputError(t('The minimum password length is 7!'));
+			return setPasswordInputError(t('Minimum password length is 7!'));
 		} else {
 			setPasswordInputError('');
 		}

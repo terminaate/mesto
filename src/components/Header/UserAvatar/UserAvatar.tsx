@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import cl from './UserAvatar.module.css';
 import useBackgroundImage from '@/hooks/useBackgroundImage';
-import { logout } from '@/store/reducers/user/userSlice';
+import { logout } from '@/store/reducers/user/authAPI';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ContextMenu from '@/components/ContextMenu';
-import { FaDoorOpen, FaPlus, FaUser, FcSettings, IoIosSettings, IoSettingsSharp } from 'react-icons/all';
+import { FaDoorOpen, FaUser, IoSettingsSharp } from 'react-icons/all';
 
 const UserAvatar = () => {
 	const dispatch = useAppDispatch();
@@ -26,16 +26,16 @@ const UserAvatar = () => {
 			<ContextMenu state={userPopup} setState={setUserPopup}>
 				{location.pathname !== '/users/@me' && (
 					<button onClick={() => navigate('/users/@me')}>
-						<FaUser/>
+						<FaUser />
 						{t('Your page')}
 					</button>
 				)}
 				<button onClick={() => navigate('/settings')}>
-					<IoSettingsSharp style={{fontSize: "15px"}}/>
+					<IoSettingsSharp style={{ fontSize: '15px' }} />
 					{t('Settings')}
 				</button>
 				<button onClick={logoutDispatch}>
-					<FaDoorOpen/>
+					<FaDoorOpen />
 					{t('Logout')}
 				</button>
 			</ContextMenu>
