@@ -22,6 +22,9 @@ const Header = () => {
     navigate('/users/@me');
   };
 
+  // TODO
+  // fix double modals with same content
+
   return (
     <div className={cl.headerContainer}>
       <span className={cl.logo}>Mesto</span>
@@ -37,9 +40,11 @@ const Header = () => {
             </div>
             : <Button onClick={navigateToLoginPage}>Войти</Button>
           }
+          {(authorized) && (
+            <CreatePostModal modal={createPostModal} setModal={setCreatePostModal} />
+          )}
         </>
       )}
-      <CreatePostModal modal={createPostModal} setModal={setCreatePostModal} />
     </div>
   );
 };

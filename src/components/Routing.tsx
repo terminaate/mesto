@@ -19,10 +19,14 @@ const Routing = () => {
   const dispatch = useAppDispatch();
   const { authorized } = useAppSelector(state => state.userSlice);
 
+  // TRASH TREAD
+
+  // reset error when page changes
   useEffect(() => {
     dispatch(updateUser({ error: null }));
   }, [location.pathname]);
 
+  // Trying to authorize user
   useEffect(() => {
     if (localStorage.getItem('accessToken')) {
       dispatch(refresh());
@@ -30,6 +34,7 @@ const Routing = () => {
     }
   }, []);
 
+  // Sync user posts
   useEffect(() => {
     if (authorized) {
       dispatch(getUserPosts());

@@ -10,6 +10,7 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import ruNs from './locales/ru';
 import enNs from './locales/en';
+import NavigateSetter from '@/components/NavigateSetter';
 
 i18n
 	.use(initReactI18next)
@@ -38,6 +39,7 @@ i18n
 const root = createRoot(document.getElementById('root')!);
 root.render(
 	<BrowserRouter>
+		<NavigateSetter/>
 		<Provider store={store}>
 			<App />
 		</Provider>

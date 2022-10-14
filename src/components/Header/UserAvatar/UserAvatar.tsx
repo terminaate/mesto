@@ -18,7 +18,6 @@ const UserAvatar = () => {
 
 	const logoutDispatch = () => {
 		dispatch(logout());
-		navigate('/login');
 	};
 
 	return (

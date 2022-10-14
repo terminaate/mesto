@@ -29,14 +29,14 @@ const PostModal: FC<IPostModal> = ({ modal, setModal, post, setPost, userData, s
 	const { user } = useAppSelector(state => state.userSlice);
 	const dispatch = useAppDispatch();
 	const location = useLocation();
-	const isSelfUserPost = post.userId === user.id && (location.pathname === `/users/${user.id}` || location.pathname === '/users/@me');
+	const isUserOwnerOfPost = post.userId === user.id && (location.pathname === `/users/${user.id}` || location.pathname === '/users/@me');
 	const navigate = useNavigate();
 	const [morePopup, setMorePopup] = useState<boolean>(false);
 	const listenToPosts = useRef<boolean>(true);
 	const { t } = useTranslation('user');
 
 	const likeButtonHandler = async () => {
-		if (isSelfUserPost) {
+		if (isUserOwnerOfPost) {
 			dispatch(likePost(post.id));
 		} else {
 			const { data: newPost } = await UserService.likePost(post.id);
@@ -48,13 +48,14 @@ const PostModal: FC<IPostModal> = ({ modal, setModal, post, setPost, userData, s
 
 	useEffect(() => {
 		if (listenToPosts && Object.values(userData).length > 0) {
+			// Sync data with user posts (just for rerender)
 			setPost(userData.posts?.find(p => p.id === post.id) as PostProps);
 		}
 	}, [userData.posts]);
 
 	const navigateToUserPage = () => {
 		setModal(false);
-		if (!isSelfUserPost) {
+		if (!isUserOwnerOfPost) {
 			navigate(`/users/${userData.id}`);
 		}
 	};
@@ -88,7 +89,7 @@ const PostModal: FC<IPostModal> = ({ modal, setModal, post, setPost, userData, s
 					<button onClick={() => setMorePopup(!morePopup)} className={cl.postMoreButton}>
 						<FaEllipsisH />
 						<ContextMenu state={morePopup} setState={setMorePopup}>
-							{isSelfUserPost && (
+							{isUserOwnerOfPost && (
 								<button onClick={deletePostButtonHandler} data-important={true}>
 									<FaTrash />
 									{t('Delete post')}

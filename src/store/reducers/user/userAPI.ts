@@ -1,7 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import UserService, { createPostProps } from '@/services/UserService';
 
-export const logError = (e: any) => console.log(getErrorObject(e).message);
+export const logError = (e: any) => {
+	if (!import.meta.env.PROD) {
+		console.log(getErrorObject(e).message);
+	}
+};
 
 export const getErrorObject = (e: any) => {
 	if (Array.isArray(e.response!.data.message)) {
