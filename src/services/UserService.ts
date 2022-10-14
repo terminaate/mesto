@@ -3,8 +3,8 @@ import $api from '@/http';
 import { UserProps } from '@/types/User';
 import { editUserProps } from '@/store/reducers/user/userAPI';
 import { PostProps } from '@/types/Post';
-import usePostImage from '@/hooks/usePostImage';
-import useUserAvatar from '@/hooks/useUserAvatar';
+import postImage from '@/utils/postImage';
+import userAvatar from '@/utils/userAvatar';
 
 export type createPostProps = {
 	userId: string;
@@ -33,7 +33,7 @@ class UserService {
 		const posts = await $api.get<PostProps[] | []>(`/users/${userId}/posts`);
 		posts.data = posts.data.map((post) => ({
 			...post,
-			image: usePostImage(post.userId!, post.id!),
+			image: postImage(post.userId!, post.id!),
 		}));
 		return posts;
 	}
@@ -44,20 +44,20 @@ class UserService {
 		);
 		variants.data = variants.data.map((variant) => ({
 			...variant,
-			avatar: useUserAvatar(variant.id),
+			avatar: userAvatar(variant.id),
 		}));
 		return variants;
 	}
 
 	async likePost(postId: string): Promise<AxiosResponse<PostProps>> {
 		const post = await $api.post<PostProps>(`/posts/${postId}/like`);
-		post.data.image = usePostImage(post.data.userId!, post.data.id!);
+		post.data.image = postImage(post.data.userId!, post.data.id!);
 		return post;
 	}
 
 	async deletePost(postId: string): Promise<AxiosResponse<PostProps>> {
 		const post = await $api.delete<PostProps>(`/posts/${postId}`);
-		post.data.image = usePostImage(post.data.userId!, post.data.id!);
+		post.data.image = postImage(post.data.userId!, post.data.id!);
 		return post;
 	}
 }

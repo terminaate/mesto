@@ -5,10 +5,10 @@ import { likePost } from '@/store/reducers/user/userAPI';
 // Hooks
 import { MouseEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import useUserAvatar from '@/hooks/useUserAvatar';
+import userAvatar from '@/utils/userAvatar';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/store';
-import useBackgroundImage from '@/hooks/useBackgroundImage';
+import backgroundImage from '@/utils/backgroundImage';
 
 // Components && types
 import ChangeAvatarModal from '@/components/ChangeAvatarModal';
@@ -48,7 +48,7 @@ const UserPage = () => {
 			try {
 				const { data } = await UserService.getUser(params.id!);
 				const { data: posts } = await UserService.getUserPosts(params.id!);
-				setUserData({ ...data, avatar: useUserAvatar(data.id), posts });
+				setUserData({ ...data, avatar: userAvatar(data.id), posts });
 			} catch (e) {
 				setUserData({} as UserProps);
 			}
@@ -93,7 +93,7 @@ const UserPage = () => {
 						<div className={cl.userInfoContainer}>
 							<div onClick={() => isSelfUserPage ? setAvatarModal(true) : ''} data-page={isSelfUserPage}
 									 className={cl.userAvatar}
-									 style={useBackgroundImage(userData.avatar!, 256)}>
+									 style={backgroundImage(userData.avatar!, 256)}>
 								{isSelfUserPage && (
 									<>
 										<div />
@@ -110,7 +110,7 @@ const UserPage = () => {
 						<div className={cl.postsContainer}>
 							{userData.posts?.map(post => (
 								<div onClick={() => openPostModal(post)} key={post.id} className={cl.post}>
-									<div className={cl.postImage} style={useBackgroundImage(post.image, 512)}>
+									<div className={cl.postImage} style={backgroundImage(post.image, 512)}>
 										<div data-liked={post.likes?.includes(selfUserData.id)}>
 											<FaHeart onClick={e => likePostButtonHandler(e, post.id!)} />
 											<span>{post.likes?.length}</span>

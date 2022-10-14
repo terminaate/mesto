@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import cl from './SearchInput.module.css';
 import { FaSearch } from 'react-icons/all';
 import { useTranslation } from 'react-i18next';
-import useBackgroundImage from '@/hooks/useBackgroundImage';
+import backgroundImage from '@/utils/backgroundImage';
 import useInputState from '@/hooks/useInputState';
 import { UserProps } from '@/types/User';
 import { useNavigate } from 'react-router-dom';
@@ -44,7 +44,7 @@ const SearchInput = () => {
 				<div ref={searchVariantsRef} className={cl.searchInputVariants}>
 					{searchVariants.map((variant, key) => (
 						<div key={key} onClick={() => navigateToUserPage(variant.username)} className={cl.searchInputVariant}>
-							<div className={cl.variantAvatar} style={useBackgroundImage(variant.avatar!, 64)} />
+							<div className={cl.variantAvatar} style={backgroundImage(variant.avatar!, 64)} />
 							<span className={cl.variantName}>{variant.username}</span>
 						</div>
 					))}

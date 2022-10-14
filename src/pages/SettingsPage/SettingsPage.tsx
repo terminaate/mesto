@@ -8,7 +8,6 @@ import { NavLink, Outlet } from 'react-router-dom';
 const SettingsPage = () => {
 	const { user } = useAppSelector(state => state.userSlice);
 
-
 	return (
 		<>
 			<BasicPage className={cl.settingsPage}>

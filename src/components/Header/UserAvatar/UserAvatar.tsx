@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import cl from './UserAvatar.module.css';
-import useBackgroundImage from '@/hooks/useBackgroundImage';
+import backgroundImage from '@/utils/backgroundImage';
 import { logout } from '@/store/reducers/user/authAPI';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -22,7 +22,7 @@ const UserAvatar = () => {
 	};
 
 	return (
-		<div className={cl.userAvatar} onClick={() => setUserPopup(true)} style={useBackgroundImage(user.avatar, 64)}>
+		<div className={cl.userAvatar} onClick={() => setUserPopup(true)} style={backgroundImage(user.avatar, 64)}>
 			<ContextMenu state={userPopup} setState={setUserPopup}>
 				{location.pathname !== '/users/@me' && (
 					<button onClick={() => navigate('/users/@me')}>

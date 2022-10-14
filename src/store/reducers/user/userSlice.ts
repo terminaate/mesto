@@ -1,9 +1,9 @@
 import { AnyAction, createSlice, Draft } from '@reduxjs/toolkit';
 import authAsyncThunks, { login, logout, refresh, register } from './authAPI';
 import userAsyncThunks, { createPost, deletePost, editUser, getUser, getUserPosts, likePost } from './userAPI';
-import useUserAvatar from '@/hooks/useUserAvatar';
+import userAvatar from '@/utils/userAvatar';
 import { PostProps } from '@/types/Post';
-import usePostImage from '@/hooks/usePostImage';
+import postImage from '@/utils/postImage';
 
 type NullOrString = null | string;
 
@@ -59,7 +59,7 @@ export const userSlice = createSlice({
 			state.user = {
 				...action.payload.user,
 				accessToken: action.payload.accessToken,
-				avatar: useUserAvatar(action.payload.user.id)
+				avatar: userAvatar(action.payload.user.id)
 			};
 			state.authorized = true;
 			localStorage.setItem('accessToken', state.user.accessToken!);
@@ -78,7 +78,7 @@ export const userSlice = createSlice({
 			state.user = {
 				...state.user,
 				...action.payload,
-				avatar: useUserAvatar(action.payload.id)
+				avatar: userAvatar(action.payload.id)
 			};
 		});
 
@@ -86,7 +86,7 @@ export const userSlice = createSlice({
 			state.user = {
 				...state.user,
 				...action.payload,
-				avatar: useUserAvatar(action.payload.id)
+				avatar: userAvatar(action.payload.id)
 			};
 		});
 
@@ -94,7 +94,7 @@ export const userSlice = createSlice({
 			state.user.posts = [
 				{
 					...action.payload,
-					image: usePostImage(state.user.id!, action.payload.id!)
+					image: postImage(state.user.id!, action.payload.id!)
 				},
 				...state.user.posts
 			];

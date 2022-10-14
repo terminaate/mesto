@@ -8,7 +8,7 @@ import { deletePost, likePost } from '@/store/reducers/user/userAPI';
 import UserService from '@/services/UserService';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UserProps } from '@/types/User';
-import useBackgroundImage from '@/hooks/useBackgroundImage';
+import backgroundImage from '@/utils/backgroundImage';
 import ContextMenu from '@/components/ContextMenu/ContextMenu';
 import { useTranslation } from 'react-i18next';
 
@@ -81,7 +81,7 @@ const PostModal: FC<IPostModal> = ({ modal, setModal, post, setPost, userData, s
 			<div className={cl.postInfoContainer}>
 				<div className={cl.postInfoHeaderContainer}>
 					<div onClick={navigateToUserPage} className={cl.postInfoHeaderUser}>
-						<div style={useBackgroundImage(userData.avatar!, 64)}
+						<div style={backgroundImage(userData.avatar!, 64)}
 								 className={cl.headerUserAvatar} />
 						<span className={cl.headerUserName}>{userData.username}</span>
 					</div>

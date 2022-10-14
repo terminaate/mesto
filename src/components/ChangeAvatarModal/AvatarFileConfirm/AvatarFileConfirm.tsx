@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import cl from './AvatarFileConfirm.module.css';
-import useBackgroundImage from '@/hooks/useBackgroundImage';
+import backgroundImage from '@/utils/backgroundImage';
 import Button from '@/components/UI/Button';
 import { useAppDispatch } from '@/store';
 import { editUser } from '@/store/reducers/user/userAPI';
@@ -22,7 +22,7 @@ const AvatarFileConfirm: FC<IAvatarFileConfirm> = ({ image, setImage, setModal }
 	return (
 		<>
 			<div className={cl.container}>
-				<div className={cl.userAvatar} style={useBackgroundImage(image)} />
+				<div className={cl.userAvatar} style={backgroundImage(image)} />
 				<span className={cl.fileConfirmPrompt}>Вы уверены?</span>
 			</div>
 			<div className={cl.buttons}>
