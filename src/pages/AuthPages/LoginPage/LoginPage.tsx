@@ -6,16 +6,18 @@ import LoginForm from './LoginForm';
 import { Trans, useTranslation } from 'react-i18next';
 
 const LoginPage = () => {
-	const { t } = useTranslation('auth');
+  const { t } = useTranslation('auth');
 
-	return (
-		<BasicAuthPage title={t('Login')}>
-			<LoginForm />
-			<span className={cl.loginLink}>
-			<Trans t={t}>Don't have an account yet? <Link to={'/register'}>Register</Link></Trans>
-			</span>
-		</BasicAuthPage>
-	);
+  return (
+    <BasicAuthPage title={t('Login')}>
+      <LoginForm />
+      <span className={cl.loginLink}>
+        <Trans t={t}>
+          Don't have an account yet? <Link to={'/register'}>Register</Link>
+        </Trans>
+      </span>
+    </BasicAuthPage>
+  );
 };
 
 export default LoginPage;

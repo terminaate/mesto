@@ -4,18 +4,18 @@ import UserService from '@/services/UserService';
 import { useAppSelector } from '@/store';
 
 interface IAuthorizedRoute {
-	children: JSX.Element
+  children: JSX.Element;
 }
 
 const AuthorizedRoute: FC<IAuthorizedRoute> = ({ children }) => {
-	const navigate = useNavigate();
-	const { authorized } = useAppSelector(state => state.userSlice);
+  const navigate = useNavigate();
+  const { authorized } = useAppSelector((state) => state.userSlice);
 
-	useEffect(() => {
-		UserService.getUser('@me').catch(() => !authorized && navigate('/login'));
-	}, []);
+  useEffect(() => {
+    UserService.getUser('@me').catch(() => !authorized && navigate('/login'));
+  }, []);
 
-	return children;
+  return children;
 };
 
 export default AuthorizedRoute;

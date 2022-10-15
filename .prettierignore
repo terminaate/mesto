@@ -2,3 +2,4 @@
 *.png
 *.d.ts
 ./src/assets
+./src/assets/*/**

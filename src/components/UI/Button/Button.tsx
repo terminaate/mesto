@@ -1,18 +1,18 @@
-import useClassNames from '@/hooks/useClassNames';
 import React, { FC, ReactNode } from 'react';
 import cl from './Button.module.css';
+import classNames from 'classnames';
 
 interface IButton extends React.ButtonHTMLAttributes<any> {
-	className?: string;
-	children: ReactNode;
+  className?: string;
+  children: ReactNode;
 }
 
 const Button: FC<IButton> = ({ className, children, ...props }) => {
-	return (
-		<button className={useClassNames([className, cl.button])} {...props}>
-			{children}
-		</button>
-	);
+  return (
+    <button className={classNames(className!, cl.button)} {...props}>
+      {children}
+    </button>
+  );
 };
 
 export default Button;
