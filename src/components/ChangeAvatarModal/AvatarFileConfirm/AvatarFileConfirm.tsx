@@ -12,10 +12,10 @@ interface IAvatarFileConfirm {
 }
 
 const AvatarFileConfirm: FC<IAvatarFileConfirm> = ({
-  image,
-  setImage,
-  setModal,
-}) => {
+                                                     image,
+                                                     setImage,
+                                                     setModal,
+                                                   }) => {
   const dispatch = useAppDispatch();
   const uploadImage = () => {
     dispatch(editUser({ id: '@me', avatar: image }));

@@ -12,12 +12,12 @@ interface IModal {
 }
 
 const Modal: FC<IModal> = ({
-  modal,
-  setModal,
-  onHide,
-  className,
-  children,
-}) => {
+                             modal,
+                             setModal,
+                             onHide,
+                             className,
+                             children,
+                           }) => {
   const closeModal = () => {
     if (onHide && setModal) {
       setModal(false);

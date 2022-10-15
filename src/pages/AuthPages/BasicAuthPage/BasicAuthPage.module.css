@@ -1,45 +1,45 @@
 .authPage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
 }
 
 .modalContent {
-  width: 100%;
-  max-width: 400px;
-  padding: 25px;
-  color: var(--text-primary);
-  background-color: var(--background-modal);
-  border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    padding: 25px;
+    color: var(--text-primary);
+    background-color: var(--background-modal);
+    border-radius: 10px;
 }
 
 .titles {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  row-gap: 10px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 10px;
 }
 
 .logo {
-  font-family: var(--font-secondary);
-  font-size: 20px;
+    font-family: var(--font-secondary);
+    font-size: 20px;
 }
 
 .errorContainer {
-  height: 0;
-  width: max-content;
-  overflow: hidden;
-  transition: height 0.2s;
-  margin-top: 5px;
+    height: 0;
+    width: max-content;
+    overflow: hidden;
+    transition: height 0.2s;
+    margin-top: 5px;
 }
 
 .errorContainer[data-error='true'] {
-  height: 20px;
+    height: 20px;
 }
 
 .error {
-  color: var(--text-red);
-  font-size: 13px;
-  font-family: var(--font-secondary);
+    color: var(--text-red);
+    font-size: 13px;
+    font-family: var(--font-secondary);
 }

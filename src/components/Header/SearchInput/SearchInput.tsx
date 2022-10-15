@@ -45,7 +45,7 @@ const SearchInput = () => {
           value={searchInput}
           onChange={onSearchInputChange}
           className={cl.searchInput}
-          type="text"
+          type='text'
           placeholder={t('Search')}
         />
       </div>

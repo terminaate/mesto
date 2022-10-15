@@ -1,8 +1,7 @@
-import React, { FC, ReactNode, useEffect } from 'react';
+import React, { FC, ReactNode } from 'react';
 import BasicPage from '@/components/BasicPage';
 import cl from './BasicAuthPage.module.css';
 import { useAppSelector } from '@/store';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import enNs from '@/locales/en';
 
