@@ -17,7 +17,7 @@ const RegisterPage = lazy(() => import('@/pages/AuthPages/RegisterPage'));
 const Routing = () => {
   const location = useLocation();
   const dispatch = useAppDispatch();
-  const { authorized } = useAppSelector(state => state.userSlice);
+  const { authorized } = useAppSelector((state) => state.userSlice);
 
   // TRASH TREAD
 
@@ -43,25 +43,34 @@ const Routing = () => {
 
   return (
     <Suspense fallback={<Loader />}>
-      <Routes location={location}>
+      <Routes location={location} key={location.key}>
         <Route index element={<Navigate to={'/login'} />} />
         <Route path={'/login'} element={<LoginPage />} />
         <Route path={'/register'} element={<RegisterPage />} />
-        <Route path={'/users/:id'} element={
-          <AuthorizedRoute>
-            <UserPage />
-          </AuthorizedRoute>
-        } />
-        <Route path={'/settings'} element={
-          <AuthorizedRoute>
-            <SettingsPage />
-          </AuthorizedRoute>
-        }>
-          <Route path={'account'} element={
+        <Route
+          path={'/users/:id'}
+          element={
             <AuthorizedRoute>
-              <SettingsAccountPage />
+              <UserPage />
             </AuthorizedRoute>
-          } />
+          }
+        />
+        <Route
+          path={'/settings'}
+          element={
+            <AuthorizedRoute>
+              <SettingsPage />
+            </AuthorizedRoute>
+          }
+        >
+          <Route
+            path={'account'}
+            element={
+              <AuthorizedRoute>
+                <SettingsAccountPage />
+              </AuthorizedRoute>
+            }
+          />
         </Route>
         <Route path={'/*'} element={<NotFoundPage />} />
       </Routes>

@@ -22,7 +22,9 @@ import Button from '@/components/UI/Button';
 import { FaHeart, FaPen } from 'react-icons/fa';
 
 const UserPage = () => {
-  const { user: selfUserData, authorized } = useAppSelector(state => state.userSlice);
+  const { user: selfUserData, authorized } = useAppSelector(
+    (state) => state.userSlice,
+  );
   const dispatch = useAppDispatch();
   const params = useParams();
   const navigate = useNavigate();
@@ -30,7 +32,9 @@ const UserPage = () => {
   const { t } = useTranslation('user');
   const [userData, setUserData] = useState<UserProps>({} as UserProps);
   const [avatarModal, setAvatarModal] = useState<boolean>(false);
-  const isSelfUserPage = (params.id === '@me' || params.id === selfUserData.id) && userData.id === selfUserData.id;
+  const isSelfUserPage =
+    (params.id === '@me' || params.id === selfUserData.id) &&
+    userData.id === selfUserData.id;
   const [postModal, setPostModal] = useState<boolean>(false);
   const [postData, setPostData] = useState<PostProps>({} as PostProps);
 
@@ -40,7 +44,6 @@ const UserPage = () => {
   };
 
   const getUserData = async () => {
-
     if (!authorized) return;
 
     if (isSelfUserPage) {
@@ -76,14 +79,17 @@ const UserPage = () => {
     }
   };
 
-  const likePostButtonHandler = async (e: MouseEvent<SVGElement>, postId: string) => {
+  const likePostButtonHandler = async (
+    e: MouseEvent<SVGElement>,
+    postId: string,
+  ) => {
     e.stopPropagation();
     if (isSelfUserPage) {
       dispatch(likePost(postId));
     } else {
       const { data: post } = await UserService.likePost(postId);
       const newPosts = [...userData.posts!];
-      newPosts[newPosts.findIndex(p => p.id === post.id!)].likes = post.likes;
+      newPosts[newPosts.findIndex((p) => p.id === post.id!)].likes = post.likes;
       setUserData({ ...userData, posts: newPosts });
     }
   };
@@ -91,12 +97,15 @@ const UserPage = () => {
   return (
     <>
       <BasicPage className={cl.userPage}>
-        {(userData && Object.values(userData).length > 0) && (
+        {userData && Object.values(userData).length > 0 && (
           <div className={cl.container}>
             <div className={cl.userInfoContainer}>
-              <div onClick={() => isSelfUserPage ? setAvatarModal(true) : ''} data-page={isSelfUserPage}
-                   className={cl.userAvatar}
-                   style={backgroundImage(userData.avatar!, 256)}>
+              <div
+                onClick={() => (isSelfUserPage ? setAvatarModal(true) : '')}
+                data-page={isSelfUserPage}
+                className={cl.userAvatar}
+                style={backgroundImage(userData.avatar!, 256)}
+              >
                 {isSelfUserPage && (
                   <>
                     <div />
@@ -108,14 +117,26 @@ const UserPage = () => {
               <span className={cl.userBio}>{userData.bio}</span>
               <Button
                 className={cl.userInfoButton}
-                onClick={userPageButtonHandler}>{isSelfUserPage ? t('Edit profile') : t('Add to friends')}</Button>
+                onClick={userPageButtonHandler}
+              >
+                {isSelfUserPage ? t('Edit profile') : t('Add to friends')}
+              </Button>
             </div>
             <div className={cl.postsContainer}>
-              {userData.posts?.map(post => (
-                <div onClick={() => openPostModal(post)} key={post.id} className={cl.post}>
-                  <div className={cl.postImage} style={backgroundImage(post.image, 512)}>
+              {userData.posts?.map((post) => (
+                <div
+                  onClick={() => openPostModal(post)}
+                  key={post.id}
+                  className={cl.post}
+                >
+                  <div
+                    className={cl.postImage}
+                    style={backgroundImage(post.image, 512)}
+                  >
                     <div data-liked={post.likes?.includes(selfUserData.id)}>
-                      <FaHeart onClick={e => likePostButtonHandler(e, post.id!)} />
+                      <FaHeart
+                        onClick={(e) => likePostButtonHandler(e, post.id!)}
+                      />
                       <span>{post.likes?.length}</span>
                     </div>
                   </div>
@@ -128,8 +149,14 @@ const UserPage = () => {
       {isSelfUserPage && (
         <ChangeAvatarModal modal={avatarModal} setModal={setAvatarModal} />
       )}
-      <PostModal modal={postModal} setModal={setPostModal} post={postData} setPost={setPostData} userData={userData}
-                 setUserData={setUserData} />
+      <PostModal
+        modal={postModal}
+        setModal={setPostModal}
+        post={postData}
+        setPost={setPostData}
+        userData={userData}
+        setUserData={setUserData}
+      />
     </>
   );
 };

@@ -38,18 +38,15 @@ export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   }
 });
 
-export const logout = createAsyncThunk(
-  'auth/logout',
-  async (_, thunkAPI) => {
-    try {
-      await AuthService.logout().then(() => {
-        localStorage.removeItem('accessToken');
-      });
-    } catch (e: any) {
-      logError(e);
-      return thunkAPI.rejectWithValue(getErrorObject(e).message);
-    }
-  },
-);
+export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    await AuthService.logout().then(() => {
+      localStorage.removeItem('accessToken');
+    });
+  } catch (e: any) {
+    logError(e);
+    return thunkAPI.rejectWithValue(getErrorObject(e).message);
+  }
+});
 
 export default [login, register, refresh, logout];

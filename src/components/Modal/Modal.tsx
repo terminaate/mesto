@@ -12,13 +12,12 @@ interface IModal {
 }
 
 const Modal: FC<IModal> = ({
-                             modal,
-                             setModal,
-                             onHide,
-                             className,
-                             children,
-                           }) => {
-
+  modal,
+  setModal,
+  onHide,
+  className,
+  children,
+}) => {
   const closeModal = () => {
     if (onHide && setModal) {
       setModal(false);
@@ -35,12 +34,20 @@ const Modal: FC<IModal> = ({
   };
 
   return createPortal(
-    <div onMouseDown={closeModal} data-visible={modal} className={cl.modalScreen}>
-      <div onMouseDown={e => e.stopPropagation()} className={classNames(className!, cl.modalContent)}>
+    <div
+      onMouseDown={closeModal}
+      data-visible={modal}
+      className={cl.modalScreen}
+    >
+      <div
+        onMouseDown={(e) => e.stopPropagation()}
+        className={classNames(className!, cl.modalContent)}
+      >
         {children}
       </div>
-    </div>
-    , document.body);
+    </div>,
+    document.body,
+  );
 };
 
 export default Modal;

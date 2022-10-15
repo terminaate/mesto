@@ -1,6 +1,13 @@
 import { AnyAction, createSlice, Draft } from '@reduxjs/toolkit';
 import authAsyncThunks, { login, logout, refresh, register } from './authAPI';
-import userAsyncThunks, { createPost, deletePost, editUser, getUser, getUserPosts, likePost } from './userAPI';
+import userAsyncThunks, {
+  createPost,
+  deletePost,
+  editUser,
+  getUser,
+  getUserPosts,
+  likePost,
+} from './userAPI';
 import userAvatar from '@/utils/userAvatar';
 import { PostProps } from '@/types/Post';
 import postImage from '@/utils/postImage';
@@ -51,7 +58,7 @@ export const userSlice = createSlice({
       state.error = null;
     };
 
-    for (let asyncThunk of [...userAsyncThunks, ...authAsyncThunks]) {
+    for (const asyncThunk of [...userAsyncThunks, ...authAsyncThunks]) {
       builder.addCase(asyncThunk.pending, handleAuthPending);
       builder.addCase(asyncThunk.rejected, handleAuthReject);
     }
@@ -64,6 +71,7 @@ export const userSlice = createSlice({
       };
       state.authorized = true;
       localStorage.setItem('accessToken', state.user.accessToken!);
+      History.push('/users/@me');
     };
 
     builder.addCase(login.fulfilled, handleAuth);

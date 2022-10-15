@@ -1,130 +1,130 @@
 .userPage {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .container {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 79px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 79px;
 }
 
 .userInfoContainer {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .userAvatar {
-    border: 1px solid var(--text-secondary);
-    transition: border .2s;
-    width: 173px;
-    height: 173px;
-    border-radius: 50%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
-    position: relative;
-    cursor: pointer;
+  border: 1px solid var(--text-secondary);
+  transition: border 0.2s;
+  width: 173px;
+  height: 173px;
+  border-radius: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  position: relative;
+  cursor: pointer;
 }
 
 .userAvatar div {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    border-radius: inherit;
-    background-color: var(--background-secondary);
-    opacity: 0;
-    transition: opacity .3s;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  background-color: var(--background-secondary);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .userAvatar svg {
-    opacity: 0;
-    transition: opacity .3s;
-    z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 5;
 }
 
-.userAvatar[data-page="true"]:hover {
-    border: 1px solid var(--background-secondary);
+.userAvatar[data-page='true']:hover {
+  border: 1px solid var(--background-secondary);
 }
 
 .userAvatar:hover div,
 .userAvatar:hover svg {
-    opacity: 1;
+  opacity: 1;
 }
 
 .userName {
-    margin-top: 24px;
-    font-family: var(--font-secondary);
-    font-weight: 550;
-    font-size: 36px;
-    line-height: 36px;
-    color: var(--text-primary)
+  margin-top: 24px;
+  font-family: var(--font-secondary);
+  font-weight: 550;
+  font-size: 36px;
+  line-height: 36px;
+  color: var(--text-primary);
 }
 
 .userBio {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 14px;
-    color: var(--text-secondary);
-    margin-top: 12px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  color: var(--text-secondary);
+  margin-top: 12px;
 }
 
 .userInfoButton {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .postsContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-gap: 21px;
-    margin-top: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 21px;
+  margin-top: 50px;
 }
 
 .postImage {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
-    height: 450px;
-    width: 360px;
-    position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  height: 450px;
+  width: 360px;
+  position: relative;
 }
 
 .postImage div {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: var(--background-secondary);
-    z-index: 5;
-    opacity: 0;
-    transition: opacity .2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    column-gap: 10px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: var(--background-secondary);
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
 }
 
 .postImage div:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .postImage div svg {
-    transition: color .2s;
-    font-size: 19px;
+  transition: color 0.2s;
+  font-size: 19px;
 }
 
-.postImage div[data-liked="true"] svg {
-    color: var(--text-red)
+.postImage div[data-liked='true'] svg {
+  color: var(--text-red);
 }
