@@ -82,7 +82,7 @@ const CreatePostModal: FC<ICreatePostModal> = ({ modal, setModal }) => {
           setModal={setModal}
         >
           <div className={cl.postImageContainer}>
-            <img className={cl.postImage} src={postImage} alt='' />
+            <img className={cl.postImage} src={postImage} alt="" />
           </div>
           <div className={cl.container}>
             <div className={cl.inputsContainer}>

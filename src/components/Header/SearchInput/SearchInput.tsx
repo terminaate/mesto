@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import { useDebounce } from 'use-debounce';
 import UserService from '@/services/UserService';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const SearchInput = () => {
   const { t } = useTranslation('user');
@@ -45,27 +46,35 @@ const SearchInput = () => {
           value={searchInput}
           onChange={onSearchInputChange}
           className={cl.searchInput}
-          type='text'
+          type="text"
           placeholder={t('Search')}
         />
       </div>
-      {searchVariants && searchVariants.length > 0 && (
-        <div ref={searchVariantsRef} className={cl.searchInputVariants}>
-          {searchVariants.map((variant, key) => (
-            <div
-              key={key}
-              onClick={() => navigateToUserPage(variant.username)}
-              className={cl.searchInputVariant}
-            >
+      <AnimatePresence>
+        {searchVariants && searchVariants.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            ref={searchVariantsRef}
+            className={cl.searchInputVariants}
+          >
+            {searchVariants.map((variant, key) => (
               <div
-                className={cl.variantAvatar}
-                style={backgroundImage(variant.avatar!, 64)}
-              />
-              <span className={cl.variantName}>{variant.username}</span>
-            </div>
-          ))}
-        </div>
-      )}
+                key={key}
+                onClick={() => navigateToUserPage(variant.username)}
+                className={cl.searchInputVariant}
+              >
+                <div
+                  className={cl.variantAvatar}
+                  style={backgroundImage(variant.avatar!, 64)}
+                />
+                <span className={cl.variantName}>{variant.username}</span>
+              </div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

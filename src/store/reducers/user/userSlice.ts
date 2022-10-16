@@ -1,6 +1,13 @@
 import { AnyAction, createSlice, Draft } from '@reduxjs/toolkit';
 import authAsyncThunks, { login, logout, refresh, register } from './authAPI';
-import userAsyncThunks, { createPost, deletePost, editUser, getUser, getUserPosts, likePost } from './userAPI';
+import userAsyncThunks, {
+  createPost,
+  deletePost,
+  editUser,
+  getUser,
+  getUserPosts,
+  likePost,
+} from './userAPI';
 import userAvatar from '@/utils/userAvatar';
 import { PostProps } from '@/types/Post';
 import postImage from '@/utils/postImage';

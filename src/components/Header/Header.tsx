@@ -32,7 +32,7 @@ const Header = () => {
   return (
     <div className={cl.headerContainer}>
       <div className={cl.logo}>
-        <img src={logoImg} alt='' />
+        <img src={logoImg} alt="" />
       </div>
       {location.pathname !== '/login' && location.pathname !== '/register' && (
         <>

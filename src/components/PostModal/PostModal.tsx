@@ -22,13 +22,13 @@ interface IPostModal {
 }
 
 const PostModal: FC<IPostModal> = ({
-                                     modal,
-                                     setModal,
-                                     post,
-                                     setPost,
-                                     userData,
-                                     setUserData,
-                                   }) => {
+  modal,
+  setModal,
+  post,
+  setPost,
+  userData,
+  setUserData,
+}) => {
   const { user } = useAppSelector((state) => state.userSlice);
   const dispatch = useAppDispatch();
   const location = useLocation();

@@ -13,12 +13,12 @@ interface IModal {
 }
 
 const Modal: FC<IModal> = ({
-                             modal,
-                             setModal,
-                             onHide,
-                             className,
-                             children,
-                           }) => {
+  modal,
+  setModal,
+  onHide,
+  className,
+  children,
+}) => {
   const closeModal = () => {
     if (onHide && setModal) {
       setModal(false);
@@ -38,7 +38,7 @@ const Modal: FC<IModal> = ({
     <AnimatePresence>
       {modal && (
         <motion.div
-          transition={{duration: 0.4}}
+          transition={{ duration: 0.4 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

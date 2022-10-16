@@ -122,22 +122,23 @@ const UserPage = () => {
                 {isSelfUserPage ? t('Edit profile') : t('Add to friends')}
               </Button>
             </div>
-            {userData.posts && (
+            {userData.posts && userData.posts.length > 0 && (
               <motion.div
-                transition={{duration: 0.5}}
+                transition={{ duration: 0.5 }}
                 initial={{
                   opacity: 0,
-                  translateY: 50
+                  translateY: 50,
                 }}
                 animate={{
                   opacity: 1,
-                  translateY: 0
+                  translateY: 0,
                 }}
                 exit={{
                   opacity: 0,
-                  translateY: 50
+                  translateY: 50,
                 }}
-                className={cl.postsContainer}>
+                className={cl.postsContainer}
+              >
                 {userData.posts.map((post) => (
                   <div
                     key={post.id}
@@ -146,14 +147,16 @@ const UserPage = () => {
                   >
                     <div
                       className={cl.postImage}
-                      style={backgroundImage(post.image, 512)}
+                      style={backgroundImage(post.image, 1024)}
+                    />
+                    <div
+                      className={cl.postLikes}
+                      data-liked={post.likes?.includes(selfUserData.id)}
                     >
-                      <div data-liked={post.likes?.includes(selfUserData.id)}>
-                        <FaHeart
-                          onClick={(e) => likePostButtonHandler(e, post.id!)}
-                        />
-                        <span>{post.likes?.length}</span>
-                      </div>
+                      <FaHeart
+                        onClick={(e) => likePostButtonHandler(e, post.id!)}
+                      />
+                      <span>{post.likes?.length}</span>
                     </div>
                   </div>
                 ))}

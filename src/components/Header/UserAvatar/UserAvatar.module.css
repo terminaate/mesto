@@ -1,46 +1,46 @@
 .userAvatar {
-    border: 1px solid var(--text-secondary);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
-    position: relative;
+  border: 1px solid var(--text-secondary);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  position: relative;
 }
 
 .userAvatarContainer {
-    cursor: default;
-    position: absolute;
-    top: 100%;
-    right: 100%;
-    min-width: 150px;
-    background-color: var(--text-primary);
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    border-radius: 10px;
-    border: 1px solid var(--text-primary);
-    transition: opacity 0.2s;
-    z-index: 100;
+  cursor: default;
+  position: absolute;
+  top: 100%;
+  right: 100%;
+  min-width: 150px;
+  background-color: var(--text-primary);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1px solid var(--text-primary);
+  transition: opacity 0.2s;
+  z-index: 100;
 }
 
 .userAvatarContainer button {
-    padding: 12px;
-    color: var(--background-primary);
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
-    border-radius: 10px;
+  padding: 12px;
+  color: var(--background-primary);
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 10px;
 }
 
 .userAvatarContainer button:hover {
-    background-color: var(--background-primary);
-    color: var(--text-primary);
+  background-color: var(--background-primary);
+  color: var(--text-primary);
 }
 
 .userAvatarContainer[data-active='false'] {
-    opacity: 0;
-    pointer-events: none;
+  opacity: 0;
+  pointer-events: none;
 }

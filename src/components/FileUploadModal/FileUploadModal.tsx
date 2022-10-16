@@ -18,16 +18,16 @@ interface IFileUploadButton {
 }
 
 const FileUploadModal: FC<IFileUploadButton> = ({
-                                                  setImage,
-                                                  modal,
-                                                  setModal,
-                                                  validateSize = true,
-                                                  accept = 'image/*',
-                                                  minHeight = 640,
-                                                  minWidth = 800,
-                                                  maxHeight = 1080,
-                                                  maxWidth = 1920,
-                                                }) => {
+  setImage,
+  modal,
+  setModal,
+  validateSize = true,
+  accept = 'image/*',
+  minHeight = 640,
+  minWidth = 800,
+  maxHeight = 1080,
+  maxWidth = 1920,
+}) => {
   const [error, setError] = useState<string>('');
   const { t } = useTranslation('user');
 
@@ -101,7 +101,7 @@ const FileUploadModal: FC<IFileUploadButton> = ({
     <Modal modal={modal} setModal={setModal}>
       <div className={cl.container}>
         <input
-          type='file'
+          type="file"
           accept={accept}
           className={cl.fileUploadInput}
           onChange={onInputChange}
