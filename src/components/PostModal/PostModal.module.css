@@ -6,7 +6,7 @@
 }
 
 .postImageContainer {
-    width: max-content;
+    width: auto;
     height: auto;
     background-color: var(--background-modal);
     border-top-left-radius: 6px;
@@ -17,7 +17,7 @@
 }
 
 .postImage {
-    max-height: 600px;
+    max-height: 500px;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
 }

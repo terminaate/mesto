@@ -38,18 +38,19 @@ const Modal: FC<IModal> = ({
     <AnimatePresence>
       {modal && (
         <motion.div
+          transition={{duration: 0.4}}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onMouseDown={closeModal}
           className={cl.modalScreen}
         >
-          <div
+          <motion.div
             onMouseDown={(e) => e.stopPropagation()}
             className={classNames(className!, cl.modalContent)}
           >
             {children}
-          </div>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>,

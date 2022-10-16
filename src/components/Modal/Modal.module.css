@@ -8,12 +8,8 @@
     align-items: center;
     justify-content: center;
     background-color: var(--background-secondary);
-    /*opacity: 0;*/
-    /*pointer-events: none;*/
-    /*transition: 0.3s;*/
     backdrop-filter: blur(5px);
     z-index: 1000;
-    overflow: hidden;
 }
 
 /*.modalScreen[data-visible='true'] {*/

@@ -9,6 +9,7 @@ import { updateUser } from '@/store/reducers/user/userSlice';
 import { refresh } from '@/store/reducers/user/authAPI';
 import { getUser, getUserPosts } from '@/store/reducers/user/userAPI';
 import { AnimatePresence } from 'framer-motion';
+import ErrorBoundary from '@/components/ErrorBoundary';
 
 const SettingsPage = lazy(() => import('@/pages/SettingsPage'));
 const UserPage = lazy(() => import('@/pages/UserPage'));
@@ -44,39 +45,41 @@ const Routing = () => {
 
   return (
     <AnimatePresence mode={'wait'}>
-      <Suspense fallback={<Loader />}>
-        <Routes location={location} key={location.key}>
-          <Route index element={<Navigate to={'/login'} />} />
-          <Route path={'/login'} element={<LoginPage />} />
-          <Route path={'/register'} element={<RegisterPage />} />
-          <Route
-            path={'/users/:id'}
-            element={
-              <AuthorizedRoute>
-                <UserPage />
-              </AuthorizedRoute>
-            }
-          />
-          <Route
-            path={'/settings'}
-            element={
-              <AuthorizedRoute>
-                <SettingsPage />
-              </AuthorizedRoute>
-            }
-          >
+      <ErrorBoundary>
+        <Suspense fallback={<Loader />}>
+          <Routes location={location} key={location.key}>
+            <Route index element={<Navigate to={'/login'} />} />
+            <Route path={'/login'} element={<LoginPage />} />
+            <Route path={'/register'} element={<RegisterPage />} />
             <Route
-              path={'account'}
+              path={'/users/:id'}
               element={
                 <AuthorizedRoute>
-                  <SettingsAccountPage />
+                  <UserPage />
                 </AuthorizedRoute>
               }
             />
-          </Route>
-          <Route path={'/*'} element={<NotFoundPage />} />
-        </Routes>
-      </Suspense>
+            <Route
+              path={'/settings'}
+              element={
+                <AuthorizedRoute>
+                  <SettingsPage />
+                </AuthorizedRoute>
+              }
+            >
+              <Route
+                path={'account'}
+                element={
+                  <AuthorizedRoute>
+                    <SettingsAccountPage />
+                  </AuthorizedRoute>
+                }
+              />
+            </Route>
+            <Route path={'/*'} element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+      </ErrorBoundary>
     </AnimatePresence>
   );
 };
