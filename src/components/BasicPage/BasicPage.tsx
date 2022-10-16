@@ -18,7 +18,6 @@ const BasicPage: FC<IBasicPage> = ({ className, children, ...props }) => {
       className={classNames(className!, cl.basicPage)}
       {...props}
     >
-      <span></span>
       {children}
     </motion.div>
   );
