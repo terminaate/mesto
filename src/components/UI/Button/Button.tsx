@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import cl from './Button.module.css';
+import cl from './Button.module.scss';
 import classNames from 'classnames';
 
 interface IButton extends React.ButtonHTMLAttributes<any> {

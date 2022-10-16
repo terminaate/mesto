@@ -5,15 +5,19 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-}
 
-.userAvatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  .userAvatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .fileConfirmPrompt {
+    margin-top: 30px;
+  }
 }
 
 .buttons {
@@ -21,8 +25,4 @@
   align-items: center;
   column-gap: 10px;
   width: 100%;
-}
-
-.fileConfirmPrompt {
-  margin-top: 30px;
 }

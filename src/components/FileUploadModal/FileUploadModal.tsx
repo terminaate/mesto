@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, useState } from 'react';
 import Modal from '@/components/Modal';
-import cl from './FileUploadModal.module.css';
+import cl from './FileUploadModal.module.scss';
 import { FaDownload } from 'react-icons/fa';
 import Button from '@/components/UI/Button';
 import { useTranslation } from 'react-i18next';
@@ -97,8 +97,12 @@ const FileUploadModal: FC<IFileUploadButton> = ({
     };
   };
 
+  const onHide = () => {
+    setError('');
+  };
+
   return (
-    <Modal modal={modal} setModal={setModal}>
+    <Modal onHide={onHide} modal={modal} setModal={setModal}>
       <div className={cl.container}>
         <input
           type="file"

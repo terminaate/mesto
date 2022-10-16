@@ -49,4 +49,4 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
-export default [login, register, refresh, logout];
+export default [login, register, logout];

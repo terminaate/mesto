@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useEffect, useRef } from 'react';
-import cl from './ContextMenu.module.css';
+import cl from './ContextMenu.module.scss';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import { useLocation } from 'react-router-dom';
 
@@ -10,7 +10,12 @@ interface IContextMenu {
   children?: ReactNode;
 }
 
-const ContextMenu: FC<IContextMenu> = ({ children, setState, state, closeEvent = 'mousedown' }) => {
+const ContextMenu: FC<IContextMenu> = ({
+  children,
+  setState,
+  state,
+  closeEvent = 'mousedown',
+}) => {
   const contextMenuRef = useRef(null);
   const location = useLocation();
 

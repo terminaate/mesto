@@ -1,0 +1,45 @@
+.contextMenuContainer {
+  cursor: default;
+  position: absolute;
+  top: 100%;
+  right: 100%;
+  width: 150px;
+  background-color: var(--text-primary);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1px solid var(--text-primary);
+  transition: 0.2s;
+  z-index: 100;
+  transform: translateY(0);
+
+  button {
+    padding: 12px;
+    color: var(--background-primary);
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: var(--background-primary);
+      color: var(--text-primary);
+
+      &[data-important='true'] {
+        background-color: var(--text-red-secondary);
+        color: var(--text-primary);
+      }
+    }
+  }
+
+  &[data-active='false'] {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+  }
+}

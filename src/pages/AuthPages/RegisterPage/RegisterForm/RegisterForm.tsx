@@ -21,6 +21,8 @@ const RegisterForm = () => {
   const { t } = useTranslation('auth');
 
   const isEmail = (email: string) => {
+    // TODO
+    // edit this regexp
     const regexp = /\S+@\S+\.\S+/;
     return regexp.test(email.toLowerCase());
   };

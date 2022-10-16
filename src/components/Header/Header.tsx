@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAppSelector } from '@/store';
-import cl from './Header.module.css';
+import cl from './Header.module.scss';
 import SearchInput from './SearchInput';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '@/components/UI/Button';
@@ -26,9 +26,6 @@ const Header = () => {
     }
   };
 
-  // TODO
-  // fix double modals with same content
-
   return (
     <div className={cl.headerContainer}>
       <div className={cl.logo}>
@@ -36,25 +33,25 @@ const Header = () => {
       </div>
       {location.pathname !== '/login' && location.pathname !== '/register' && (
         <>
-          {authorized ? <SearchInput /> : <span />}
           {authorized ? (
-            <div className={cl.userButtons}>
-              <button
-                onClick={createPostButtonClick}
-                className={cl.createPostButton}
-              >
-                <FaPlus />
-              </button>
-              <UserAvatar />
-            </div>
+            <>
+              <SearchInput />
+              <div className={cl.userButtons}>
+                <button
+                  onClick={createPostButtonClick}
+                  className={cl.createPostButton}
+                >
+                  <FaPlus />
+                </button>
+                <UserAvatar />
+              </div>
+              <CreatePostModal
+                modal={createPostModal}
+                setModal={setCreatePostModal}
+              />
+            </>
           ) : (
             <Button onClick={navigateToLoginPage}>Войти</Button>
-          )}
-          {authorized && (
-            <CreatePostModal
-              modal={createPostModal}
-              setModal={setCreatePostModal}
-            />
           )}
         </>
       )}

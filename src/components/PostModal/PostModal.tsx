@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { PostProps } from '@/types/Post';
 import Modal from '@/components/Modal';
-import cl from './PostModal.module.css';
+import cl from './PostModal.module.scss';
 import { FaEllipsisH, FaHeart, FaTrash } from 'react-icons/fa';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { deletePost, likePost } from '@/store/reducers/user/userAPI';
@@ -22,13 +22,13 @@ interface IPostModal {
 }
 
 const PostModal: FC<IPostModal> = ({
-                                     modal,
-                                     setModal,
-                                     post,
-                                     setPost,
-                                     userData,
-                                     setUserData,
-                                   }) => {
+  modal,
+  setModal,
+  post,
+  setPost,
+  userData,
+  setUserData,
+}) => {
   const { user } = useAppSelector((state) => state.userSlice);
   const dispatch = useAppDispatch();
   const location = useLocation();
@@ -108,7 +108,11 @@ const PostModal: FC<IPostModal> = ({
             className={cl.postMoreButton}
           >
             <FaEllipsisH />
-            <ContextMenu closeEvent={'mouseup'} state={morePopup} setState={setMorePopup}>
+            <ContextMenu
+              closeEvent={'mouseup'}
+              state={morePopup}
+              setState={setMorePopup}
+            >
               {isUserOwnerOfPost && (
                 <button onClick={deletePostButtonHandler} data-important={true}>
                   <FaTrash />

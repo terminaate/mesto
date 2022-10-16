@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import cl from './UserAvatar.module.css';
+import cl from './UserAvatar.module.scss';
 import backgroundImage from '@/utils/backgroundImage';
 import { logout } from '@/store/reducers/user/authAPI';
 import { useAppDispatch, useAppSelector } from '@/store';
@@ -22,7 +22,7 @@ const UserAvatar = () => {
 
   return (
     <div
-      className={cl.userAvatar}
+      className={cl.userAvatarContainer}
       onClick={() => setUserPopup(true)}
       style={backgroundImage(user.avatar, 64)}
     >

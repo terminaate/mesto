@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import cl from './SearchInput.module.css';
+import cl from './SearchInput.module.scss';
 import { FaSearch } from 'react-icons/all';
 import { useTranslation } from 'react-i18next';
 import backgroundImage from '@/utils/backgroundImage';
@@ -23,6 +23,7 @@ const SearchInput = () => {
   useOutsideClick(
     searchVariantsRef,
     () => setSearchVariants([]),
+    'mousedown',
     searchInputRef,
   );
 
@@ -69,7 +70,10 @@ const SearchInput = () => {
                   className={cl.variantAvatar}
                   style={backgroundImage(variant.avatar!, 64)}
                 />
-                <span className={cl.variantName}>{variant.username}</span>
+                <div className={cl.variantInfo}>
+                  <span className={cl.variantName}>{variant.username}</span>
+                  <span className={cl.variantBio}>{variant.bio}</span>
+                </div>
               </div>
             ))}
           </motion.div>

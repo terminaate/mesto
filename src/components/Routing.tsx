@@ -48,7 +48,7 @@ const Routing = () => {
       <ErrorBoundary>
         <Suspense fallback={<Loader />}>
           <Routes location={location} key={location.key}>
-            <Route index element={<Navigate to={'/login'} />} />
+            <Route index />
             <Route path={'/login'} element={<LoginPage />} />
             <Route path={'/register'} element={<RegisterPage />} />
             <Route

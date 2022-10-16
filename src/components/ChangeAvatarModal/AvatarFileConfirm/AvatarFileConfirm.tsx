@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import cl from './AvatarFileConfirm.module.css';
+import cl from './AvatarFileConfirm.module.scss';
 import backgroundImage from '@/utils/backgroundImage';
 import Button from '@/components/UI/Button';
 import { useAppDispatch } from '@/store';

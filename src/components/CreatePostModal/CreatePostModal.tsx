@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import FileUploadModal from '@/components/FileUploadModal';
 import Modal from '@/components/Modal';
-import cl from './CreatePostModal.module.css';
+import cl from './CreatePostModal.module.scss';
 import Input from '@/components/UI/Input';
 import { useTranslation } from 'react-i18next';
 import useInputState from '@/hooks/useInputState';

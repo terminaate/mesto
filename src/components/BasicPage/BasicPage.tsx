@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import cl from './BasicPage.module.css';
+import cl from './BasicPage.module.scss';
 import classNames from 'classnames';
 import { motion, MotionProps } from 'framer-motion';
 

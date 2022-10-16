@@ -1,0 +1,120 @@
+.postModal {
+  display: flex;
+  padding: 0 !important;
+  background: none;
+  max-height: 450px;
+
+  .postImageContainer {
+    width: auto;
+    height: 100%;
+    background-color: var(--background-modal);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .postImage {
+      max-height: 450px;
+      border-top-left-radius: inherit;
+      border-bottom-left-radius: inherit;
+    }
+
+    .postStatsContainer {
+      position: absolute;
+      bottom: 17px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .postLikesContainer {
+      width: 100%;
+      display: flex;
+      justify-content: left;
+      margin-top: 15px;
+      column-gap: 5px;
+
+      .postLikeButton {
+        cursor: pointer;
+
+        svg {
+          transition: color 0.2s;
+          font-size: 19px;
+        }
+
+        &[data-liked='true'] svg {
+          color: var(--text-red);
+        }
+      }
+    }
+  }
+
+  .postInfoContainer {
+    width: 430px;
+    height: auto;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-modal);
+
+    .postInfoHeaderContainer {
+      padding-block: 15px;
+      padding-inline: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--text-secondary);
+
+      .postInfoHeaderUser {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        cursor: pointer;
+
+        .headerUserAvatar {
+          width: 39px;
+          height: 39px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center center;
+          border-radius: 50%;
+        }
+
+        .headerUserName {
+          font-size: 17px;
+          font-family: var(--font-primary);
+        }
+      }
+
+      .postMoreButton {
+        background: none;
+        width: max-content;
+        height: max-content;
+        position: relative;
+        cursor: pointer;
+
+        svg {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  .postComments {
+    padding-top: 20px;
+    padding-inline: 24px;
+    display: flex;
+    flex-direction: column;
+
+    .postTitle {
+      font-weight: 600;
+    }
+
+    .postDesc {
+      margin-top: 10px;
+    }
+  }
+}

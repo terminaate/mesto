@@ -12,7 +12,9 @@ interface IBasicAuthPage {
 }
 
 const BasicAuthPage: FC<IBasicAuthPage> = ({ title, children }) => {
-  const { authorized, error: serverError } = useAppSelector((state) => state.userSlice);
+  const { authorized, error: serverError } = useAppSelector(
+    (state) => state.userSlice,
+  );
   const { t } = useTranslation('auth');
   const navigate = useNavigate();
 
@@ -30,7 +32,9 @@ const BasicAuthPage: FC<IBasicAuthPage> = ({ title, children }) => {
           <span>{title}</span>
         </div>
         <div
-          data-error={Boolean(serverError) && Object.keys(enNs.auth).includes(serverError)}
+          data-error={
+            Boolean(serverError) && Object.keys(enNs.auth).includes(serverError)
+          }
           className={cl.errorContainer}
         >
           <span className={cl.error}>{t(serverError)}</span>

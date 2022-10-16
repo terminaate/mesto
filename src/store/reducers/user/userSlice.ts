@@ -50,17 +50,17 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    const handleAuthReject = (state: Draft<UserState>, action: AnyAction) => {
+    const handleReject = (state: Draft<UserState>, action: AnyAction) => {
       state.error = action.payload;
     };
 
-    const handleAuthPending = (state: Draft<UserState>) => {
+    const handlePending = (state: Draft<UserState>) => {
       state.error = null;
     };
 
     for (const asyncThunk of [...userAsyncThunks, ...authAsyncThunks]) {
-      builder.addCase(asyncThunk.pending, handleAuthPending);
-      builder.addCase(asyncThunk.rejected, handleAuthReject);
+      builder.addCase(asyncThunk.pending, handlePending);
+      builder.addCase(asyncThunk.rejected, handleReject);
     }
 
     const handleAuth = (state: Draft<UserState>, action: AnyAction) => {
@@ -73,6 +73,11 @@ export const userSlice = createSlice({
       localStorage.setItem('accessToken', state.user.accessToken!);
     };
 
+    const handleLogout = () => {
+      History.push('/login');
+      return initialState;
+    };
+
     builder.addCase(login.fulfilled, handleAuth);
     builder.addCase(register.fulfilled, handleAuth);
 
@@ -80,6 +85,13 @@ export const userSlice = createSlice({
       state.user.accessToken = action.payload.accessToken;
       state.authorized = true;
       localStorage.setItem('accessToken', state.user.accessToken!);
+    });
+    builder.addCase(refresh.pending, handlePending);
+    builder.addCase(refresh.rejected, (state: Draft<UserState>, action) => {
+      handleReject(state, action);
+      if (!state.authorized || !state.user.accessToken) {
+        handleLogout();
+      }
     });
 
     builder.addCase(getUser.fulfilled, (state: Draft<UserState>, action) => {
@@ -128,10 +140,7 @@ export const userSlice = createSlice({
       );
     });
 
-    builder.addCase(logout.fulfilled, () => {
-      History.push('/login');
-      return initialState;
-    });
+    builder.addCase(logout.fulfilled, handleLogout);
   },
 });
 

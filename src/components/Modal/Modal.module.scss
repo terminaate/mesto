@@ -1,0 +1,20 @@
+.modalScreen {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-secondary);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+
+  .modalContent {
+    padding: 25px;
+    color: var(--text-primary);
+    background-color: var(--background-modal);
+    border-radius: 20px;
+  }
+}

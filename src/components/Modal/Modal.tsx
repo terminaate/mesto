@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import cl from './Modal.module.css';
+import cl from './Modal.module.scss';
 import classNames from 'classnames';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';

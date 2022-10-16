@@ -1,0 +1,30 @@
+.inputContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-right: 10px;
+  background: none;
+  border-bottom: 1px solid var(--text-primary);
+
+  div {
+    padding-bottom: 5px;
+  }
+
+  .input {
+    width: 100%;
+    font-family: var(--font-secondary);
+    background: none;
+    padding-bottom: 10px;
+    font-size: 15px;
+    color: var(--text-primary);
+
+    &::placeholder {
+      opacity: 0.45;
+      font-size: 15px;
+    }
+
+    &[type='password'] {
+      font-size: 12px;
+    }
+  }
+}

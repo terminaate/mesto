@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { AuthResponse } from '@/types/ServerResponse/AuthResponse';
 import store from '@/store';
-import { initialState, userSlice } from '@/store/reducers/user/userSlice';
+import { userSlice } from '@/store/reducers/user/userSlice';
+import { logout } from '@/store/reducers/user/authAPI';
 
 export const serverURL =
   import.meta.env.MODE === 'development'
@@ -46,7 +47,7 @@ $api.interceptors.response.use(
         localStorage.setItem('accessToken', response.data.accessToken);
         return $api.request(originalRequest);
       } catch (e) {
-        store.dispatch(userSlice.actions.updateUser(initialState));
+        store.dispatch(logout());
       }
     }
     throw error;
