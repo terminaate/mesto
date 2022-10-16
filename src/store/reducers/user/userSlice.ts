@@ -71,7 +71,6 @@ export const userSlice = createSlice({
       };
       state.authorized = true;
       localStorage.setItem('accessToken', state.user.accessToken!);
-      History.push('/users/@me');
     };
 
     builder.addCase(login.fulfilled, handleAuth);

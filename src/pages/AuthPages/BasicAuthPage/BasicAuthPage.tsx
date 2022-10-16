@@ -1,9 +1,10 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, useEffect } from 'react';
 import BasicPage from '@/components/BasicPage';
 import cl from './BasicAuthPage.module.css';
 import { useAppSelector } from '@/store';
 import { useTranslation } from 'react-i18next';
 import enNs from '@/locales/en';
+import { useNavigate } from 'react-router-dom';
 
 interface IBasicAuthPage {
   children: ReactNode;
@@ -11,8 +12,15 @@ interface IBasicAuthPage {
 }
 
 const BasicAuthPage: FC<IBasicAuthPage> = ({ title, children }) => {
-  const { error: serverError } = useAppSelector((state) => state.userSlice);
+  const { authorized, error: serverError } = useAppSelector((state) => state.userSlice);
   const { t } = useTranslation('auth');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (authorized) {
+      navigate('/users/@me');
+    }
+  }, [authorized]);
 
   return (
     <BasicPage className={cl.authPage}>
