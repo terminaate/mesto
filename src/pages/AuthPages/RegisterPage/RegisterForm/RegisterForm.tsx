@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import cl from './RegisterForm.module.css';
+import cl from './RegisterForm.module.scss';
 import Input from '@/components/UI/Input';
 import Button from '@/components/UI/Button';
 import { AuthData } from '@/services/AuthService';
@@ -73,7 +73,7 @@ const RegisterForm = () => {
           <Input
             value={loginInput}
             onChange={onLoginInputChange}
-            placeholder={t('Login') + '*'}
+            placeholder={t('Login*')}
           />
           <div
             data-error={Boolean(loginInputError)}

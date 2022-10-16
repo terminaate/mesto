@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, useEffect } from 'react';
 import BasicPage from '@/components/BasicPage';
-import cl from './BasicAuthPage.module.css';
+import cl from './BasicAuthPage.module.scss';
 import { useAppSelector } from '@/store';
 import { useTranslation } from 'react-i18next';
 import enNs from '@/locales/en';
@@ -24,7 +24,7 @@ const BasicAuthPage: FC<IBasicAuthPage> = ({ title, children }) => {
 
   return (
     <BasicPage className={cl.authPage}>
-      <div className={cl.modalContent}>
+      <div className={cl.container}>
         <div className={cl.titles}>
           <span className={cl.logo}>Mesto</span>
           <span>{title}</span>

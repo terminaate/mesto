@@ -24,6 +24,7 @@ i18n
       ru: ruNs,
       en: enNs,
     },
+    lng: 'en',
     fallbackLng: 'en',
     debug: import.meta.env.MODE === 'development',
 

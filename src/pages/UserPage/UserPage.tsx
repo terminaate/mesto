@@ -1,6 +1,5 @@
-// Hooks
 import React, { MouseEvent, useEffect, useState } from 'react';
-import cl from './UserPage.module.css';
+import cl from './UserPage.module.scss';
 import UserService from '@/services/UserService';
 import { likePost } from '@/store/reducers/user/userAPI';
 import { useTranslation } from 'react-i18next';

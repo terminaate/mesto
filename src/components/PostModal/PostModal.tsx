@@ -44,7 +44,7 @@ const PostModal: FC<IPostModal> = ({
   useEffect(() => {
     if (listenToPosts && Object.values(userData).length > 0) {
       // Sync data with user posts (just for rerender)
-      setPost(userData.posts!.find((p) => p.id === post.id) as PostProps);
+      setPost(userData.posts!.find((p) => p.id === post?.id) as PostProps);
     }
   }, [userData.posts]);
 

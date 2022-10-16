@@ -3,6 +3,7 @@ import { ErrorBoundary as ErrorBoundaryHandler } from 'react-error-boundary';
 import BasicPage from '@/components/BasicPage';
 import cl from './ErrorBoundary.module.scss';
 import Button from '@/components/UI/Button';
+import { useTranslation } from 'react-i18next';
 
 interface IErrorBoundary {
   children: ReactNode;
@@ -14,14 +15,16 @@ interface IErrorFallback {
 }
 
 const ErrorFallback: FC<IErrorFallback> = ({ error, resetErrorBoundary }) => {
+  const { t } = useTranslation('user');
+
   useEffect(() => {
     console.log('Unexpected error', error);
   }, []);
 
   return (
     <BasicPage className={cl.errorScreen}>
-      Sorry, an unknown error has passed.
-      <Button onClick={resetErrorBoundary}>Try again</Button>
+      {t('Sorry, an unknown error has passed.')}
+      <Button onClick={resetErrorBoundary}>{t('Try again')}</Button>
     </BasicPage>
   );
 };

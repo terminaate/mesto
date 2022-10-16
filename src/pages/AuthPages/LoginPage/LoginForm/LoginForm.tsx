@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import cl from './LoginForm.module.css';
+import cl from './LoginForm.module.scss';
 import Input from '@/components/UI/Input';
 import Button from '@/components/UI/Button';
 import useInputState from '@/hooks/useInputState';

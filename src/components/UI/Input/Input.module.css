@@ -11,7 +11,7 @@
   padding-bottom: 5px;
 }
 
-.Input {
+.input {
   width: 100%;
   font-family: var(--font-secondary);
   background: none;
@@ -19,11 +19,11 @@
   color: var(--text-primary);
 }
 
-.Input::placeholder {
+.input::placeholder {
   opacity: 0.45;
   font-size: 15px;
 }
 
-.Input[type='password'] {
+.input[type='password'] {
   font-size: 10px;
 }

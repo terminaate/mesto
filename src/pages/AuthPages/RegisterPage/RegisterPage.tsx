@@ -1,6 +1,6 @@
 import React from 'react';
 import BasicAuthPage from '../BasicAuthPage';
-import cl from './RegisterPage.module.css';
+import cl from './RegisterPage.module.scss';
 import RegisterForm from './RegisterForm';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';

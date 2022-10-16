@@ -9,7 +9,7 @@ interface IInput extends InputHTMLAttributes<any> {
 const Input: FC<IInput> = ({ className, children, ...props }) => {
   return (
     <div className={cl.inputContainer}>
-      <input {...props} className={classNames(cl.Input, className!)} />
+      <input {...props} className={classNames(cl.input, className!)} />
       {children && <div>{children}</div>}
     </div>
   );
