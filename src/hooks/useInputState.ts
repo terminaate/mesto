@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // TODO
-// Edit types and add generic type
+// Add support an other inputs types ("checkbox")
 export default (initialState: any) => {
   const [state, setState] = useState(initialState);
 

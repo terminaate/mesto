@@ -19,6 +19,7 @@ import Button from '@/components/UI/Button';
 
 // Icons
 import { FaHeart, FaPen } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const UserPage = () => {
   const { user: selfUserData, authorized } = useAppSelector(
@@ -121,27 +122,43 @@ const UserPage = () => {
                 {isSelfUserPage ? t('Edit profile') : t('Add to friends')}
               </Button>
             </div>
-            <div className={cl.postsContainer}>
-              {userData.posts?.map((post) => (
-                <div
-                  onClick={() => openPostModal(post)}
-                  key={post.id}
-                  className={cl.post}
-                >
+            {userData.posts && (
+              <motion.div
+                transition={{duration: 0.5}}
+                initial={{
+                  opacity: 0,
+                  translateY: 50
+                }}
+                animate={{
+                  opacity: 1,
+                  translateY: 0
+                }}
+                exit={{
+                  opacity: 0,
+                  translateY: 50
+                }}
+                className={cl.postsContainer}>
+                {userData.posts.map((post) => (
                   <div
-                    className={cl.postImage}
-                    style={backgroundImage(post.image, 512)}
+                    key={post.id}
+                    onClick={() => openPostModal(post)}
+                    className={cl.post}
                   >
-                    <div data-liked={post.likes?.includes(selfUserData.id)}>
-                      <FaHeart
-                        onClick={(e) => likePostButtonHandler(e, post.id!)}
-                      />
-                      <span>{post.likes?.length}</span>
+                    <div
+                      className={cl.postImage}
+                      style={backgroundImage(post.image, 512)}
+                    >
+                      <div data-liked={post.likes?.includes(selfUserData.id)}>
+                        <FaHeart
+                          onClick={(e) => likePostButtonHandler(e, post.id!)}
+                        />
+                        <span>{post.likes?.length}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </motion.div>
+            )}
           </div>
         )}
       </BasicPage>

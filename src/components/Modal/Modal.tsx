@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from 'react';
 import cl from './Modal.module.css';
 import classNames from 'classnames';
 import { createPortal } from 'react-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 
 interface IModal {
   modal: boolean;
@@ -34,18 +35,24 @@ const Modal: FC<IModal> = ({
   };
 
   return createPortal(
-    <div
-      onMouseDown={closeModal}
-      data-visible={modal}
-      className={cl.modalScreen}
-    >
-      <div
-        onMouseDown={(e) => e.stopPropagation()}
-        className={classNames(className!, cl.modalContent)}
-      >
-        {children}
-      </div>
-    </div>,
+    <AnimatePresence>
+      {modal && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onMouseDown={closeModal}
+          className={cl.modalScreen}
+        >
+          <div
+            onMouseDown={(e) => e.stopPropagation()}
+            className={classNames(className!, cl.modalContent)}
+          >
+            {children}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>,
     document.body,
   );
 };
