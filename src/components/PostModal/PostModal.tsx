@@ -52,8 +52,6 @@ const PostModal: FC<IPostModal> = ({
     return <></>;
   }
 
-  throw new Error("h")
-
   const likeButtonHandler = async () => {
     if (isUserOwnerOfPost) {
       dispatch(likePost(post.id));

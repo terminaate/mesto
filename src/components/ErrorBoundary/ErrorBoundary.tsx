@@ -1,7 +1,8 @@
 import React, { FC, ReactNode, useEffect } from 'react';
 import { ErrorBoundary as ErrorBoundaryHandler } from 'react-error-boundary';
 import BasicPage from '@/components/BasicPage';
-import cl from "./ErrorBoundary.module.scss";
+import cl from './ErrorBoundary.module.scss';
+import Button from '@/components/UI/Button';
 
 interface IErrorBoundary {
   children: ReactNode;
@@ -20,7 +21,7 @@ const ErrorFallback: FC<IErrorFallback> = ({ error, resetErrorBoundary }) => {
   return (
     <BasicPage className={cl.errorScreen}>
       Sorry, an unknown error has passed.
-      <button onClick={resetErrorBoundary}>Try again</button>
+      <Button onClick={resetErrorBoundary}>Try again</Button>
     </BasicPage>
   );
 };

@@ -30,9 +30,7 @@ const BasicAuthPage: FC<IBasicAuthPage> = ({ title, children }) => {
           <span>{title}</span>
         </div>
         <div
-          data-error={
-            Boolean(serverError) && Object.keys(enNs.auth).includes(serverError)
-          }
+          data-error={Boolean(serverError) && Object.keys(enNs.auth).includes(serverError)}
           className={cl.errorContainer}
         >
           <span className={cl.error}>{t(serverError)}</span>
