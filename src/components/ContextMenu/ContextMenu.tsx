@@ -6,28 +6,23 @@ import { useLocation } from 'react-router-dom';
 interface IContextMenu {
   state: boolean;
   setState: React.Dispatch<React.SetStateAction<boolean>>;
+  closeEvent?: 'mousedown' | 'mouseup' | 'click';
   children?: ReactNode;
 }
 
-const ContextMenu: FC<IContextMenu> = ({ children, setState, state }) => {
+const ContextMenu: FC<IContextMenu> = ({ children, setState, state, closeEvent = 'mousedown' }) => {
   const contextMenuRef = useRef(null);
   const location = useLocation();
-  const oldState = useRef<boolean>(state);
 
   useEffect(() => {
-    oldState.current = state;
-  }, [state]);
-
-  useEffect(() => {
-    setState(oldState.current);
+    setState(false);
   }, [location.pathname]);
 
   const hidePopup = () => {
     setState(false);
-    oldState.current = false;
   };
 
-  useOutsideClick(contextMenuRef, hidePopup);
+  useOutsideClick(contextMenuRef, hidePopup, closeEvent);
 
   return (
     <div

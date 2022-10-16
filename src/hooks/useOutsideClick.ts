@@ -3,6 +3,7 @@ import { RefObject, useEffect } from 'react';
 export default (
   ref: RefObject<HTMLElement>,
   then: () => void,
+  event: 'mousedown' | 'mouseup' | 'click' = 'mousedown',
   except?: RefObject<HTMLElement>,
 ) => {
   useEffect(() => {
@@ -20,7 +21,7 @@ export default (
       }
     };
 
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
+    document.addEventListener(event, handler);
+    return () => document.removeEventListener(event, handler);
   }, []);
 };

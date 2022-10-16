@@ -22,13 +22,13 @@ interface IPostModal {
 }
 
 const PostModal: FC<IPostModal> = ({
-  modal,
-  setModal,
-  post,
-  setPost,
-  userData,
-  setUserData,
-}) => {
+                                     modal,
+                                     setModal,
+                                     post,
+                                     setPost,
+                                     userData,
+                                     setUserData,
+                                   }) => {
   const { user } = useAppSelector((state) => state.userSlice);
   const dispatch = useAppDispatch();
   const location = useLocation();
@@ -108,7 +108,7 @@ const PostModal: FC<IPostModal> = ({
             className={cl.postMoreButton}
           >
             <FaEllipsisH />
-            <ContextMenu state={morePopup} setState={setMorePopup}>
+            <ContextMenu closeEvent={'mouseup'} state={morePopup} setState={setMorePopup}>
               {isUserOwnerOfPost && (
                 <button onClick={deletePostButtonHandler} data-important={true}>
                   <FaTrash />

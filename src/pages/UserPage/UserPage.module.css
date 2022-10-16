@@ -84,19 +84,19 @@
   margin-top: 15px;
 }
 
+.postsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  margin-top: 50px;
+}
+
 .post {
   display: flex;
   flex-direction: column;
   position: relative;
   cursor: pointer;
-}
-
-.postsContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-gap: 21px;
-  margin-top: 50px;
 }
 
 .postImage {
