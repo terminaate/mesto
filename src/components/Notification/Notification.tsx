@@ -9,9 +9,10 @@ const Notification = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const t = window.setTimeout(() => {
+    const t = setTimeout(() => {
       dispatch(setNotificationText(''));
     }, timeout);
+
     return () => clearTimeout(t);
   }, [text]);
 

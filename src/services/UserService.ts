@@ -26,7 +26,9 @@ class UserService {
   async createNewPost(
     data: createPostProps,
   ): Promise<AxiosResponse<PostProps>> {
-    return await $api.post<PostProps>('/posts', data);
+    const newPost = await $api.post<PostProps>('/posts', data);
+    newPost.data.image = postImage(newPost.data.userId, newPost.data.id);
+    return newPost;
   }
 
   async getUserPosts(userId: string): Promise<AxiosResponse<PostProps[] | []>> {
@@ -50,15 +52,11 @@ class UserService {
   }
 
   async likePost(postId: string): Promise<AxiosResponse<PostProps>> {
-    const post = await $api.post<PostProps>(`/posts/${postId}/like`);
-    post.data.image = postImage(post.data.userId!, post.data.id!);
-    return post;
+    return await $api.post<PostProps>(`/posts/${postId}/like`);
   }
 
   async deletePost(postId: string): Promise<AxiosResponse<PostProps>> {
-    const post = await $api.delete<PostProps>(`/posts/${postId}`);
-    post.data.image = postImage(post.data.userId!, post.data.id!);
-    return post;
+    return await $api.delete<PostProps>(`/posts/${postId}`);
   }
 }
 

@@ -112,10 +112,7 @@ export const userSlice = createSlice({
 
     builder.addCase(createPost.fulfilled, (state: Draft<UserState>, action) => {
       state.user.posts = [
-        {
-          ...action.payload,
-          image: postImage(state.user.id!, action.payload.id!),
-        },
+        action.payload,
         ...state.user.posts,
       ];
     });

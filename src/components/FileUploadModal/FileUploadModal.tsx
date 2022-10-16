@@ -1,9 +1,11 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import Modal from '@/components/Modal';
 import cl from './FileUploadModal.module.scss';
 import { FaDownload } from 'react-icons/fa';
 import Button from '@/components/UI/Button';
 import { useTranslation } from 'react-i18next';
+import { useAppDispatch } from '@/store';
+import { setNotification, setNotificationText } from '@/store/reducers/notificationSlice';
 
 interface IFileUploadButton {
   modal: boolean;
@@ -18,18 +20,19 @@ interface IFileUploadButton {
 }
 
 const FileUploadModal: FC<IFileUploadButton> = ({
-  setImage,
-  modal,
-  setModal,
-  validateSize = true,
-  accept = 'image/*',
-  minHeight = 640,
-  minWidth = 800,
-  maxHeight = 1080,
-  maxWidth = 1920,
-}) => {
+                                                  setImage,
+                                                  modal,
+                                                  setModal,
+                                                  validateSize = true,
+                                                  accept = 'image/*',
+                                                  minHeight = 640,
+                                                  minWidth = 800,
+                                                  maxHeight = 1080,
+                                                  maxWidth = 1920,
+                                                }) => {
   const [error, setError] = useState<string>('');
   const { t } = useTranslation('user');
+  const dispatch = useAppDispatch();
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files![0];
@@ -97,15 +100,20 @@ const FileUploadModal: FC<IFileUploadButton> = ({
     };
   };
 
+  useEffect(() => {
+    dispatch(setNotification({ text: error, timeout: 2500 }));
+  }, [error]);
+
   const onHide = () => {
     setError('');
+    setImage('');
   };
 
   return (
     <Modal onHide={onHide} modal={modal} setModal={setModal}>
       <div className={cl.container}>
         <input
-          type="file"
+          type='file'
           accept={accept}
           className={cl.fileUploadInput}
           onChange={onInputChange}
@@ -115,9 +123,6 @@ const FileUploadModal: FC<IFileUploadButton> = ({
           {t('Drag and drop files, photos and videos')}
         </span>
         <Button className={cl.fileUploadButton}>{t('Select a file')}</Button>
-        <div data-error={Boolean(error)} className={cl.errorContainer}>
-          <span className={cl.error}>{error}</span>
-        </div>
       </div>
     </Modal>
   );

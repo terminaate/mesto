@@ -29,21 +29,4 @@
   .fileUploadButton {
     margin-top: 30px;
   }
-
-  .errorContainer {
-    height: 5px;
-    width: max-content;
-    overflow: hidden;
-    transition: height 0.2s;
-
-    &[data-error='true'] {
-      height: 20px;
-    }
-
-    .error {
-      color: var(--text-red);
-      font-size: 12px;
-      font-family: var(--font-secondary);
-    }
-  }
 }

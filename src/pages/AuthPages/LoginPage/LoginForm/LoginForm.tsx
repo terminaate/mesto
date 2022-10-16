@@ -8,6 +8,7 @@ import { AuthData } from '@/services/AuthService';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { login } from '@/store/reducers/user/authAPI';
 import { useTranslation } from 'react-i18next';
+import Error from '@/components/Error/Error';
 
 const LoginForm = () => {
   const [loginInput, onLoginInputChange] = useInputState('');
@@ -66,12 +67,7 @@ const LoginForm = () => {
             onChange={onLoginInputChange}
             placeholder={t('Email or login*')}
           />
-          <div
-            data-error={Boolean(loginInputError)}
-            className={cl.errorContainer}
-          >
-            <span className={cl.error}>{loginInputError}</span>
-          </div>
+          <Error error={loginInputError} />
         </div>
         <div className={cl.inputContainer}>
           <Input
@@ -84,12 +80,7 @@ const LoginForm = () => {
               {passwordType === 'text' ? <FaEye /> : <FaEyeSlash />}
             </button>
           </Input>
-          <div
-            data-error={Boolean(passwordInputError)}
-            className={cl.errorContainer}
-          >
-            <span className={cl.error}>{passwordInputError}</span>
-          </div>
+          <Error error={passwordInputError} />
         </div>
       </div>
       <Button className={cl.loginButton} onClick={loginAttempt}>

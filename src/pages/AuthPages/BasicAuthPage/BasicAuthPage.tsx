@@ -5,6 +5,7 @@ import { useAppSelector } from '@/store';
 import { useTranslation } from 'react-i18next';
 import enNs from '@/locales/en';
 import { useNavigate } from 'react-router-dom';
+import Error from '@/components/Error/Error';
 
 interface IBasicAuthPage {
   children: ReactNode;
@@ -31,14 +32,8 @@ const BasicAuthPage: FC<IBasicAuthPage> = ({ title, children }) => {
           <span className={cl.logo}>Mesto</span>
           <span>{title}</span>
         </div>
-        <div
-          data-error={
-            Boolean(serverError) && Object.keys(enNs.auth).includes(serverError)
-          }
-          className={cl.errorContainer}
-        >
-          <span className={cl.error}>{t(serverError)}</span>
-        </div>
+        <Error error={serverError}
+               isErrorOccur={Boolean(serverError) && Object.keys(enNs.auth).includes(serverError)} />
         {children}
       </div>
     </BasicPage>

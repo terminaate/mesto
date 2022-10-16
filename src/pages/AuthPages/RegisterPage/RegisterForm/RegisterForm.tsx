@@ -8,6 +8,7 @@ import useInputState from '@/hooks/useInputState';
 import { useAppDispatch } from '@/store';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
+import Error from '@/components/Error/Error';
 
 const RegisterForm = () => {
   const [loginInput, onLoginInputChange] = useInputState('');
@@ -77,12 +78,7 @@ const RegisterForm = () => {
             onChange={onLoginInputChange}
             placeholder={t('Login*')}
           />
-          <div
-            data-error={Boolean(loginInputError)}
-            className={cl.errorContainer}
-          >
-            <span className={cl.error}>{loginInputError}</span>
-          </div>
+          <Error error={loginInputError} />
         </div>
         <div className={cl.inputContainer}>
           <Input
@@ -90,12 +86,7 @@ const RegisterForm = () => {
             onChange={onEmailInputChange}
             placeholder={t('E-mail')}
           />
-          <div
-            data-error={Boolean(emailInputError)}
-            className={cl.errorContainer}
-          >
-            <span className={cl.error}>{emailInputError}</span>
-          </div>
+          <Error error={emailInputError} />
         </div>
         <div className={cl.inputContainer}>
           <Input
@@ -108,12 +99,7 @@ const RegisterForm = () => {
               {passwordType === 'text' ? <FaEye /> : <FaEyeSlash />}
             </button>
           </Input>
-          <div
-            data-error={Boolean(passwordInputError)}
-            className={cl.errorContainer}
-          >
-            <span className={cl.error}>{passwordInputError}</span>
-          </div>
+          <Error error={passwordInputError} />
         </div>
       </div>
       <Button className={cl.registerButton} onClick={registerAttempt}>
