@@ -19,6 +19,7 @@ import Button from '@/components/UI/Button';
 // Icons
 import { FaHeart, FaPen } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { setNotificationText } from '@/store/reducers/notificationSlice';
 
 const UserPage = () => {
   const { user: selfUserData, authorized } = useAppSelector(

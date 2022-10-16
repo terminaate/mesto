@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import userSlice from './reducers/user/userSlice';
+import notificationSlice from '@/store/reducers/notificationSlice';
 
 const store = configureStore({
   reducer: {
     userSlice,
+    notificationSlice,
   },
 });
 export default store;
