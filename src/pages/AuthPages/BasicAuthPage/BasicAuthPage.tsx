@@ -5,7 +5,7 @@ import { useAppSelector } from '@/store';
 import { useTranslation } from 'react-i18next';
 import enNs from '@/locales/en';
 import { useNavigate } from 'react-router-dom';
-import Error from '@/components/Error/Error';
+import Error from '@/components/Error';
 
 interface IBasicAuthPage {
   children: ReactNode;

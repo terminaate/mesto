@@ -8,7 +8,7 @@ import useInputState from '@/hooks/useInputState';
 import { useAppDispatch } from '@/store';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import Error from '@/components/Error/Error';
+import Error from '@/components/Error';
 
 const RegisterForm = () => {
   const [loginInput, onLoginInputChange] = useInputState('');

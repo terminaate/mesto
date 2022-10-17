@@ -8,7 +8,7 @@ import { AuthData } from '@/services/AuthService';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { login } from '@/store/reducers/user/authAPI';
 import { useTranslation } from 'react-i18next';
-import Error from '@/components/Error/Error';
+import Error from '@/components/Error';
 
 const LoginForm = () => {
   const [loginInput, onLoginInputChange] = useInputState('');

@@ -1,11 +1,10 @@
-import React, { ChangeEvent, FC, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import Modal from '@/components/Modal';
 import cl from './FileUploadModal.module.scss';
 import { FaDownload } from 'react-icons/fa';
 import Button from '@/components/UI/Button';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch } from '@/store';
-import { setNotification, setNotificationText } from '@/store/reducers/notificationSlice';
+import Error from '@/components/Error';
 
 interface IFileUploadButton {
   modal: boolean;
@@ -32,7 +31,6 @@ const FileUploadModal: FC<IFileUploadButton> = ({
                                                 }) => {
   const [error, setError] = useState<string>('');
   const { t } = useTranslation('user');
-  const dispatch = useAppDispatch();
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files![0];
@@ -100,10 +98,6 @@ const FileUploadModal: FC<IFileUploadButton> = ({
     };
   };
 
-  useEffect(() => {
-    dispatch(setNotification({ text: error, timeout: 2500 }));
-  }, [error]);
-
   const onHide = () => {
     setError('');
     setImage('');
@@ -123,6 +117,7 @@ const FileUploadModal: FC<IFileUploadButton> = ({
           {t('Drag and drop files, photos and videos')}
         </span>
         <Button className={cl.fileUploadButton}>{t('Select a file')}</Button>
+        <Error error={error} />
       </div>
     </Modal>
   );
