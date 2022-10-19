@@ -22,13 +22,13 @@ interface IPostModal {
 }
 
 const PostModal: FC<IPostModal> = ({
-  modal,
-  setModal,
-  post,
-  setPost,
-  userData,
-  setUserData,
-}) => {
+                                     modal,
+                                     setModal,
+                                     post,
+                                     setPost,
+                                     userData,
+                                     setUserData,
+                                   }) => {
   const { user } = useAppSelector((state) => state.userSlice);
   const dispatch = useAppDispatch();
   const location = useLocation();
@@ -78,7 +78,7 @@ const PostModal: FC<IPostModal> = ({
   };
 
   return (
-    <Modal className={cl.postModal} modal={modal} setModal={setModal}>
+    <Modal screenClassName={cl.postModalScreen} className={cl.postModalContent} modal={modal} setModal={setModal}>
       <div className={cl.postImageContainer}>
         <img src={post.image} alt={''} className={cl.postImage} />
         <div className={cl.postStatsContainer}>

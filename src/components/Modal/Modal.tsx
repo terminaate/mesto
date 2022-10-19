@@ -9,16 +9,18 @@ interface IModal {
   setModal?: React.Dispatch<React.SetStateAction<boolean>>;
   onHide?: () => void;
   className?: string;
+  screenClassName?: string;
   children: ReactNode;
 }
 
 const Modal: FC<IModal> = ({
-  modal,
-  setModal,
-  onHide,
-  className,
-  children,
-}) => {
+                             modal,
+                             setModal,
+                             onHide,
+                             className,
+                             children,
+                             screenClassName,
+                           }) => {
   const closeModal = () => {
     if (onHide && setModal) {
       setModal(false);
@@ -43,7 +45,7 @@ const Modal: FC<IModal> = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onMouseDown={closeModal}
-          className={cl.modalScreen}
+          className={classNames(screenClassName!, cl.modalScreen)}
         >
           <motion.div
             onMouseDown={(e) => e.stopPropagation()}
