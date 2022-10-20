@@ -1,8 +1,7 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 import Loader from '@/components/Loader';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import AuthorizedRoute from '@/components/AuthorizedRoute';
-import SettingsAccountPage from '@/pages/SettingsPage/SettingsAccountPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { updateUser } from '@/store/reducers/user/userSlice';
@@ -12,6 +11,8 @@ import { AnimatePresence } from 'framer-motion';
 import ErrorBoundary from '@/components/ErrorBoundary';
 
 const SettingsPage = lazy(() => import('@/pages/SettingsPage'));
+const SettingsAccountPage = lazy(() => import('@/pages/SettingsPage/SettingsAccountPage'));
+const SettingsAppearancePage = lazy(() => import('@/pages/SettingsPage/SettingsAppearancePage'));
 const UserPage = lazy(() => import('@/pages/UserPage'));
 const LoginPage = lazy(() => import('@/pages/AuthPages/LoginPage'));
 const RegisterPage = lazy(() => import('@/pages/AuthPages/RegisterPage'));
@@ -72,6 +73,14 @@ const Routing = () => {
                 element={
                   <AuthorizedRoute>
                     <SettingsAccountPage />
+                  </AuthorizedRoute>
+                }
+              />
+              <Route
+                path={'Appearance'}
+                element={
+                  <AuthorizedRoute>
+                    <SettingsAppearancePage />
                   </AuthorizedRoute>
                 }
               />

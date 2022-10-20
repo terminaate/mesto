@@ -23,7 +23,7 @@ const ErrorFallback: FC<IErrorFallback> = ({ error, resetErrorBoundary }) => {
 
   return (
     <BasicPage className={cl.errorScreen}>
-      {t('Sorry, an unknown error has passed.')}
+      <span>{t('Sorry, an unknown error has passed.')}</span>
       <Button onClick={resetErrorBoundary}>{t('Try again')}</Button>
     </BasicPage>
   );

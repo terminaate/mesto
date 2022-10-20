@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import BasicPage from '@/components/BasicPage';
 import cl from './SettingsPage.module.scss';
-import { FaUser } from 'react-icons/all';
-import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { FaPaintBrush, FaUser } from 'react-icons/all';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import NavPreventedLink from '@/components/NavPreventedLink';
+
 
 const SettingsPage = () => {
   const location = useLocation();
@@ -15,13 +17,17 @@ const SettingsPage = () => {
   }, [location.pathname]);
 
   return (
-    <BasicPage className={cl.settingsPage}>
+    <BasicPage exitAnim={false} className={cl.settingsPage}>
       <div className={cl.settingsContainer}>
         <div className={cl.settingsNavContainer}>
-          <NavLink to={'account'}>
+          <NavPreventedLink to={'account'}>
             <FaUser />
-            Account
-          </NavLink>
+            <span>Account</span>
+          </NavPreventedLink>
+          <NavPreventedLink to={'appearance'}>
+            <FaPaintBrush />
+            <span>Appearance</span>
+          </NavPreventedLink>
         </div>
         <div className={cl.settingsPageContainer}>
           <Outlet />

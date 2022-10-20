@@ -7,7 +7,9 @@
     max-height: 450px;
     border-radius: 10px !important;
     //max-width: 70%;
-    width: 70%;
+    min-width: 30%;
+    max-width: 70%;
+    //width: 70%;
 
     .postImageContainer {
       width: auto;
