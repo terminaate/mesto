@@ -17,7 +17,7 @@ module.exports = {
         const { componentName } = answers;
 
         const path = `src/components/${capitalize(componentName)}`;
-        return { ...answers, componentName: capitalize(componentName), path };
+        return { componentName: capitalize(componentName), path };
       });
   },
 };

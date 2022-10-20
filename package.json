@@ -13,7 +13,8 @@
     "new:hook": "hygen new hook",
     "new:component": "hygen new component",
     "new:service": "hygen new service",
-    "new:page": "hygen new page"
+    "new:page": "hygen new page",
+    "new:slice": "hygen new slice"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",

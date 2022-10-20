@@ -11,7 +11,7 @@ export const initialState: NotificationState = {
 };
 
 export const notificationSlice = createSlice({
-  name: 'user',
+  name: 'notification',
   initialState,
   reducers: {
     setNotificationText(state, action: PayloadAction<string>) {
