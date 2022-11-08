@@ -15,5 +15,5 @@ export default defineConfig({
       '!': resolve(__dirname, './src/assets'),
     },
   },
-  base: '.',
+  base: '',
 });
