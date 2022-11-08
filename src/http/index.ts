@@ -7,7 +7,7 @@ import { logout } from '@/store/reducers/user/authAPI';
 export const serverURL =
   import.meta.env.MODE === 'development'
     ? 'http://127.0.0.1:5000'
-    : window.origin;
+    : 'https://mesto-server-prod.herokuapp.com';
 const baseURL = serverURL + '/api';
 
 const $api = axios.create({
