@@ -5,3 +5,5 @@
 *.svg
 *.png
 ./src/assets
+.hygen/*/**
+.hygen

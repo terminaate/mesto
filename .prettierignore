@@ -3,3 +3,6 @@
 *.d.ts
 ./src/assets
 ./src/assets/*/**
+.*
+.hygen/*/**
+.hygen

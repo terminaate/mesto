@@ -8,7 +8,13 @@
     "preview": "vite preview",
     "test:build": "tsc && vite build && rmdir /s /q dist && echo No errors founded!",
     "lint": "eslint ./src/**/* --fix",
-    "format": "prettier --write ./src/**/*"
+    "format": "prettier --write ./src/**/*",
+    "new:util": "hygen new util",
+    "new:hook": "hygen new hook",
+    "new:component": "hygen new component",
+    "new:service": "hygen new service",
+    "new:page": "hygen new page",
+    "new:slice": "hygen new slice"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
@@ -38,10 +44,11 @@
     "eslint": "^8.25.0",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "hygen": "^6.2.11",
     "prettier": "^2.7.1",
     "sass": "^1.55.0",
     "terser": "^5.15.1",
     "typescript": "^4.6.3",
-    "vite": "^2.9.15"
+    "vite": "^3.1.8"
   }
 }

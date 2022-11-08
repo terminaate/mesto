@@ -4,13 +4,13 @@ import classNames from 'classnames';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
-interface IModal {
+export interface IModal {
   modal: boolean;
   setModal?: React.Dispatch<React.SetStateAction<boolean>>;
   onHide?: () => void;
   className?: string;
   screenClassName?: string;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const Modal: FC<IModal> = ({

@@ -4,11 +4,13 @@ import cl from './SettingsPage.module.scss';
 import { FaPaintBrush, FaUser } from 'react-icons/all';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import NavPreventedLink from '@/components/NavPreventedLink';
+import { useTranslation } from 'react-i18next';
 
 
 const SettingsPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation('settings');
 
   useEffect(() => {
     if (location.pathname === '/settings') {
@@ -22,11 +24,11 @@ const SettingsPage = () => {
         <div className={cl.settingsNavContainer}>
           <NavPreventedLink to={'account'}>
             <FaUser />
-            <span>Account</span>
+            <span>{t('Account')}</span>
           </NavPreventedLink>
           <NavPreventedLink to={'appearance'}>
             <FaPaintBrush />
-            <span>Appearance</span>
+            <span>{t('Appearance')}</span>
           </NavPreventedLink>
         </div>
         <div className={cl.settingsPageContainer}>
