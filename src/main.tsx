@@ -2,7 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '@/store';
 import i18n from 'i18next';
@@ -38,10 +38,10 @@ i18n
 
 const root = createRoot(document.getElementById('root')!);
 root.render(
-  <BrowserRouter>
+  <HashRouter>
     <NavigateSetter />
     <Provider store={store}>
       <App />
     </Provider>
-  </BrowserRouter>,
+  </HashRouter>,
 );
