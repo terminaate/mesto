@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Mesto
 
 [![KRfGZcf.png](https://i.imgur.com/KRfGZcf.png)](https://imgur.com/a/aE0ShcO)
@@ -50,3 +51,6 @@ _Необходимо обязательное соединение с серв�
 - tntwnik@gmail.com  
 - Telegram: terminaate
 - Discord: Terminaate#9274
+=======
+# [Backend](https://github.com/terminaate/mesto-server.git)
+>>>>>>> 55079c5cbd7423f2ac95820e1325c255901097c0
