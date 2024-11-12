@@ -44,9 +44,3 @@ ES6/Vite/Typescript/React.js/Redux Toolkit/Axios/Framer Motion
 _Необходимо обязательное соединение с сервером [Mesto REST](https://github.com/terminaate/mesto-server 'Mesto REST')_
 
 ---
-
-### Связь с автором
-
-- tntwnik@gmail.com  
-- Telegram: terminaate
-- Discord: Terminaate#9274
